@@ -1,0 +1,88 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundation for Sites</title>
+
+    <link rel="stylesheet" href="foundation-6/css/foundation.css">
+    <link rel="stylesheet" href="foundation-6/css/app.css">
+
+  </head>
+  <body>
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-text">Honors Advising</li>
+          <li><a href="#">Schedule Generator</a></li>
+          <li><a href="#">Other</a></li>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu">
+          <li><input type="search" placeholder="Search"></li>
+          <li><button type="button" class="button">Search</button></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-6 columns">
+        <table>
+   <tr>
+     <th>Course Prefix</th><th>Course #</th><th>CRN</th><th>Day Of Week</th>
+   </tr>
+   <tr>
+     <td><input type="text" id="coursePrefix" data-toggle="tooltip"  title="4 uppercase letters" size="8"></td>
+     <td><input type="text" id="courseNumber" data-toggle="tooltip"  title="2-3 digits" size="8"></td>
+     <td><input type="text" size="8"></td>
+     <td><input type="text" size="8"></td>
+   </tr>
+
+      </div>
+      <div class="small-4 columns">Selected Courses</div>
+    </div>
+
+    <!-- my scripts-->
+    <script src="foundation-6/js/vendor/jquery.js"></script>
+    <script src="foundation-6/js/vendor/what-input.js"></script>
+    <script src="foundation-6/js/vendor/foundation.js"></script>
+    <script src="foundation-6/js/app.js"></script>
+
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $( function() {
+        var availableTags = [
+          "ActionScript",
+          "AppleScript",
+          "Asp",
+          "BASIC",
+          "C",
+          "C++",
+          "Clojure",
+          "COBOL",
+          "ColdFusion",
+          "Erlang",
+          "Fortran",
+          "Groovy",
+          "Haskell",
+          "Java",
+          "JavaScript",
+          "Lisp",
+          "Perl",
+          "PHP",
+          "Python",
+          "Ruby",
+          "Scala",
+          "Scheme"
+        ];
+        $( "#coursePrefix, #courseNumber" ).autocomplete({
+          source: availableTags
+        });
+      } );
+
+    </script>
+  </body>
+</html>
