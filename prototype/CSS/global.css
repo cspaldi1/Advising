@@ -37,6 +37,15 @@ td, th {
     margin-top: 40px;
     text-align: left;
   }
+  .container {
+    border-color: #0b4d03;
+    border-width: 2px;
+    border-style: solid;
+    display: inline-block;
+    padding: 20px;
+    margin-top: 40px;
+    text-align: left;
+  }
   #title {
     color: white;
     font-size: 30px;
