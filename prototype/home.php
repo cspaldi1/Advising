@@ -1,7 +1,7 @@
 <?php
   session_start();
 
-  if($_SESSION['user']['username'])
+  if($_SESSION['user']['username'] != "")
   {
     //do session things here, like get admin permission
   } else {
