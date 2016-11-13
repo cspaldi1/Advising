@@ -14,7 +14,7 @@ echo "Connected successfully\n";
 
 $query = "SELECT hashedPassword
           FROM ADVISOR
-          WHERE advisorNedID = 'admin'";
+          WHERE advisorNetID = 'admin'";
 
 $result = mysqli_query($conn, $query);
 $row=mysqli_fetch_assoc($result);
