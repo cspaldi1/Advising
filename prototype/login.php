@@ -10,8 +10,18 @@ $conn = new mysqli($servername, $username, $password);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+$pwHash = password_hash("password", PASSWORD_BCRYPT);
+$pwHash2 = password_hash("password", PASSWORD_BCRYPT);
 echo "Connected successfully\n";
-echo password_hash("password", PASSWORD_BCRYPT)."\n";
+echo $pwHash."\n";
+echo $pwHash2."\n";
+
+if(hash_equals($pwHash2, $pwHash))
+{
+  echo "TRUE";
+} else {
+  echo "FALSE";
+}
 ?>
 
 <html>
