@@ -20,3 +20,8 @@ VALUES ('wsverdlik', 'William', 'Sverdlik', 0, '12345');
 
 INSERT INTO ADVISOR (advisorID, firstName, lastName, isAdmin, hashedPassword)
 VALUES ('bross', 'Bob', 'Ross', 1, '1234');
+
+/* populate SCHEDULE table */
+
+INSERT INTO SCHEDULE(scheduleDate, EID, advisorNetID)
+VALUES('2016-11-13', '11111111', 'admin');
