@@ -11,7 +11,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 echo "Connected successfully\n";
-echo password_hash("password", PASSWORD_DEFAULT)."\n";
+echo password_hash("password", PASSWORD_BCRYPT)."\n";
 ?>
 
 <html>
