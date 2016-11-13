@@ -1,4 +1,5 @@
 <?php
+session_start();
 $_SESSION['student'] = array();
 
 foreach($_POST as $key=>$val)
