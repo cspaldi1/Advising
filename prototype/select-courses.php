@@ -1,8 +1,8 @@
 <?php
-foreach($_POST as $key=>$val)
+/*foreach($_POST as $key=>$val)
 {
 	$_SESSION['student'][$key] => $val;
-}
+}*/
 
 $myfile = fopen("./wi2016.txt", "r") or die("Unable to open file!");
 while (!feof ($myfile)) {
@@ -24,7 +24,7 @@ while (!feof ($myfile)) {
 }
 fclose($myfile);
 ksort($classArr);
-var_dump($_SESSION['Student']);
+//var_dump($_SESSION['Student']);
 ?>
 <html>
 <head>
