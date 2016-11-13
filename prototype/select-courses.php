@@ -105,7 +105,6 @@ ksort($classArr);
 				var replaceStr = "<option value=''> Select </option> ";
 				for(var i = 0; i < sectionKeys.length; i++)
 				{
-					alert(sectionKeys);
 					replaceStr += " <option value='"+sectionKeys[i]+"'>"+sectionKeys[i]+"</option> ";
 				}
 				$("#courseNo").prop('disabled', false);
@@ -126,7 +125,6 @@ ksort($classArr);
 				var replaceStr = "<option value=''> Select </option> ";
 				for(var i = 0; i < sectionKeys.length; i++)
 				{
-					alert(sectionKeys);
 					replaceStr += " <option value='"+sectionKeys[i]+"'>"+sectionKeys[i]+"</option> ";
 				}
 				$("#crn").prop('disabled', false);
