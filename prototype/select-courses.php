@@ -163,7 +163,7 @@ ksort($classArr);
 		function addCourseLine()
 		{
 			courses++;
-			var addStr = '<tr id="row1">'+
+			var addStr = '<tr id="row'+courses+'">'+
 				'<td>'+
 					'<select id="prefix'+courses+'" onchange="changeCourseNo('+courses+');" name="prefix[]" >'+
 						'<option value="">Select</option>'+
