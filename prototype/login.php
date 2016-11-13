@@ -50,9 +50,9 @@ if($_POST['netID'] && $_POST['password'])
           <span><b>Login</b></span>
         </div>
         <p>NetID</p>
-        <input type="password" name="netID"/>
+        <input type="text" name="netID"/>
         <p>Password</p>
-        <input type="text" name="password"/><br/>
+        <input type="password" name="password"/><br/>
         <div style="text-align: center; padding-top: 5px;">
           <input type="Submit" value="Submit"/>
         </div>
