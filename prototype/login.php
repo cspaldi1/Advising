@@ -1,3 +1,18 @@
+<?php
+$servername = "localhost";
+$username = "201609_481_g06";
+$password = "HKECNHGTYHQKJZFGHWCLD";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+?>
+
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
