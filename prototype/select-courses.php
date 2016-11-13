@@ -162,9 +162,10 @@ ksort($classArr);
 
 		function addCourseLine()
 		{
+			courses++;
 			var addStr = '<tr id="row1">'+
 				'<td>'+
-					'<select id="prefix1" onchange="changeCourseNo(1);" name="prefix[]" >'+
+					'<select id="prefix'+courses+'" onchange="changeCourseNo('+courses+');" name="prefix[]" >'+
 						'<option value="">Select</option>'+
 						'<?php foreach($classArr as $prefix=>$course_info) { ?>'+
 							'<option value="<?=$prefix?>"><?=$prefix?></option>'+
@@ -172,7 +173,7 @@ ksort($classArr);
 					'</select>'+
 				'</td>'+
 				'<td>'+
-					'<select id="courseNo1" onchange="changeCRN(1);" name ="courseNo[]" disabled>'+
+					'<select id="courseNo'+courses+'" onchange="changeCRN('+courses+');" name ="courseNo[]" disabled>'+
 						'<option value = "">Course No.</option>'+
 					'</select>'+
 				'</td>'+
@@ -182,24 +183,23 @@ ksort($classArr);
 					'</select>'+
 				'</td>'+
 				'<td>'+
-					'<select id="crn1" onchange="changeRest(1);" name="crn[]" disabled>'+
+					'<select id="crn'+courses+'" onchange="changeRest('+courses+');" name="crn[]" disabled>'+
 						'<option>CRN</option>'+
 					'</select>'+
 				'</td>'+
 				'<td>'+
-					'<select id="days1" name="days[]" disabled>'+
+					'<select id="days'+courses+'" name="days[]" disabled>'+
 						'<option>Day</option>'+
 					'</select>'+
 				'</td>'+
 				'<td>'+
-					'<select id="time1" name="time[]" disabled>'+
+					'<select id="time'+courses+'" name="time[]" disabled>'+
 						'<option>Time</option>'+
 					'</select>'+
 				'</td>'+
 			'</tr>';
 
-			$(addStr).insertAfter($("#row"+courses));
-			courses++;
+			$(addStr).insertAfter($("#row"+(courses-1)));
 		}
 	</script>
 </html>
