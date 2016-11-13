@@ -152,12 +152,12 @@ ksort($classArr);
 				var timeStr = "<option value=''> Select </option> ";
 				timeStr += "<option value='"+sections["start"]+"-"+sections['end']+"'>"+sections["start"]+"-"+sections['end']+"</option>";
 
-				$("#day").prop('disabled', false);
+				$("#days").prop('disabled', false);
 				$("#time").prop('disabled', false);
-				$("#day").html(dayStr);
+				$("#days").html(dayStr);
 				$("#time").html(timeStr);
 			} else {
-				$("#day").prop('disabled', "disabled");
+				$("#days").prop('disabled', "disabled");
 				$("#time").prop('disabled', "disabled");
 			}
 		});
