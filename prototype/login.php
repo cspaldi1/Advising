@@ -2,12 +2,7 @@
 
 if($_POST['netID'] && $_POST['password'])
 {
-  $servername = "localhost";
-  $username = "201609_481_g06";
-  $password = "HKECNHGTYHQKJZFGHWCLD";
-
-  // Create connection
-  $conn = mysqli_connect($servername, $username, $password, "201609_481_g06");
+  include("sensitive.php");
 
   // Check connection
   if (mysqli_connect_errno()) {
@@ -55,7 +50,7 @@ if($_POST['netID'] && $_POST['password'])
           <span><b>Login</b></span>
         </div>
         <p>NetID</p>
-        <input type="text" name="netID"/>
+        <input type="password" name="netID"/>
         <p>Password</p>
         <input type="text" name="password"/><br/>
         <div style="text-align: center; padding-top: 5px;">
