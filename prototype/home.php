@@ -5,8 +5,8 @@
   {
     //do session things here, like get admin permission
   } else {
-    header("Location: login.php");
-    die();
+    //header("Location: login.php");
+  //  die();
   }
 
  ?>
