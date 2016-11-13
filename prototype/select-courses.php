@@ -135,7 +135,5 @@ ksort($classArr);
 				$("#crn").prop('disabled', "disabled");
 			}
 		});
-
-		$(#)
 	</script>
 </html>
