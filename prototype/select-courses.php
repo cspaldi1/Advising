@@ -1,5 +1,5 @@
 <?php
-$myfile = fopen("./winter.txt", "r") or die("Unable to open file!");
+$myfile = fopen("./wi2016.txt", "r") or die("Unable to open file!");
 while (!feof ($myfile)) {
 	$array = array();
     $line = fgets($myfile);
