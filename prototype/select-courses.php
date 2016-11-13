@@ -31,6 +31,7 @@ ksort($classArr);
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
+	<script src="./JS/jquery-3.1.1.min.js"></script>
 </head>
   <body>
     <div id="container">
@@ -50,7 +51,7 @@ ksort($classArr);
         </tr>
         <tr>
           <td>
-            <select>
+            <select id="prefix">
 							<option value="">Select</option>
 							<?php foreach($classArr as $prefix=>$course_info) { ?>
 								<option value="<?=$prefix?>"><?=$prefix?></option>
@@ -58,8 +59,8 @@ ksort($classArr);
             </select>
           </td>
           <td>
-            <select disabled>
-              <option>Select</option>
+            <select id="coursNo" disabled>
+              <option value = "">Course No.</option>
             </select>
           </td>
           <td>
@@ -92,6 +93,20 @@ ksort($classArr);
   </body>
 
 	<script>
-		var classArray = JSON.parse("<?=json_encode($classArr)?>");
+		var classArray = JSON.parse('<?=json_encode($classArr)?>');
+
+		$('#prefix').on('change', function (e) {
+	    var opSelected = $("option:selected", this);
+	    var valSelected = this.value;
+			var sections = classArray[value];
+			var sectionKeys = Object.keys(sections);
+			var replaceStr = "<option value=''> Select </option> ";
+			for(var i = 0; i < sectionKeys.length; i++)
+			{
+				replaceStr += " <option value='"+sectionKeys[i]+"'>"+sectionKeys[i]+"</option> ";
+			}
+			$("#courseNo").prop('disabled', false);
+			$("#courseNo").html(replaceStr);
+		});
 	</script>
 </html>
