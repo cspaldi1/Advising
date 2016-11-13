@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
@@ -8,7 +10,7 @@
       </div>
     </div>
     <div class="page">
-      <span><b>Student Schedule</b></span>
+      <span><b>Student Schedule for <?=$_SESSION['student']['fname']?></b></span>
       <table>
         <tr>
           <th>Prefix</th>
@@ -35,7 +37,7 @@
           } ?>
         <tr>
           <td colspan="6" style="text-align: right; border: none;">Total Credits:</td>
-          <td style="text-align: left; border: none;">15</td>
+          <td style="text-align: left; border: none;"></td>
         </tr>
       </table>
     </div>
@@ -45,7 +47,7 @@
       </div>
       <div style="width: 50%; margin: auto; padding-top: 20px;">
         <span style="float: left;"><< Back</span>
-        <span style="float: center;">Showing Schedule 3 of 10</span>
+        <span style="float: center;">Showing Schedule 1 of 1</span>
         <span style="float: right;"> Forward>></span>
       </div>
     </div>
