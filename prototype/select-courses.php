@@ -52,7 +52,7 @@ ksort($classArr);
 	        </tr>
 	        <tr>
 	          <td>
-	            <select id="prefix" name="prefix[]" >
+	            <select id="prefix1" onchange="changeCourseNo(1);"name="prefix[]" >
 								<option value="">Select</option>
 								<?php foreach($classArr as $prefix=>$course_info) { ?>
 									<option value="<?=$prefix?>"><?=$prefix?></option>
@@ -60,7 +60,7 @@ ksort($classArr);
 	            </select>
 	          </td>
 	          <td>
-	            <select id="courseNo" name ="courseNo[]" disabled>
+	            <select id="courseNo1" name ="courseNo[]" disabled>
 	              <option value = "">Course No.</option>
 	            </select>
 	          </td>
@@ -70,17 +70,17 @@ ksort($classArr);
 	            </select>
 	          </td>
 	          <td>
-	            <select id="crn" name="crn[]" disabled>
+	            <select id="crn1" name="crn[]" disabled>
 	              <option>CRN</option>
 	            </select>
 	          </td>
 	          <td>
-	            <select id="days" name="days[]" disabled>
+	            <select id="days1" name="days[]" disabled>
 	              <option>Day</option>
 	            </select>
 	          </td>
 	          <td>
-	            <select id="time" name="time[]" disabled>
+	            <select id="time1" name="time[]" disabled>
 	              <option>Time</option>
 	            </select>
 	          </td>
@@ -97,8 +97,25 @@ ksort($classArr);
 
 	<script>
 		var classArray = JSON.parse('<?=json_encode($classArr)?>');
-
-		$('#prefix').on('change', function (e) {
+		function changeCourseNo(number)
+		{
+			var valSelected = $("#prefix"+number).val();
+			if(valSelected != "")
+			{
+				var sections = classArray[valSelected];
+				var sectionKeys = Object.keys(sections);
+				var replaceStr = "<option value=''> Select </option> ";
+				for(var i = 0; i < sectionKeys.length; i++)
+				{
+					replaceStr += " <option value='"+sectionKeys[i]+"'>"+sectionKeys[i]+"</option> ";
+				}
+				$("#courseNo"+1).prop('disabled', false);
+				$("#courseNo"+1).html(replaceStr);
+			} else {
+				$("#courseNo"+1).prop('disabled', "disabled");
+			}
+		}
+		/*$('#prefix1').on('change', function (e) {
 	    var opSelected = $("option:selected", this);
 	    var valSelected = this.value;
 			if(valSelected != "")
@@ -110,17 +127,17 @@ ksort($classArr);
 				{
 					replaceStr += " <option value='"+sectionKeys[i]+"'>"+sectionKeys[i]+"</option> ";
 				}
-				$("#courseNo").prop('disabled', false);
-				$("#courseNo").html(replaceStr);
+				$("#courseNo1").prop('disabled', false);
+				$("#courseNo1").html(replaceStr);
 			} else {
-				$("#courseNo").prop('disabled', "disabled");
+				$("#courseNo1").prop('disabled', "disabled");
 			}
-		});
+		});*/
 
-		$('#courseNo').on('change', function (e) {
+		$('#courseNo1').on('change', function (e) {
 	    var opSelected = $("option:selected", this);
 	    var valSelected = this.value;
-			var courseSelected = $("#prefix").val();
+			var courseSelected = $("#prefix1").val();
 			if(valSelected != "")
 			{
 				var sections = classArray[courseSelected][valSelected];
@@ -130,18 +147,18 @@ ksort($classArr);
 				{
 					replaceStr += " <option value='"+sectionKeys[i]+"'>"+sectionKeys[i]+"</option> ";
 				}
-				$("#crn").prop('disabled', false);
-				$("#crn").html(replaceStr);
+				$("#crn1").prop('disabled', false);
+				$("#crn1").html(replaceStr);
 			} else {
-				$("#crn").prop('disabled', "disabled");
+				$("#crn1").prop('disabled', "disabled");
 			}
 		});
 
-		$('#crn').on('change', function (e) {
+		$('#crn1').on('change', function (e) {
 	    var opSelected = $("option:selected", this);
 	    var valSelected = this.value;
-			var courseSelected = $("#prefix").val();
-			var noSelected = $("#courseNo").val();
+			var courseSelected = $("#prefix1").val();
+			var noSelected = $("#courseNo1").val();
 			if(valSelected != "")
 			{
 				var sections = classArray[courseSelected][noSelected][valSelected];
@@ -152,13 +169,13 @@ ksort($classArr);
 				var timeStr = "<option value=''> Select </option> ";
 				timeStr += "<option value='"+sections["start"]+"-"+sections['end']+"'>"+sections["start"]+"-"+sections['end']+"</option>";
 
-				$("#days").prop('disabled', false);
-				$("#time").prop('disabled', false);
-				$("#days").html(dayStr);
-				$("#time").html(timeStr);
+				$("#days1").prop('disabled', false);
+				$("#time1").prop('disabled', false);
+				$("#days1").html(dayStr);
+				$("#time1").html(timeStr);
 			} else {
-				$("#days").prop('disabled', "disabled");
-				$("#time").prop('disabled', "disabled");
+				$("#days1").prop('disabled', "disabled");
+				$("#time1").prop('disabled', "disabled");
 			}
 		});
 	</script>

@@ -27,7 +27,7 @@
         <span><b>Advising Session</b></span>
       </div>
       <div style="text-align: center; padding-top: 5px;">
-        <button onclick="window.location.href='student-info.html'">Start</button>
+        <button onclick="window.location.href='student-info.php'">Start</button>
       </div>
     </div>
     <div id="login">

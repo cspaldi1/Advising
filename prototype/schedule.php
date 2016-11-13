@@ -7,7 +7,6 @@
       <div id="header"><span id="title">Honors Advising Portal</span>
       </div>
     </div>
-    <?php var_dump($_POST);?>
     <div class="page">
       <span><b>Student Schedule</b></span>
       <table>
@@ -29,7 +28,7 @@
             <td><?=$_POST['honors'][$i]?></td>
             <td><?=$_POST['crn'][$i]?></td>
             <td><?=$_POST['days'][$i]?></td>
-            <td><?=$_POST['times'][$i]?></td>
+            <td><?=$_POST['time'][$i]?></td>
             <td><?=$_POST['credits'][$i]?></td>
           </tr>
         <?php
