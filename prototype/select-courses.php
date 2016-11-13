@@ -143,12 +143,11 @@ ksort($classArr);
 			{
 				var sections = classArray[courseSelected][noSelected][valSelected];
 				var sectionKeys = Object.keys(sections);
-				alert(sectionKeys);
 				var dayStr = "<option value=''> Select </option> ";
-				dayStr += "<option value='"+sections["days"]+"'>"+ +"</option>";
+				dayStr += "<option value='"+sections["days"]+"'>"+sections["days"]+"</option>";
 
 				var timeStr = "<option value=''> Select </option> ";
-				timeStr += "<option value='"+sections["start"]+" "+sections['end']+"'>"+ +"</option>";
+				timeStr += "<option value='"+sections["start"]+"-"+sections['end']+"'>"+sections["start"]+"-"+sections['end']+"</option>";
 
 				$("#day").prop('disabled', false);
 				$("#time").prop('disabled', false);
