@@ -52,7 +52,7 @@ ksort($classArr);
 	        </tr>
 	        <tr>
 	          <td>
-	            <select id="prefix1" onchange="changeCourseNo(1);"name="prefix[]" >
+	            <select id="prefix1" onchange="changeCourseNo(1);" name="prefix[]" >
 								<option value="">Select</option>
 								<?php foreach($classArr as $prefix=>$course_info) { ?>
 									<option value="<?=$prefix?>"><?=$prefix?></option>
@@ -60,7 +60,7 @@ ksort($classArr);
 	            </select>
 	          </td>
 	          <td>
-	            <select id="courseNo1" name ="courseNo[]" disabled>
+	            <select id="courseNo1" onchange="changeCRN(1);" name ="courseNo[]" disabled>
 	              <option value = "">Course No.</option>
 	            </select>
 	          </td>
@@ -70,7 +70,7 @@ ksort($classArr);
 	            </select>
 	          </td>
 	          <td>
-	            <select id="crn1" name="crn[]" disabled>
+	            <select id="crn1" onchange="changeRest(1);" name="crn[]" disabled>
 	              <option>CRN</option>
 	            </select>
 	          </td>
@@ -97,6 +97,7 @@ ksort($classArr);
 
 	<script>
 		var classArray = JSON.parse('<?=json_encode($classArr)?>');
+		var courses = 1;
 		function changeCourseNo(number)
 		{
 			var valSelected = $("#prefix"+number).val();
@@ -115,29 +116,10 @@ ksort($classArr);
 				$("#courseNo"+1).prop('disabled', "disabled");
 			}
 		}
-		/*$('#prefix1').on('change', function (e) {
-	    var opSelected = $("option:selected", this);
-	    var valSelected = this.value;
-			if(valSelected != "")
-			{
-				var sections = classArray[valSelected];
-				var sectionKeys = Object.keys(sections);
-				var replaceStr = "<option value=''> Select </option> ";
-				for(var i = 0; i < sectionKeys.length; i++)
-				{
-					replaceStr += " <option value='"+sectionKeys[i]+"'>"+sectionKeys[i]+"</option> ";
-				}
-				$("#courseNo1").prop('disabled', false);
-				$("#courseNo1").html(replaceStr);
-			} else {
-				$("#courseNo1").prop('disabled', "disabled");
-			}
-		});*/
 
-		$('#courseNo1').on('change', function (e) {
-	    var opSelected = $("option:selected", this);
-	    var valSelected = this.value;
-			var courseSelected = $("#prefix1").val();
+		function changeCRN(number) {
+			var valSelected = $("#crn"+number).val();
+			var courseSelected = $("#prefix"+number).val();
 			if(valSelected != "")
 			{
 				var sections = classArray[courseSelected][valSelected];
@@ -147,18 +129,17 @@ ksort($classArr);
 				{
 					replaceStr += " <option value='"+sectionKeys[i]+"'>"+sectionKeys[i]+"</option> ";
 				}
-				$("#crn1").prop('disabled', false);
-				$("#crn1").html(replaceStr);
+				$("#crn"+number).prop('disabled', false);
+				$("#crn"+number).html(replaceStr);
 			} else {
-				$("#crn1").prop('disabled', "disabled");
+				$("#crn"+number).prop('disabled', "disabled");
 			}
-		});
+		}
 
-		$('#crn1').on('change', function (e) {
-	    var opSelected = $("option:selected", this);
-	    var valSelected = this.value;
-			var courseSelected = $("#prefix1").val();
-			var noSelected = $("#courseNo1").val();
+		function changeRest(number) {
+			var valSelected = $("#crn"+number).val();
+			var courseSelected = $("#prefix"+number).val();
+			var noSelected = $("#courseNo"+number).val();
 			if(valSelected != "")
 			{
 				var sections = classArray[courseSelected][noSelected][valSelected];
@@ -169,14 +150,19 @@ ksort($classArr);
 				var timeStr = "<option value=''> Select </option> ";
 				timeStr += "<option value='"+sections["start"]+"-"+sections['end']+"'>"+sections["start"]+"-"+sections['end']+"</option>";
 
-				$("#days1").prop('disabled', false);
-				$("#time1").prop('disabled', false);
-				$("#days1").html(dayStr);
-				$("#time1").html(timeStr);
+				$("#days"+number).prop('disabled', false);
+				$("#time"+number).prop('disabled', false);
+				$("#days"+number).html(dayStr);
+				$("#time"+number).html(timeStr);
 			} else {
-				$("#days1").prop('disabled', "disabled");
-				$("#time1").prop('disabled', "disabled");
+				$("#days"+number).prop('disabled', "disabled");
+				$("#time"+number).prop('disabled', "disabled");
 			}
-		});
+		}
+
+		function addCourseLine()
+		{
+			courses++;
+		}
 	</script>
 </html>
