@@ -20,15 +20,20 @@
           <th>Time</th>
           <th>Credits</th>
         </tr>
-        <tr>
-          <td>COSC</td>
-          <td>111</td>
-          <td>Yes</td>
-          <td>29182</td>
-          <td>MW</td>
-          <td>9:30-10:45</td>
-          <td>3</td>
-        </tr>
+        <?php $i=0;
+        foreach($_POST as $key=>$class)
+        { ?>
+          <tr>
+            <td><?=$class['prefix'][$i]?></td>
+            <td><?=$class['courseNo'][$i]?></td>
+            <td><?=$class['honors'][$i]?></td>
+            <td><?=$class['crn'][$i]?></td>
+            <td><?=$class['days'][$i]?></td>
+            <td><?=$class['times'][$i]?></td>
+            <td><?=$class['credits'][$i]?></td>
+          </tr>
+        <?php $i++;
+          } ?>
         <tr>
           <td colspan="6" style="text-align: right; border: none;">Total Credits:</td>
           <td style="text-align: left; border: none;">15</td>

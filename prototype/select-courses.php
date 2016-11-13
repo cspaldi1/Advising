@@ -40,7 +40,7 @@ ksort($classArr);
     </div>
     <h1>Select Student Courses</h1>
     <div>
-			<form action="schedule.php" method="post">
+			<form action="schedule.php" method="post" id="schedule">
 	      <table>
 	        <tr>
 	          <th>Prefix</th>
@@ -86,11 +86,11 @@ ksort($classArr);
 	          </td>
 	        </tr>
 	      </table>
+				</form>
 	      <div style="margin-top: 10px;">
-	        <button>Add Another Course</button>
-	        <input type="submit" value="See Schedule(s)"/>
+	        <!--<button onclick="">Add Another Course</button>-->
+	        <input type="document.getElementById('schedule').submit();" value="See Schedule(s)"/>
 	      </div>
-			</form>
 			</div>
     </div>
   </body>
