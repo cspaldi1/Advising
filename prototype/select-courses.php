@@ -1,4 +1,9 @@
 <?php
+foreach($_POST as $key=>$val)
+{
+	$_SESSION['student'][$key] => $val;
+}
+
 $myfile = fopen("./wi2016.txt", "r") or die("Unable to open file!");
 while (!feof ($myfile)) {
 	$array = array();
@@ -19,6 +24,7 @@ while (!feof ($myfile)) {
 }
 fclose($myfile);
 ksort($classArr);
+var_dump($_SESSION['Student']);
 ?>
 <html>
 <head>
@@ -43,8 +49,9 @@ ksort($classArr);
         <tr>
           <td>
             <select>
+							<option value="">Select</option>
 							<?php foreach($classArr as $prefix=>$course_info) { ?>
-								<option><?=$prefix?></option>
+								<option value="<?=$prefix?>"><?=$prefix?></option>
 							<?php } ?>
             </select>
           </td>
@@ -81,4 +88,8 @@ ksort($classArr);
       </div>
     </div>
   </body>
+
+	<script>
+		var classArray = JSON.parse("<?=json_encode($classArr)?>");
+	</script>
 </html>
