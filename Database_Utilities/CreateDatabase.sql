@@ -25,7 +25,7 @@ CREATE TABLE COURSE(
   title TEXT NOT NULL,
   courseNO CHAR(5) NOT NULL,
   coursePrefix CHAR(5) NOT NULL,
-  term TEXT NOT NULL,
+  term CHAR(12) NOT NULL,
   timeEnd TEXT,
   timeStart TEXT,
   capacity INT,
