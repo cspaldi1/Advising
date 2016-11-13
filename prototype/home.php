@@ -1,12 +1,13 @@
 <?php
   session_start();
 
-  if($_SESSION['user']['username'] != "")
+  if($_SESSION['user']['netID'])
   {
     //do session things here, like get admin permission
   } else {
-    //header("Location: login.php");
-  //  die();
+    //if nobody is logged in, send to login page
+    header("Location: login.php");
+    die();
   }
 
  ?>
@@ -20,7 +21,7 @@
       <div id="header"><span id="title">Honors Advising Portal</span>
       </div>
     </div>
-    <div><span>Hello, <?=$_SESSION['user']['fname']?></span></div>
+    <div><h2>Hello, <?=$_SESSION['user']['fname']?></h2></div>
     <div id="login">
       <div style="text-align: center;">
         <span><b>Advising Session</b></span>

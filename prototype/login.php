@@ -24,7 +24,7 @@ if($_POST['netID'] && $_POST['password'])
   if(password_verify($_POST['password'], $row['hashedPassword']))
   {
     session_start();
-    $_SESSION['user']['username'] = $row['netID'];
+    $_SESSION['user']['netID'] = $row['advisorNetID'];
     $_SESSION['user']['fname'] = $row['firstName'];
     $_SESSION['user']['lname'] = $row['lastName'];
 
@@ -34,9 +34,9 @@ if($_POST['netID'] && $_POST['password'])
     //give some false error here
   }
 } else if($_POST['netID'] || $_POST['password']){
-
+  //tell user password/username combo failed.
 } else {
-
+  //clear pre-existing session variables here.
 }
 ?>
 
