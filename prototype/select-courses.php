@@ -3,7 +3,7 @@ $_SESSION['student'] = array();
 
 foreach($_POST as $key=>$val)
 {
-	$_SESSION['student'][$key] => $val;
+	$_SESSION['student'][$key] = $val;
 }
 
 $myfile = fopen("./wi2016.txt", "r") or die("Unable to open file!");
