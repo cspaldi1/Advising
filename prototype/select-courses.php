@@ -89,7 +89,7 @@ ksort($classArr);
 				</form>
 	      <div style="margin-top: 10px;">
 	        <!--<button onclick="">Add Another Course</button>-->
-	        <input type="document.getElementById('schedule').submit();" value="See Schedule(s)"/>
+	        <input type="button" onclick="document.getElementById('schedule').submit();" value="See Schedule(s)"/>
 	      </div>
 			</div>
     </div>
