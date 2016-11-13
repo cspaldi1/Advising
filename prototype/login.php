@@ -18,8 +18,8 @@ $query = "SELECT hashedPassword
 
 $result = mysqli_query($conn, $query);
 $row=mysqli_fetch_assoc($result);
-echo $row['hashedPassword'];
-if(password_verify("password", $pwHash))
+var_dump($row);
+if(false)
 {
   echo "TRUE";
 } else {
