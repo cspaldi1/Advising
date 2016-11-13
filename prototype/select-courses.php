@@ -69,7 +69,7 @@ ksort($classArr);
             </select>
           </td>
           <td>
-            <select disabled>
+            <select id="crn" disabled>
               <option>CRN</option>
             </select>
           </td>
@@ -98,16 +98,44 @@ ksort($classArr);
 		$('#prefix').on('change', function (e) {
 	    var opSelected = $("option:selected", this);
 	    var valSelected = this.value;
-			var sections = classArray[valSelected];
-			var sectionKeys = Object.keys(sections);
-			var replaceStr = "<option value=''> Select </option> ";
-			for(var i = 0; i < sectionKeys.length; i++)
+			if(valSelected != "")
 			{
-				alert(sectionKeys);
-				replaceStr += " <option value='"+sectionKeys[i]+"'>"+sectionKeys[i]+"</option> ";
+				var sections = classArray[valSelected];
+				var sectionKeys = Object.keys(sections);
+				var replaceStr = "<option value=''> Select </option> ";
+				for(var i = 0; i < sectionKeys.length; i++)
+				{
+					alert(sectionKeys);
+					replaceStr += " <option value='"+sectionKeys[i]+"'>"+sectionKeys[i]+"</option> ";
+				}
+				$("#courseNo").prop('disabled', false);
+				$("#courseNo").html(replaceStr);
+			} else {
+				$("#courseNo").prop('disabled', "disabled");
 			}
-			$("#courseNo").prop('disabled', false);
-			$("#courseNo").html(replaceStr);
 		});
+
+		$('#courseNo').on('change', function (e) {
+	    var opSelected = $("option:selected", this);
+	    var valSelected = this.value;
+			var courseSelected = $("#prefix").val();
+			if(valSelected != "")
+			{
+				var sections = classArray[courseSelected][valSelected];
+				var sectionKeys = Object.keys(sections);
+				var replaceStr = "<option value=''> Select </option> ";
+				for(var i = 0; i < sectionKeys.length; i++)
+				{
+					alert(sectionKeys);
+					replaceStr += " <option value='"+sectionKeys[i]+"'>"+sectionKeys[i]+"</option> ";
+				}
+				$("#crn").prop('disabled', false);
+				$("#crn").html(replaceStr);
+			} else {
+				$("#crn").prop('disabled', "disabled");
+			}
+		});
+
+		$(#)
 	</script>
 </html>
