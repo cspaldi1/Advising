@@ -50,7 +50,7 @@ ksort($classArr);
 	          <th>Days</th>
 	          <th>Time</th>
 	        </tr>
-	        <tr>
+	        <tr id="row1">
 	          <td>
 	            <select id="prefix1" onchange="changeCourseNo(1);" name="prefix[]" >
 								<option value="">Select</option>
@@ -88,7 +88,7 @@ ksort($classArr);
 	      </table>
 				</form>
 	      <div style="margin-top: 10px;">
-	        <!--<button onclick="">Add Another Course</button>-->
+	        <button onclick="addCourseLine();">Add Another Course</button>
 	        <input type="button" onclick="document.getElementById('schedule').submit();" value="See Schedule(s)"/>
 	      </div>
 			</div>
@@ -162,6 +162,43 @@ ksort($classArr);
 
 		function addCourseLine()
 		{
+			var addStr = '<tr id="row1">'+
+				'<td>'+
+					'<select id="prefix1" onchange="changeCourseNo(1);" name="prefix[]" >'+
+						'<option value="">Select</option>'+
+						'<?php foreach($classArr as $prefix=>$course_info) { ?>'+
+							'<option value="<?=$prefix?>"><?=$prefix?></option>'+
+						'<?php } ?>'+
+					'</select>'+
+				'</td>'+
+				'<td>'+
+					'<select id="courseNo1" onchange="changeCRN(1);" name ="courseNo[]" disabled>'+
+						'<option value = "">Course No.</option>'+
+					'</select>'+
+				'</td>'+
+				'<td>'+
+					'<select name="honors[]" disabled>'+
+						'<option>Both</option>'+
+					'</select>'+
+				'</td>'+
+				'<td>'+
+					'<select id="crn1" onchange="changeRest(1);" name="crn[]" disabled>'+
+						'<option>CRN</option>'+
+					'</select>'+
+				'</td>'+
+				'<td>'+
+					'<select id="days1" name="days[]" disabled>'+
+						'<option>Day</option>'+
+					'</select>'+
+				'</td>'+
+				'<td>'+
+					'<select id="time1" name="time[]" disabled>'+
+						'<option>Time</option>'+
+					'</select>'+
+				'</td>'+
+			'</tr>';
+
+			$(addStr).insertAfter($("#row"+courses));
 			courses++;
 		}
 	</script>
