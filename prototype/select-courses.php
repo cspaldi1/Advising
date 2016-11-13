@@ -74,12 +74,12 @@ ksort($classArr);
             </select>
           </td>
           <td>
-            <select disabled>
+            <select id="day" disabled>
               <option>Day</option>
             </select>
           </td>
           <td>
-            <select disabled>
+            <select id="time" disabled>
               <option>Time</option>
             </select>
           </td>
@@ -131,6 +131,30 @@ ksort($classArr);
 				$("#crn").html(replaceStr);
 			} else {
 				$("#crn").prop('disabled', "disabled");
+			}
+		});
+
+		$('#crn').on('change', function (e) {
+	    var opSelected = $("option:selected", this);
+	    var valSelected = this.value;
+			var courseSelected = $("#prefix").val();
+			var noSelected = $("#courseNo").val();
+			if(valSelected != "")
+			{
+				var sections = classArray[courseSelected][noSelected][valSelected];
+				var dayStr = "<option value=''> Select </option> ";
+				dayStr += "<option value='"+sections["days"]+"'>"+ +"</option>";
+
+				var timeStr = "<option value=''> Select </option> ";
+				timeStr += "<option value='"+sections["start"]+" "+sections['end']+"'>"+ +"</option>";
+
+				$("#day").prop('disabled', false);
+				$("#time").prop('disabled', false);
+				$("#day").html(dayStr);
+				$("#time").html(timeStr);
+			} else {
+				$("#day").prop('disabled', "disabled");
+				$("#time").prop('disabled', "disabled");
 			}
 		});
 	</script>
