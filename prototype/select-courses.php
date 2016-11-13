@@ -98,7 +98,7 @@ ksort($classArr);
 		$('#prefix').on('change', function (e) {
 	    var opSelected = $("option:selected", this);
 	    var valSelected = this.value;
-			var sections = classArray[value];
+			var sections = classArray[valSelected];
 			var sectionKeys = Object.keys(sections);
 			var replaceStr = "<option value=''> Select </option> ";
 			for(var i = 0; i < sectionKeys.length; i++)
