@@ -110,10 +110,10 @@ ksort($classArr);
 				{
 					replaceStr += " <option value='"+sectionKeys[i]+"'>"+sectionKeys[i]+"</option> ";
 				}
-				$("#courseNo"+1).prop('disabled', false);
-				$("#courseNo"+1).html(replaceStr);
+				$("#courseNo"+number).prop('disabled', false);
+				$("#courseNo"+number).html(replaceStr);
 			} else {
-				$("#courseNo"+1).prop('disabled', "disabled");
+				$("#courseNo"+number).prop('disabled', "disabled");
 			}
 		}
 
