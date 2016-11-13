@@ -7,6 +7,7 @@
       <div id="header"><span id="title">Honors Advising Portal</span>
       </div>
     </div>
+    <?php var_dump($_POST);?>
     <div class="page">
       <span><b>Student Schedule</b></span>
       <table>
@@ -27,42 +28,6 @@
           <td>MW</td>
           <td>9:30-10:45</td>
           <td>3</td>
-        </tr>
-        <tr>
-          <td>CTAC</td>
-          <td>124</td>
-          <td>Yes</td>
-          <td>18292</td>
-          <td>MW</td>
-          <td>11:00-12:15</td>
-          <td>3</td>
-        </tr>
-        <tr>
-          <td>MATH</td>
-          <td>120</td>
-          <td>No</td>
-          <td>17829</td>
-          <td>TR</td>
-          <td>9:30-10:45</td>
-          <td>4</td>
-        </tr>
-        <tr>
-          <td>BIO</td>
-          <td>110</td>
-          <td>No</td>
-          <td>18998</td>
-          <td>TR</td>
-          <td>11:00-12:15</td>
-          <td>3</td>
-        </tr>
-        <tr>
-          <td>BIO</td>
-          <td>111</td>
-          <td>No</td>
-          <td>18999</td>
-          <td>T</td>
-          <td>12:30-3:20</td>
-          <td>2</td>
         </tr>
         <tr>
           <td colspan="6" style="text-align: right; border: none;">Total Credits:</td>

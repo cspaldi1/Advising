@@ -40,55 +40,58 @@ ksort($classArr);
     </div>
     <h1>Select Student Courses</h1>
     <div>
-      <table>
-        <tr>
-          <th>Prefix</th>
-          <th>Course No.</th>
-          <th>Honors</th>
-          <th>CRN</th>
-          <th>Days</th>
-          <th>Time</th>
-        </tr>
-        <tr>
-          <td>
-            <select id="prefix">
-							<option value="">Select</option>
-							<?php foreach($classArr as $prefix=>$course_info) { ?>
-								<option value="<?=$prefix?>"><?=$prefix?></option>
-							<?php } ?>
-            </select>
-          </td>
-          <td>
-            <select id="courseNo" disabled>
-              <option value = "">Course No.</option>
-            </select>
-          </td>
-          <td>
-            <select disabled>
-              <option>Both</option>
-            </select>
-          </td>
-          <td>
-            <select id="crn" disabled>
-              <option>CRN</option>
-            </select>
-          </td>
-          <td>
-            <select id="day" disabled>
-              <option>Day</option>
-            </select>
-          </td>
-          <td>
-            <select id="time" disabled>
-              <option>Time</option>
-            </select>
-          </td>
-        </tr>
-      </table>
-      <div style="margin-top: 10px;">
-        <button>Add Another Course</button>
-        <button onclick="window.location.href='schedule.html'">See Schedule(s)</button>
-      </div>
+			<form action="schedule.php" method="post">
+	      <table>
+	        <tr>
+	          <th>Prefix</th>
+	          <th>Course No.</th>
+	          <th>Honors</th>
+	          <th>CRN</th>
+	          <th>Days</th>
+	          <th>Time</th>
+	        </tr>
+	        <tr>
+	          <td>
+	            <select id="prefix" name="prefix[]" >
+								<option value="">Select</option>
+								<?php foreach($classArr as $prefix=>$course_info) { ?>
+									<option value="<?=$prefix?>"><?=$prefix?></option>
+								<?php } ?>
+	            </select>
+	          </td>
+	          <td>
+	            <select id="courseNo" name ="courseNo[]" disabled>
+	              <option value = "">Course No.</option>
+	            </select>
+	          </td>
+	          <td>
+	            <select name="honors[]" disabled>
+	              <option>Both</option>
+	            </select>
+	          </td>
+	          <td>
+	            <select id="crn" name="crn[]" disabled>
+	              <option>CRN</option>
+	            </select>
+	          </td>
+	          <td>
+	            <select id="days" name="days[]" disabled>
+	              <option>Day</option>
+	            </select>
+	          </td>
+	          <td>
+	            <select id="time" name="time[]" disabled>
+	              <option>Time</option>
+	            </select>
+	          </td>
+	        </tr>
+	      </table>
+	      <div style="margin-top: 10px;">
+	        <button>Add Another Course</button>
+	        <input type="submit" value="See Schedule(s)"/>
+	      </div>
+			</form>
+			</div>
     </div>
   </body>
 
