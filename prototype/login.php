@@ -16,7 +16,7 @@ echo "Connected successfully\n";
 echo $pwHash."\n";
 echo $pwHash2."\n";
 
-if(hash_equals($pwHash2, $pwHash))
+if(password_verify("password", $pwHash))
 {
   echo "TRUE";
 } else {
