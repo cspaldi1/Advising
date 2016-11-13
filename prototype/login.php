@@ -14,24 +14,29 @@ if($_POST['netID'] && $_POST['password'])
       die("Connection failed: " . mysqli_connect_error());
   }
 
-  $query = "SELECT hashedPassword
+  $query = "SELECT *
             FROM ADVISOR
-            WHERE advisorNetID = 'admin'";
+            WHERE advisorNetID = '".$_POST['netID']."'";
 
   $result = mysqli_query($conn, $query);
   $row=mysqli_fetch_assoc($result);
 
   if(password_verify($_POST['password'], $row['hashedPassword']))
   {
-    header("Location: home.html");
+    session_start();
+    $_SESSION['user']['username'] = $row['netID'];
+    $_SESSION['user']['fname'] = $row['firstName'];
+    $_SESSION['user']['lname'] = $row['lastName'];
+
+    header("Location: home.php");
     die();
   } else {
-    echo "FALSE";
+    //give some false error here
   }
 } else if($_POST['netID'] || $_POST['password']){
 
 } else {
-  
+
 }
 ?>
 

@@ -1,3 +1,16 @@
+<?php
+  session_start();
+
+  if($_SESSION['user']['username'])
+  {
+    //do session things here, like get admin permission
+  } else {
+    header("Location: login.php");
+    die();
+  }
+
+ ?>
+
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
@@ -7,6 +20,7 @@
       <div id="header"><span id="title">Honors Advising Portal</span>
       </div>
     </div>
+    <div><span>Hello, <?=$_SESSION['user']['fname']?></span></div>
     <div id="login">
       <div style="text-align: center;">
         <span><b>Advising Session</b></span>
