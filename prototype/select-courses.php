@@ -142,7 +142,8 @@ ksort($classArr);
 			if(valSelected != "")
 			{
 				var sections = classArray[courseSelected][noSelected][valSelected];
-				alert(sections);
+				var sectionKeys = Object.keys(sections);
+				alert(sectionKeys);
 				var dayStr = "<option value=''> Select </option> ";
 				dayStr += "<option value='"+sections["days"]+"'>"+ +"</option>";
 
