@@ -4,18 +4,21 @@ $username = "201609_481_g06";
 $password = "HKECNHGTYHQKJZFGHWCLD";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password);
+$conn = mysqli_connect($servername, $username, $password, "201609_481_g06");
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (mysqli_connect_errno()) {
+    die("Connection failed: " . mysqli_connect_error());
 }
-$pwHash = password_hash("password", PASSWORD_BCRYPT);
-$pwHash2 = password_hash("password", PASSWORD_BCRYPT);
 echo "Connected successfully\n";
-echo $pwHash."\n";
-echo $pwHash2."\n";
 
+$query = "SELECT hashedPassword
+          FROM ADVISOR
+          WHERE advisorNedID = 'admin'";
+
+$result = mysqli_query($conn, $query);
+$row=mysqli_fetch_assoc($result);
+echo $row['hashedPassword'];
 if(password_verify("password", $pwHash))
 {
   echo "TRUE";
