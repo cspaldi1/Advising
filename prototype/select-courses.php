@@ -118,7 +118,7 @@ ksort($classArr);
 		}
 
 		function changeCRN(number) {
-			var valSelected = $("#crn"+number).val();
+			var valSelected = $("#courseNo"+number).val();
 			var courseSelected = $("#prefix"+number).val();
 			if(valSelected != "")
 			{
