@@ -22,9 +22,9 @@
 
   $query = "INSERT INTO ADVISOR
             (scheduleDate, EID, advisorNetID)
-            VALUES ('".$_SESSION['user']['eid']."','".$_SESSION['student']['eid']."',
-            '".date('Y-m-d')."')";
-            
+            VALUES ('".date('Y-m-d')."','".$_SESSION['user']['eid']."',
+            '".$_SESSION['student']['eid']."')";
+
   mysqli_query($conn, $query);
 ?>
 <html>
