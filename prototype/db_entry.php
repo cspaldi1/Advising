@@ -33,7 +33,7 @@ while (!feof ($myfile)) {
       "cap"=>ltrim($array[12], '0'),
       "actual"=>ltrim($array[14], '0'),
       "term"=>trim($array[0]),
-      "title"=> $array[9]);
+      "title"=> trim($array[9]));
 	}
 }
 fclose($myfile);
