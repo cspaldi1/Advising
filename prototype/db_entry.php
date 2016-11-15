@@ -32,9 +32,8 @@ while (!feof ($myfile)) {
       "honors"=>$honors,
       "cap"=>ltrim($array[12], '0'),
       "actual"=>ltrim($array[14], '0'),
-      "term"=>trim($array[0]));
-
-      $classArr[trim($array[4])][trim($array[5])]["title"] = $array[9];
+      "term"=>trim($array[0]),
+      "title"=> $array[9]);
 	}
 }
 fclose($myfile);
