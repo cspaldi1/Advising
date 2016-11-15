@@ -28,10 +28,12 @@ while (!feof ($myfile)) {
 		$days = trim($array[19]).trim($array[20]).trim($array[21]).trim($array[22]).trim($array[23]).trim($array[24]).trim($array[25]);
 		$classArr[trim($array[4])][trim($array[5])][trim($array[7])] = array("start"=>trim($array[17]),
 	 		"end"=>trim($array[18]),
-	  		"days"=>trim($days),
+	  	"days"=>trim($days),
       "honors"=>$honors,
-    "cap"=>ltrim($array[12], '0'),
-    "actual"=>ltrim($array[14], '0'));
+      "cap"=>ltrim($array[12], '0'),
+      "actual"=>ltrim($array[14], '0'),
+      "term"=>trim($array[0]);
+      $classArr[trim($array[5])][trim($array[5])]["title"] = $array[9];
 	}
 }
 fclose($myfile);
