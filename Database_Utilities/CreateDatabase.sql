@@ -33,7 +33,7 @@ CREATE TABLE COURSE(
   timeStart TEXT,
   capacity INT,
   actual INT,
-  credits INT,
+  credits FLOAT,
   isHonors INT,
   PRIMARY KEY(CRN, term)
 );
