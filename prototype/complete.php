@@ -22,8 +22,8 @@
 
   $query = "INSERT INTO SCHEDULE
             (scheduleDate, EID, advisorNetID)
-            VALUES ('".date('Y-m-d')."','".$_SESSION['user']['eid']."',
-            '".$_SESSION['student']['eid']."')";
+            VALUES ('".date('Y-m-d')."','".$_SESSION['student']['eid']."',
+            '".$_SESSION['student']['netID']."')";
 
   mysqli_query($conn, $query);
 ?>
