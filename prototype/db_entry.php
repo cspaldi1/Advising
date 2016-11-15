@@ -33,9 +33,12 @@ while (!feof ($myfile)) {
       "cap"=>ltrim($array[12], '0'),
       "actual"=>ltrim($array[14], '0'),
       "term"=>trim($array[0]),
-      "title"=> trim($array[9]));
+      "title"=> trim($array[9]),
+      "credits"=>ltrim($array[30], '0'));
 	}
 }
+$sql = "INSERT INTO COURSE
+        (CRN, title, courseNO, coursePrefix, term, timeEnd, timeStart, capacity, actual, credits, isHonors)";
 fclose($myfile);
 ksort($classArr);
 var_dump($classArr);
