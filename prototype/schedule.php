@@ -1,5 +1,4 @@
-<?php session_start();
-var_dump($_SESSION);?>
+<?php session_start();?>
 
 <html>
 <head>
@@ -44,7 +43,7 @@ var_dump($_SESSION);?>
     </div>
     <div>
       <div style="margin-top: 10px;">
-        <button onclick="window.location.href='complete.html'">Choose Schedule and Submit</button>
+        <button onclick="window.location.href='complete.php'">Choose Schedule and Submit</button>
       </div>
       <div style="width: 50%; margin: auto; padding-top: 20px;">
         <span style="float: left;"><< Back</span>
