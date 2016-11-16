@@ -70,11 +70,11 @@
         <?php foreach($advisors as $key=>$person)
         { ?>
         <tr>
-          <td><?=$person['fname']?></td>
-          <td><?=$person['lname']?></td>
+          <td><?=$person['firstName']?></td>
+          <td><?=$person['lastName']?></td>
           <td><?=$person['advisorNetID']?>@emich.edu</td>
           <td><?php if ($person['isAdmin'] == 1) echo "Yes"; else echo "No";?></td>
-          <td class="tableButton"><button>Promote to Admin</button></td>
+          <td class="tableButton"><button onclick="toggleAdmin(<?=$person['isAdmin']?>)"><?php if ($person['isAdmin'] == 1) echo "Demote from Admin"; else echo "Promote to Admin";?></button></td>
           <td class="tableButton"><button>Remove Access</button></td>
         </tr>
         <?php } ?>
@@ -84,4 +84,22 @@
       <button onclick="window.location.href='home.html'">Home</button>
     </div>
   </body>
+  <script>
+    function toggleAdmin(adminStatus)
+    {
+      if(adminStatus == 1)
+      {
+        var admin = 0;
+      } else {
+        var admin = 1;
+      }
+      $.ajax({ url: 'admin_functions.php',
+         data: {action: 'status', admin: admin},
+         type: 'post',
+         success: function(output) {
+                      window.location.reload();
+                  }
+      });
+    }
+  </script>
 </html>
