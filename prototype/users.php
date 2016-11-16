@@ -106,11 +106,13 @@
       var lastName = $("#lname").val().trim();
       var netID = $("#emich").val().trim();
       var password = $("#password").val().trim();
+      alert(password);
       $.ajax({ url: 'admin_functions.php',
          data: {action: 'addAdvisor', fname: firstName, lname: lastName, netID: netID, password: password},
          type: 'post',
          success: function(output) {
-                      window.location.reload();
+                      alert(output);
+                      //window.location.reload();
                   }
       });
     }

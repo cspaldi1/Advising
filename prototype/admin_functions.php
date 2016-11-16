@@ -17,7 +17,7 @@ switch($action) {
               WHERE advisorNetID='".$netID."'";
 
     mysqli_query($conn, $query);
-    return true;
+    echo true;
     break;
   case 'addAdvisor':
     $fname = $_POST['fname'];
@@ -30,7 +30,7 @@ switch($action) {
               '".$lname."', 0,'".$password."')";
 
     mysqli_query($conn, $query);
-    return true;
+    echo $password;
     break;
 }
 
