@@ -70,7 +70,7 @@
         </table>
       </div>
       <div style="margin-top: 10px;">
-        <button onclick="window.location.href='course-overview.html'">Go Back</button>
+        <button onclick="window.location.href='course-overview.php'">Go Back</button>
       </div>
     </div>
   </body>

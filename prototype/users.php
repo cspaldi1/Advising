@@ -83,7 +83,7 @@
       </table>
     </div>
     <div style="text-align: center; padding-top: 10px;">
-      <button onclick="window.location.href='home.html'">Home</button>
+      <button onclick="window.location.href='home.php'">Home</button>
     </div>
   </body>
   <script>

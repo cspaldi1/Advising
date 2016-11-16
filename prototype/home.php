@@ -35,7 +35,7 @@
         <span><b>Detailed Course Enrollment Information</b></span>
       </div>
       <div style="text-align: center; padding-top: 5px;">
-        <button onclick="window.location.href='course-overview.html'">Continue</button>
+        <button onclick="window.location.href='course-overview.php'">Continue</button>
       </div>
     </div>
     <div id="login">
@@ -43,7 +43,7 @@
         <span><b>Manage Users</b></span>
       </div>
       <div style="text-align: center; padding-top: 5px;">
-        <button onclick="window.location.href='users.html'">Manage</button>
+        <button onclick="window.location.href='users.php'">Manage</button>
       </div>
     </div>
   </body>

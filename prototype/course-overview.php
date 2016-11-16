@@ -60,7 +60,7 @@
             <td>4</td>
             <td>0</td>
             <td>20</td>
-            <td><button onclick="window.location.href='section-details.html'">Details</button></td>
+            <td><button onclick="window.location.href='section-details.php'">Details</button></td>
           </tr>
           <tr>
             <td>COSC</td>
@@ -95,7 +95,7 @@
         </table>
       </div>
       <div style="margin-top: 10px;">
-        <button onclick="window.location.href='home.html'">Home</button>
+        <button onclick="window.location.href='home.php'">Home</button>
       </div>
     </div>
   </body>
