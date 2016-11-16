@@ -53,6 +53,7 @@ td, th {
     padding-left: 20px;
   }
 
+  /*
   .page {
     background-color: white;
     padding: 20px;
@@ -60,7 +61,7 @@ td, th {
     margin: 20px auto;
     box-shadow: 0px 0px 5px #888888;
   }
-
+  */
   .add td, .add th {
     border: none;
   }
