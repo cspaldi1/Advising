@@ -67,14 +67,17 @@
           <th>Admin</th>
           <th colspan="2">Actions</th>
         </tr>
+        <?php foreach($advisors as $key=>$person)
+        { ?>
         <tr>
-          <td>Katie</td>
-          <td>Augustaitis</td>
-          <td>kaugustai@emich.edu</td>
-          <td>No</td>
+          <td><?=$person['fname']?></td>
+          <td><?=$person['lname']?></td>
+          <td><?=$person['advisorNetID']?>@emich.edu</td>
+          <td><?php if ($person['isAdmin'] == 1) echo "Yes"; else echo "No";?></td>
           <td class="tableButton"><button>Promote to Admin</button></td>
           <td class="tableButton"><button>Remove Access</button></td>
         </tr>
+        <?php } ?>
       </table>
     </div>
     <div style="text-align: center; padding-top: 10px;">
