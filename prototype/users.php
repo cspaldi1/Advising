@@ -74,7 +74,7 @@
           <td><?=$person['lastName']?></td>
           <td><?=$person['advisorNetID']?>@emich.edu</td>
           <td><?php if ($person['isAdmin'] == 1) echo "Yes"; else echo "No";?></td>
-          <td class="tableButton"><button onclick="toggleAdmin(<?=$person['isAdmin']?>)"><?php if ($person['isAdmin'] == 1) echo "Demote from Admin"; else echo "Promote to Admin";?></button></td>
+          <td class="tableButton"><button onclick="toggleAdmin(<?=$person['isAdmin']?>, <?=$person['advisorNetID']?>)"><?php if ($person['isAdmin'] == 1) echo "Demote from Admin"; else echo "Promote to Admin";?></button></td>
           <td class="tableButton"><button>Remove Access</button></td>
         </tr>
         <?php } ?>
@@ -85,7 +85,7 @@
     </div>
   </body>
   <script>
-    function toggleAdmin(adminStatus)
+    function toggleAdmin(adminStatus, netID)
     {
       if(adminStatus == 1)
       {
@@ -94,7 +94,7 @@
         var admin = 1;
       }
       $.ajax({ url: 'admin_functions.php',
-         data: {action: 'status', admin: admin},
+         data: {action: 'status', admin: admin, netID: netID},
          type: 'post',
          success: function(output) {
                       window.location.reload();
