@@ -25,8 +25,8 @@ switch($action) {
     $password = password_hash($_POST['password']);
     $netID = $_POST['netID'];
     $query = "INSERT INTO ADVISOR
-              VALUES ('".$netID."', '".mysqli_escape_string($fname)."',
-              '".mysqli_escape_string($lname)."', 0,'".mysqli_escape_string($password)."')";
+              VALUES ('".$netID."', '".$fname."',
+              '".$lname."', 0,'".$password."')";
 
     mysqli_query($conn, $query);
     return true;
