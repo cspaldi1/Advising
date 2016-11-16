@@ -15,8 +15,6 @@
   {
     $advisors[] = $row;
   }
-
-  var_dump($advisors);
  ?>
 
 <html>
@@ -35,19 +33,19 @@
       <table class="add">
         <tr>
           <td><span>First Name:</span></td>
-          <td><input type="text"/></td>
+          <td><input id="fname" type="text"/></td>
         </tr>
         <tr>
           <td><span>Last Name:</span></td>
-          <td><input type="text"/></td>
+          <td><input id="lname" type="text"/></td>
         </tr>
         <tr>
           <td><span>Emich Email:</span></td>
-          <td><input type="text"/></td>
+          <td><input id="emich" type="text"/></td>
         </tr>
         <tr>
           <td><span>Temporary Password:</span></td>
-          <td><input type="text"/></td>
+          <td><input id="password" type="text"/></td>
         </tr>
       </table>
       <div style="text-align: center; padding-top: 5px;">
@@ -95,6 +93,21 @@
       }
       $.ajax({ url: 'admin_functions.php',
          data: {action: 'status', admin: admin, netID: netID},
+         type: 'post',
+         success: function(output) {
+                      window.location.reload();
+                  }
+      });
+    }
+
+    function addAdvisor()
+    {
+      var firstName = $("#fname").val().trim();
+      var lastName = $("#lname").val().trim();
+      var netID = $("#emich").val().trim();
+      var password = $("#password").val().trim();
+      $.ajax({ url: 'admin_functions.php',
+         data: {action: 'addAdvisor', fname: firstName, lname: lastName, netID: netID, password: password},
          type: 'post',
          success: function(output) {
                       window.location.reload();
