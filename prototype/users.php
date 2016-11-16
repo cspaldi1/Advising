@@ -74,7 +74,7 @@
           <td><?=$person['lastName']?></td>
           <td><?=$person['advisorNetID']?>@emich.edu</td>
           <td><?php if ($person['isAdmin'] == 1) echo "Yes"; else echo "No";?></td>
-          <td class="tableButton"><button onclick="toggleAdmin(<?=$person['isAdmin']?>, <?=$person['advisorNetID']?>)"><?php if ($person['isAdmin'] == 1) echo "Demote from Admin"; else echo "Promote to Admin";?></button></td>
+          <td class="tableButton"><button onclick="toggleAdmin(<?=$person['isAdmin']?>, '<?=$person['advisorNetID']?>');"><?php if ($person['isAdmin'] == 1) echo "Demote from Admin"; else echo "Promote to Admin";?></button></td>
           <td class="tableButton"><button>Remove Access</button></td>
         </tr>
         <?php } ?>
