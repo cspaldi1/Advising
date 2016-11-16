@@ -45,7 +45,11 @@
         </tr>
         <tr>
           <td><span>Temporary Password:</span></td>
-          <td><input id="password" type="text"/></td>
+          <td><input id="password" type="password"/></td>
+        </tr>
+        <tr>
+          <td><span>Confirm Password:</span></td>
+          <td><input id="password2" type="password"/></td>
         </tr>
       </table>
       <div style="text-align: center; padding-top: 5px;">
@@ -106,14 +110,20 @@
       var lastName = $("#lname").val().trim();
       var netID = $("#emich").val().trim();
       var password = $("#password").val().trim();
+      var password2 = $("#password2").val().trim();
 
-      $.ajax({ url: 'admin_functions.php',
-         data: {action: 'addAdvisor', fname: firstName, lname: lastName, netID: netID, password: password},
-         type: 'post',
-         success: function(output) {
-                      window.location.reload();
-                  }
-      });
+      if(password == password2)
+      {
+        $.ajax({ url: 'admin_functions.php',
+           data: {action: 'addAdvisor', fname: firstName, lname: lastName, netID: netID, password: password},
+           type: 'post',
+           success: function(output) {
+                        window.location.reload();
+                    }
+        });
+      } else {
+        alert("The passwords did not match.");
+      }
     }
   </script>
 </html>
