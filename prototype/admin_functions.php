@@ -23,6 +23,7 @@ switch($action) {
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $password = password_hash($_POST['password']);
+    $password = mysqli_real_escape_string($password);
     $netID = $_POST['netID'];
     $query = "INSERT INTO ADVISOR
               VALUES ('".$netID."', '".$fname."',
