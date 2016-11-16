@@ -49,7 +49,7 @@
         </tr>
       </table>
       <div style="text-align: center; padding-top: 5px;">
-        <button onclick="window.location.href='users.html'">Add</button>
+        <button onclick="addAdvisor();">Add</button>
       </div>
     </div>
     <br/>
