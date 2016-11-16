@@ -1,6 +1,28 @@
+<?php
+  include("sensitive.php");
+
+  // Check connection
+  if (mysqli_connect_errno()) {
+      die("Connection failed: " . mysqli_connect_error());
+  }
+
+  $query = "SELECT *
+          FROM ADVISOR";
+
+  $result = mysqli_query($conn, $query);
+
+  while($row=mysqli_fetch_assoc($result))
+  {
+    $advisors[] = $row;
+  }
+
+  var_dump($advisors);
+ ?>
+
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
+  <script src="./JS/jquery-3.1.1.min.js"></script>
 </head>
   <body>
     <div id="container">
@@ -51,22 +73,6 @@
           <td>kaugustai@emich.edu</td>
           <td>No</td>
           <td class="tableButton"><button>Promote to Admin</button></td>
-          <td class="tableButton"><button>Remove Access</button></td>
-        </tr>
-        <tr>
-          <td>John</td>
-          <td>Feldkamp</td>
-          <td>jfeldkam1@emich.edu</td>
-          <td>Yes</td>
-          <td class="tableButton"><button>Demote to Advisor</button></td>
-          <td class="tableButton"><button>Remove Access</button></td>
-        </tr>
-        <tr>
-          <td>Krish</td>
-          <td>Narayanan</td>
-          <td>knarayana@emich.edu</td>
-          <td>Yes</td>
-          <td class="tableButton"><button>Demote to Advisor</button></td>
           <td class="tableButton"><button>Remove Access</button></td>
         </tr>
       </table>

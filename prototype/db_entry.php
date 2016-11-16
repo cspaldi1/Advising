@@ -38,7 +38,8 @@ while (!feof ($myfile)) {
 	}
 }
 $sql = "INSERT INTO COURSE
-        (CRN, title, courseNO, coursePrefix, term, timeEnd, timeStart, capacity, actual, credits, isHonors)";
+        (CRN, title, courseNO, coursePrefix, term, timeEnd, timeStart, capacity, actual, credits, isHonors)
+        VALUES ()";
 fclose($myfile);
 ksort($classArr);
 var_dump($classArr);
