@@ -22,15 +22,15 @@ switch($action) {
   case 'addAdvisor':
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
-    $password = password_hash($_POST['password']);
-    $password = mysqli_real_escape_string($password);
+    $password = $_POST['password'];
+    //$password = mysqli_real_escape_string($password);
     $netID = $_POST['netID'];
     $query = "INSERT INTO ADVISOR
               VALUES ('".$netID."', '".$fname."',
               '".$lname."', 0,'".$password."')";
 
     mysqli_query($conn, $query);
-    echo $password;
+    echo true;
     break;
 }
 

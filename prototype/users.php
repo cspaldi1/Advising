@@ -111,8 +111,8 @@
          data: {action: 'addAdvisor', fname: firstName, lname: lastName, netID: netID, password: password},
          type: 'post',
          success: function(output) {
-                      alert(output);
-                      //window.location.reload();
+                      //alert(output);
+                      window.location.reload();
                   }
       });
     }
