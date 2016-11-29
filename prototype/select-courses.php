@@ -193,7 +193,7 @@ ksort($classArr);
 					'</select>'+
 				'</td>'+
 				'<td>'+
-					'<select name="honors[]" disabled>'+
+					'<select name="honors[]">'+
 						'<option>Both</option>'+
 					'</select>'+
 				'</td>'+
