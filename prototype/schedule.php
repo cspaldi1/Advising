@@ -139,19 +139,22 @@ makeSchedule(0);
           <th>Credits</th>
         </tr>
         <?php
-        for($i=0; $i<count($schedules2[0]); $i++)
-        { ?>
-          <tr>
-            <td><?=$schedules2[0][$i]['coursePrefix']?></td>
-            <td><?=$schedules2[0][$i]['courseNO']?></td>
-            <td><?=$schedules2[0][$i]['isHonors']?></td>
-            <td><?=$schedules2[0][$i]['CRN']?></td>
-            <td><?=$schedules2[0][$i]['days']?></td>
-            <td><?=$schedules2[0][$i]['timeStart']?></td>
-            <td><?=$schedules2[0][$i]['credits']?></td>
-          </tr>
-        <?php
-          } ?>
+        for($j = 0; $j < count($schedules2); $j++)
+        {
+          for($i=0; $i<count($schedules2[$j]); $i++)
+          { ?>
+            <tr>
+              <td><?=$schedules2[$j][$i]['coursePrefix']?></td>
+              <td><?=$schedules2[$j][$i]['courseNO']?></td>
+              <td><?=$schedules2[$j][$i]['isHonors']?></td>
+              <td><?=$schedules2[$j][$i]['CRN']?></td>
+              <td><?=$schedules2[$j][$i]['days']?></td>
+              <td><?=$schedules2[$j][$i]['timeStart']?></td>
+              <td><?=$schedules2[$j][$i]['credits']?></td>
+            </tr>
+          <?php
+            }
+          }?>
         <tr>
           <td colspan="6" style="text-align: right; border: none;">Total Credits:</td>
           <td style="text-align: left; border: none;"></td>
