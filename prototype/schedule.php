@@ -1,4 +1,121 @@
-<?php session_start();?>
+<?php session_start();
+
+include("sensitive.php");
+
+// Check connection
+if (mysqli_connect_errno()) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$query = array();
+for($i=0; $i<count($_POST['prefix']); $i++)
+{
+  $q_temp = "SELECT *
+          FROM COURSE
+          WHERE ";
+  $query_array = array();
+  if($_POST['prefix'][$i] != "")
+  {
+    $query_array[] = "coursePrefix='".$_POST['prefix'][$i]."'";
+  }
+  if($_POST['courseNo'][$i] != "")
+  {
+    $query_array[] = "courseNO='".$_POST['courseNo'][$i]."'";
+  }
+  if($_POST['honors'][$i] != "")
+  {
+    $query_array[] = "isHonors=".$_POST['honors'][$i];
+  }
+  if($_POST['crn'][$i] != "")
+  {
+    $query_array[] = "CRN='".$_POST['crn'][$i]."'";
+  }
+  if($_POST['days'][$i] != "")
+  {
+    $query_array[] = "days='".$_POST['days'][$i]."'";
+  }
+
+  $conditions = implode(" AND ", $query_array);
+  $q_temp = $q_temp.$conditions;
+  $query[] = $q_temp;
+}
+
+$classes = array();
+$courseCount = 0;
+foreach($query as $key=>$sql)
+{
+  $result = mysqli_query($conn, $sql);
+  $courses = array();
+  while($row = mysqli_fetch_assoc($result))
+  {
+    $courses[] = $row;
+  }
+  $classes[] = $courses;
+}
+
+$schedules2 = array();
+
+function decideFit($courseArr, $stackArr) {
+  foreach($stackArr as $key=>$stackCourse) {
+    $courseDays = str_split($courseArr["days"]);
+    $stackDays = str_split($stackCourse["days"]);
+    if(!empty(array_intersect($stackDays, $courseDays)) && $stackCourse['days'] != "")
+    {
+      if(strtotime($courseArr["timeStart"]) >= strtotime($stackCourse["timeStart"]) && strtotime($courseArr["timeStart"]) <= strtotime($stackCourse["timeEnd"]))
+      {
+        return false;
+      }
+      if(strtotime($courseArr["timeEnd"]) >= strtotime($stackCourse["timeStart"]) && strtotime($courseArr["timeEnd"]) <= strtotime($stackCourse["timeEnd"]))
+      {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+function makeSchedule($length, $tempArray = array())
+{
+  //base case
+  if($length == count($GLOBALS['classes'])-1)
+  {
+    for($j = 0; $j < count($GLOBALS['classes'][$length]); $j++)
+    {
+      if($GLOBALS['courseCount'] < 500)
+      {
+        if(decideFit($GLOBALS['classes'][$length][$j], $tempArray))
+        {
+            $tempArray[] = $GLOBALS['classes'][$length][$j];
+            $GLOBALS['schedules2'][] = $tempArray;
+            array_pop($tempArray);
+            $GLOBALS['courseCount']++;
+        }
+      } else {
+        break;
+      }
+    }
+  //recursive case
+  } else {
+    for($i = 0; $i < count($GLOBALS['classes'][$length]); $i++)
+    {
+      if($GLOBALS['courseCount'] < 500)
+      {
+        if(decideFit($GLOBALS['classes'][$length][$i], $tempArray))
+        {
+            $tempArray[] = $GLOBALS['classes'][$length][$i];
+            makeSchedule($length+1, $tempArray);
+            array_pop($tempArray);
+        }
+      } else {
+        break;
+      }
+    }
+  }
+}
+
+//call the recursive function to schedule
+makeSchedule(0);
+?>
 
 <html>
 <head>
@@ -22,16 +139,16 @@
           <th>Credits</th>
         </tr>
         <?php
-        for($i=0; $i<count($_POST['prefix']); $i++)
+        for($i=0; $i<count($schedules2[0]); $i++)
         { ?>
           <tr>
-            <td><?=$_POST['prefix'][$i]?></td>
-            <td><?=$_POST['courseNo'][$i]?></td>
-            <td><?=$_POST['honors'][$i]?></td>
-            <td><?=$_POST['crn'][$i]?></td>
-            <td><?=$_POST['days'][$i]?></td>
-            <td><?=$_POST['time'][$i]?></td>
-            <td><?=$_POST['credits'][$i]?></td>
+            <td><?=$schedules2[0][$i]['coursePrefix']?></td>
+            <td><?=$schedules2[0][$i]['courseNO']?></td>
+            <td><?=$schedules2[0][$i]['isHonors']?></td>
+            <td><?=$schedules2[0][$i]['CRN']?></td>
+            <td><?=$schedules2[0][$i]['days']?></td>
+            <td><?=$schedules2[0][$i]['timeStart']?></td>
+            <td><?=$schedules2[0][$i]['credits']?></td>
           </tr>
         <?php
           } ?>
@@ -47,7 +164,7 @@
       </div>
       <div style="width: 50%; margin: auto; padding-top: 20px;">
         <span style="float: left;"><< Back</span>
-        <span style="float: center;">Showing Schedule 1 of 1</span>
+        <span style="float: center;">Showing Schedule 1 of <?=count($schedules2)?></span>
         <span style="float: right;"> Forward>></span>
       </div>
     </div>

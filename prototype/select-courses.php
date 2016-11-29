@@ -66,7 +66,9 @@ ksort($classArr);
 	          </td>
 	          <td>
 	            <select name="honors[]" disabled>
-	              <option>Both</option>
+	              <option value = "">Both</option>
+								<option value= "1">Yes</option>
+								<option value= "0">No</option>
 	            </select>
 	          </td>
 	          <td>
@@ -89,7 +91,7 @@ ksort($classArr);
 				</form>
 	      <div style="margin-top: 10px;">
 	        <button onclick="addCourseLine();">Add Another Course</button>
-	        <input type="button" onclick="document.getElementById('schedule').submit();" value="See Schedule(s)"/>
+	        <input type="button" onclick="validatePreSuf();" value="See Schedule(s)"/>
 	      </div>
 			</div>
     </div>
@@ -98,6 +100,19 @@ ksort($classArr);
 	<script>
 		var classArray = JSON.parse('<?=json_encode($classArr)?>');
 		var courses = 1;
+
+		function validatePreSuf() {
+			var prefixes = document.getElementsByName("prefix[]");
+			var courses = document.getElementsByName("courseNo[]");
+			var valid = true;
+			for(var i = 0; i < prefixes.length; i++)
+			{
+				if(prefixes[i].value == "" || courses[i].value == "") valid = false;
+			}
+			if(valid)
+				document.getElementById('schedule').submit();
+		}
+
 		function changeCourseNo(number)
 		{
 			var valSelected = $("#prefix"+number).val();
