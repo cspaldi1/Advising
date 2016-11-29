@@ -65,7 +65,7 @@ ksort($classArr);
 	            </select>
 	          </td>
 	          <td>
-	            <select name="honors[]" disabled>
+	            <select name="honors[]">
 	              <option value = "">Both</option>
 								<option value= "1">Yes</option>
 								<option value= "0">No</option>
