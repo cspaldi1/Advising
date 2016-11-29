@@ -194,7 +194,9 @@ ksort($classArr);
 				'</td>'+
 				'<td>'+
 					'<select name="honors[]">'+
-						'<option>Both</option>'+
+						'<option value = "">Both</option>'+
+						'<option value= "1">Yes</option>'+
+						'<option value= "0">No</option>'+
 					'</select>'+
 				'</td>'+
 				'<td>'+
