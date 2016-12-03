@@ -142,11 +142,10 @@ ksort($classArr);*/
 			var valSelected = $("#prefix"+number).val();
 			if(valSelected != "")
 			{
-				var prefix_str = JSON.stringify(prefixArr);
 				$.ajax({
 	        method: "POST",
 	        url: "course_select_funcs.php",
-	        data: {action: "prefix", prefix_str: prefix_str},
+	        data: {action: "prefix", prefix: valSelected},
 	        success: function(output) {
 	          console.log(output);
 	          if(output != 0)
