@@ -153,7 +153,7 @@ ksort($classArr);*/
 	          {
 							console.log(output);
 	          } else {
-	            echo("Error in recieving data");
+	            alert("Error in recieving data");
 	          }
 	        }
 	      });
