@@ -106,7 +106,8 @@
         url: "course-overview-funcs.php",
         data: {action: "get_course_prefixes"},
         success: function(output) {
-          console.log(output);
+          alert("alert")
+          //console.log(output);
         }
       });
     }
