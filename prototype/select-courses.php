@@ -19,7 +19,7 @@ $result = mysqli_query($conn, $query);
 
 while ($row=mysqli_fetch_assoc($result))
 {
-	$coursePrefixes = $row['coursePrefix'];
+	$coursePrefixes[] = $row['coursePrefix'];
 }
 var_dump($coursePrefixes);
 /*$myfile = fopen("./wi2016.txt", "r") or die("Unable to open file!");
