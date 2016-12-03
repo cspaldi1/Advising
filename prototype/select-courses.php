@@ -6,7 +6,22 @@ foreach($_POST as $key=>$val)
 	$_SESSION['student'][$key] = $val;
 }
 
-$myfile = fopen("./wi2016.txt", "r") or die("Unable to open file!");
+include("sensitive.php");
+
+// Check connection
+if (mysqli_connect_errno()) {
+		die("Connection failed: " . mysqli_connect_error());
+}
+
+$query = "SELECT DISTINCT coursePrefix
+					FROM COURSE";
+$result = mysqli_query($conn, $query);
+
+while ($row=mysqli_fetch_assoc($result))
+{
+	$coursePrefixes = $row['coursePrefix'];
+}
+/*$myfile = fopen("./wi2016.txt", "r") or die("Unable to open file!");
 while (!feof ($myfile)) {
 	$array = array();
     $line = fgets($myfile);
@@ -25,7 +40,7 @@ while (!feof ($myfile)) {
 	}
 }
 fclose($myfile);
-ksort($classArr);
+ksort($classArr);*/
 //var_dump($_SESSION['Student']);
 ?>
 <html>
@@ -54,7 +69,11 @@ ksort($classArr);
 	          <td>
 	            <select id="prefix1" onchange="changeCourseNo(1);" name="prefix[]" >
 								<option value="">Select</option>
-								<?php foreach($classArr as $prefix=>$course_info) { ?>
+								<!--<?php foreach($classArr as $prefix=>$course_info) { ?>
+									<option value="<?=$prefix?>"><?=$prefix?></option>
+								<?php } ?>-->
+
+								<?php foreach($coursePrefixes as $key=>$prefix) {?>
 									<option value="<?=$prefix?>"><?=$prefix?></option>
 								<?php } ?>
 	            </select>
