@@ -150,7 +150,14 @@ ksort($classArr);*/
 	          console.log(output);
 	          if(output != 0)
 	          {
-							//console.log(output);
+							var courseNoArr = JSON.parse(output);
+							var replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseNoArr.length; i++)
+							{
+								replaceStr += " <option value='"+courseNoArr[i]+"'>"+courseNoArr[i]+"</option> ";
+							}
+							$("#courseNo"+number).prop('disabled', false);
+							$("#courseNo"+number).html(replaceStr);
 	          } else {
 	            alert("Error in recieving data");
 	          }
