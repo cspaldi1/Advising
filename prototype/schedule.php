@@ -120,6 +120,7 @@ makeSchedule(0);
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
+  <script src="./JS/jquery-3.1.1.min.js"></script>
 </head>
   <body>
     <div id="container">
@@ -128,48 +129,138 @@ makeSchedule(0);
     </div>
     <div class="page">
       <span><b>Student Schedule for <?=$_SESSION['student']['fname']?></b></span>
-      <table>
+      <table id="classList">
         <tr>
           <th>Prefix</th>
           <th>Course No.</th>
           <th>Honors</th>
           <th>CRN</th>
           <th>Days</th>
-          <th>Time</th>
+          <th>Start</th>
+          <th>End</th>
           <th>Credits</th>
         </tr>
         <?php
-        for($j = 0; $j < count($schedules2); $j++)
-        {
-          for($i=0; $i<count($schedules2[$j]); $i++)
+          for($i=0; $i<count($schedules2[0]); $i++)
           { ?>
             <tr>
-              <td><?=$schedules2[$j][$i]['coursePrefix']?></td>
-              <td><?=$schedules2[$j][$i]['courseNO']?></td>
-              <td><?=$schedules2[$j][$i]['isHonors']?></td>
-              <td><?=$schedules2[$j][$i]['CRN']?></td>
-              <td><?=$schedules2[$j][$i]['days']?></td>
-              <td><?=$schedules2[$j][$i]['timeStart']?></td>
-              <td><?=$schedules2[$j][$i]['credits']?></td>
+              <td><?=$schedules2[0][$i]['coursePrefix']?></td>
+              <td><?=$schedules2[0][$i]['courseNO']?></td>
+              <td><?=$schedules2[0][$i]['isHonors']?></td>
+              <td><?=$schedules2[0][$i]['CRN']?></td>
+              <td><?=$schedules2[0][$i]['days']?></td>
+              <td><?=$schedules2[0][$i]['timeStart']?></td>
+              <td><?=$schedules2[0][$i]['timeEnd']?></td>
+              <td><?=$schedules2[0][$i]['credits']?></td>
             </tr>
           <?php
-            }
-          }?>
+            } ?>
         <tr>
-          <td colspan="6" style="text-align: right; border: none;">Total Credits:</td>
+          <td colspan="7" style="text-align: right; border: none;">Total Credits:</td>
           <td style="text-align: left; border: none;"></td>
         </tr>
       </table>
     </div>
     <div>
       <div style="margin-top: 10px;">
-        <button onclick="window.location.href='complete.php'">Choose Schedule and Submit</button>
+        <button onclick="submit(course);">Choose Schedule and Submit</button>
       </div>
       <div style="width: 50%; margin: auto; padding-top: 20px;">
-        <span style="float: left;"><< Back</span>
-        <span style="float: center;">Showing Schedule 1 of <?=count($schedules2)?></span>
-        <span style="float: right;"> Forward>></span>
+        <button style="float: left;" onclick="byFive(-1);">Backward Five</button>
+        <button style="float: left;" onclick="byOne(-1)">Previous</button>
+        <span style="float: center;" id="total">Showing Schedule 1 of <?=count($schedules2)?></span>
+        <button style="float: right;" onclick="byFive(1);">Forward Five</button>
+        <button style="float: right;" onclick="byOne(1)">Next</button>
       </div>
     </div>
   </body>
+  <script>
+    var course = 0;
+    var classArr = <?=json_encode($schedules2)?>;
+    $(document).ready(function() {
+      if(classArr.length > 0)
+        selectCourses(0);
+    });
+
+    function submit(courseIndex)
+    {
+      var scheduleChosen = classArr[courseIndex];
+      //call AJAX to submit. if it works, take to confirmation. else, stay here and alert error.
+      var jsonString = JSON.stringify(scheduleChosen);
+      console.log(jsonString);
+      $.ajax({
+        method: "POST",
+        url: "schedule_funcs.php",
+        data: {action: "schedule", array_str: jsonString},
+        success: function(output) {
+          console.log(output);
+        }
+      });
+      //window.location.href='complete.php'
+    }
+
+    function byOne(sign)
+    {
+      if((sign>0 && course + 1 < classArr.length) || (sign < 0 && course - 1 >= 0))
+      {
+        course = course + sign;
+        selectCourses(course);
+      }
+    }
+    function byFive(sign)
+    {
+      if((sign>0 && course + 5 < classArr.length) || (sign < 0 && course - 5 >= 0))
+      {
+        course = course + 5*sign;
+        selectCourses(course);
+      }
+    }
+    function selectCourses(index)
+    {
+      if(index < classArr.length && index >= 0)
+      {
+        var replaceStr = "<tr>"+
+          "<th>Prefix</th>"+
+          "<th>Course No.</th>"+
+          "<th>Honors</th>"+
+          "<th>CRN</th>"+
+          "<th>Days</th>"+
+          "<th>Start</th>"+
+          "<th>End</th>"+
+          "<th>Credits</th>"+
+        "</tr>";
+        var creditSum = 0;
+        for(i=0; i<classArr[index].length; i++)
+        {
+          var honorsStr = "";
+          if(classArr[index][i]['isHonors'] == 1)
+          {
+            honorsStr = "Yes";
+          } else {
+            honorsStr = "No";
+          }
+            replaceStr += "<tr>"+
+            "<td>"+classArr[index][i]['coursePrefix']+"</td>"+
+            "<td>"+classArr[index][i]['courseNO']+"</td>"+
+            "<td>"+honorsStr+"</td>"+
+            "<td>"+classArr[index][i]['CRN']+"</td>"+
+            "<td>"+classArr[index][i]['days']+"</td>"+
+            "<td>"+classArr[index][i]['timeStart']+"</td>"+
+            "<td>"+classArr[index][i]['timeEnd']+"</td>"+
+            "<td>"+classArr[index][i]['credits']+"</td>"+
+          "</tr>";
+
+          creditSum += Number(classArr[index][i]['credits']);
+        }
+
+        replaceStr += "<tr>"+
+          "<td colspan='7' style='text-align: right; border: none;'>Total Credits:</td>"+
+          "<td style='text-align: left; border: none;'>"+creditSum+"</td>"+
+        "</tr>";
+
+        $("#classList").html(replaceStr);
+        $("#total").html("Showing Schedule "+(course+1)+" of <?=count($schedules2)?>")
+      }
+    }
+  </script>
 </html>
