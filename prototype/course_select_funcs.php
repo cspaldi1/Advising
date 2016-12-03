@@ -6,7 +6,7 @@ if(isset($_POST['action']) && $_POST['action'] != "")
 
   switch($_POST['action'])
   {
-    case "schedule":
+    case "prefix":
       if(isset($_POST['prefix_str']) && $_POST['prefix_str'] != "")
       {
         $prefixArr = json_decode(stripslashes($_POST['prefix_str']), true);
@@ -32,6 +32,7 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         }
 
         echo json_encode($courseNoArr);
+        break;
       } else {
         echo "Prefix string not set.";
         break;
