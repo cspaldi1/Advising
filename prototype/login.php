@@ -40,23 +40,27 @@ if($_POST['netID'] && $_POST['password'])
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
 </head>
   <body>
-    <div id="container">
-      <div id="header"><span id="title">Honors Advising Portal</span>
-      </div>
+    <div id="container" class="row">
+	  <div class="large-4 columns">
+		<div id="header"><span id="title">Honors Advising Portal</span>
+		</div>
+	  </div>
     </div>
-    <form action="login.php" method="post">
-      <div id="login">
-        <div style="text-align: center;">
-          <span><b>Login</b></span>
-        </div>
-        <p>NetID</p>
-        <input type="text" name="netID"/>
-        <p>Password</p>
-        <input type="password" name="password"/><br/>
-        <div style="text-align: center; padding-top: 5px;">
-          <input type="Submit" value="Submit"/>
-        </div>
-      </div>
-    </form>
+	<div class="row">
+		<form action="login.php" method="post">
+		  <div id="login" class="large-offset-4 large-4 columns">
+			<div style="text-align: center;">
+			  <span><b>Login</b></span>
+			</div>
+			<p>NetID</p>
+			<input type="text" name="netID"/>
+			<p>Password</p>
+			<input type="password" name="password"/><br/>
+			<div style="text-align: center; padding-top: 5px;">
+			  <input type="Submit" value="Submit"/>
+			</div>
+		  </div>
+		</form>
+	</div>
   </body>
 </html>
