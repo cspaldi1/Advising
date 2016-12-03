@@ -22,8 +22,7 @@
       email = /\w{1,8}/.exec(email);
     }
 
-
-    if (email)  {
+    if (/\w{1,8}/.test(email))  {
       return true;
     }
     alert("Please enter a valid emich email.");
