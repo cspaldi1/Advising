@@ -31,7 +31,7 @@ if(isset($_POST['action']) && $_POST['action'] != "")
           $courseNoArr[] = $courseNo;
         }
 
-        echo json_encode($courseNoArr);
+        print_r($courseNoArr);
         break;
       } else {
         echo "Prefix string not set.";
