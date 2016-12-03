@@ -49,6 +49,9 @@ ksort($classArr);*/
 <head>
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
 	<script src="./JS/jquery-3.1.1.min.js"></script>
+	<script>
+		var prefixArr = JSON.parse("<?=$coursePrefixes?>");
+	</script>
 </head>
   <body>
     <div id="container">
@@ -139,7 +142,22 @@ ksort($classArr);*/
 			var valSelected = $("#prefix"+number).val();
 			if(valSelected != "")
 			{
-				var sections = classArray[valSelected];
+				var prefix_str = JSON.stringify(prefixArr);
+				$.ajax({
+	        method: "POST",
+	        url: "course_select_funcs.php",
+	        data: {action: "courseNO", prefix_str: prefix_str},
+	        success: function(output) {
+	          //console.log(output);
+	          if(output != 0)
+	          {
+							console.log(output);
+	          } else {
+	            echo("Error in recieving data");
+	          }
+	        }
+	      });
+				/*var sections = classArray[valSelected];
 				var sectionKeys = Object.keys(sections);
 				var replaceStr = "<option value=''> Select </option> ";
 				for(var i = 0; i < sectionKeys.length; i++)
@@ -147,7 +165,7 @@ ksort($classArr);*/
 					replaceStr += " <option value='"+sectionKeys[i]+"'>"+sectionKeys[i]+"</option> ";
 				}
 				$("#courseNo"+number).prop('disabled', false);
-				$("#courseNo"+number).html(replaceStr);
+				$("#courseNo"+number).html(replaceStr);*/
 			} else {
 				$("#courseNo"+number).prop('disabled', "disabled");
 			}
