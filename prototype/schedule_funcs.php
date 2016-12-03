@@ -47,6 +47,8 @@ if(isset($_POST['action']) && $_POST['action'] != "")
             $query = "INSERT INTO COURSE_ADVISED
                       (CRN, term, scheduleID)
                       VALUES ('".$val['CRN']."', '".$val['term']."', ".$scheduleID.")";
+                      
+            mysqli_query($conn, $query);
           }
           echo true;
           break;

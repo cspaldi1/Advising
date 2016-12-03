@@ -187,13 +187,18 @@ makeSchedule(0);
       var scheduleChosen = classArr[courseIndex];
       //call AJAX to submit. if it works, take to confirmation. else, stay here and alert error.
       var jsonString = JSON.stringify(scheduleChosen);
-      console.log(jsonString);
       $.ajax({
         method: "POST",
         url: "schedule_funcs.php",
         data: {action: "schedule", array_str: jsonString},
         success: function(output) {
-          console.log(output);
+          //console.log(output);
+          if(output == 1)
+          {
+            window.location.href="complete.php";
+          } else {
+            echo(output);
+          }
         }
       });
       //window.location.href='complete.php'
