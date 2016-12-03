@@ -182,7 +182,28 @@ ksort($classArr);*/
 			var courseSelected = $("#prefix"+number).val();
 			if(valSelected != "")
 			{
-				var sections = classArray[courseSelected][valSelected];
+				$.ajax({
+	        method: "POST",
+	        url: "course_select_funcs.php",
+	        data: {action: "courseNO", prefix: courseSelected, courseNO: valSelected},
+	        success: function(output) {
+	          console.log(output);
+	          if(output != 0)
+	          {
+							/*var courseNoArr = JSON.parse(output);
+							var replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseNoArr.length; i++)
+							{
+								replaceStr += " <option value='"+courseNoArr[i]+"'>"+courseNoArr[i]+"</option> ";
+							}
+							$("#courseNo"+number).prop('disabled', false);
+							$("#courseNo"+number).html(replaceStr);*/
+	          } else {
+	            alert("Error in recieving data");
+	          }
+	        }
+				});
+				/*var sections = classArray[courseSelected][valSelected];
 				var sectionKeys = Object.keys(sections);
 				var replaceStr = "<option value=''> Select </option> ";
 				for(var i = 0; i < sectionKeys.length; i++)
@@ -190,7 +211,7 @@ ksort($classArr);*/
 					replaceStr += " <option value='"+sectionKeys[i]+"'>"+sectionKeys[i]+"</option> ";
 				}
 				$("#crn"+number).prop('disabled', false);
-				$("#crn"+number).html(replaceStr);
+				$("#crn"+number).html(replaceStr);*/
 			} else {
 				$("#crn"+number).prop('disabled', "disabled");
 			}
