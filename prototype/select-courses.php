@@ -50,7 +50,7 @@ ksort($classArr);*/
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
 	<script src="./JS/jquery-3.1.1.min.js"></script>
 	<script>
-		var prefixArr = JSON.parse("<?=json_encode($coursePrefixes)?>");
+		var prefixArr = JSON.parse("<?=addslashes(json_encode($coursePrefixes))?>");
 	</script>
 </head>
   <body>
