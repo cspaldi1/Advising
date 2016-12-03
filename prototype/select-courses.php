@@ -148,10 +148,10 @@ ksort($classArr);*/
 	        url: "course_select_funcs.php",
 	        data: {action: "courseNO", prefix_str: prefix_str},
 	        success: function(output) {
-	          //console.log(output);
+	          console.log(output);
 	          if(output != 0)
 	          {
-							console.log(output);
+							//console.log(output);
 	          } else {
 	            alert("Error in recieving data");
 	          }
