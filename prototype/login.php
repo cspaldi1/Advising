@@ -37,16 +37,16 @@ if($_POST['netID'] && $_POST['password'])
 
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="./CSS/foundation.css">
+  <link rel="stylesheet" type="text/css" href="./CSS/foundation.min.css">
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
 </head>
   <body>
     <div id="container" class="row">
-	  <div class="large-4 columns">
-		<div id="header"><span id="title">Honors Advising Portal</span>
-		</div>
+	  <div id="header" class="large-12 columns"><span id="title">Honors Advising Portal</span>
 	  </div>
     </div>
-	<div class="row">
+	<div id="pagebody" class="row">
 		<form action="login.php" method="post">
 		  <div id="login" class="large-offset-4 large-4 columns">
 			<div style="text-align: center;">
