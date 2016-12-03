@@ -1,16 +1,3 @@
-<?php session_start();
-include("sensitive.php");
-// Check connection
-if (mysqli_connect_errno()) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-//connection is named $conn
-$course_prefixes_sql = "SELECT DISTINCT coursePrefix FROM COURSE;";
-$result = mysqli_query($conn,$sql);
-
-console.log(implode(", ", $result))
-
-?>
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
@@ -111,5 +98,19 @@ console.log(implode(", ", $result))
         <button onclick="window.location.href='home.php'">Home</button>
       </div>
     </div>
+
+    <script>
+    function fetch_courses() {
+      $.ajax({
+        method: "POST",
+        url: "course-overview-funcs.php",
+        data: {action: "get_course_prefixes"},
+        success: function(output) {
+          console.log(output);
+        }
+      });
+    }
+    </script>
+
   </body>
 </html>
