@@ -21,6 +21,7 @@ while ($row=mysqli_fetch_assoc($result))
 {
 	$coursePrefixes = $row['coursePrefix'];
 }
+var_dump($coursePrefixes);
 /*$myfile = fopen("./wi2016.txt", "r") or die("Unable to open file!");
 while (!feof ($myfile)) {
 	$array = array();
