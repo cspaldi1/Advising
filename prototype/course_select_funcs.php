@@ -18,6 +18,8 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         $courseNoArr = array();
         foreach ($prefixArr as $key=>$prefix)
         {
+          $courseNo = array();
+          
           $query = "SELECT DISTINCT courseNO
                     FROM COURSE
                     WHERE coursePrefix = '".$prefix."'";
