@@ -18,14 +18,14 @@
 
   function validateEmail()  {
     var email = document.getElementsByName('emich')[0].value;
-    if (/\w{1,8}@emich\.edu/.test(email)) {
-      email = /\w{1,8}/.exec(email);
+    if (/^\w{1,8}@emich\.edu$/.test(email)) {
+      email = /^\w{1,8}/.exec(email);
     }
 
-    if (/\w{1,8}/.test(email))  {
+    if (/^\w{1,8}$/.test(email))  {
       return true;
     }
-    alert("Please enter a valid emich email.");
+    alert("Please enter a valid netID or emich email.");
     return false;
   }
 
@@ -62,7 +62,7 @@
           </tr>
         </table>
         <div style="text-align: center; padding-top: 5px;">
-          <input type="submit" onClick="validateStudent();" value="Continue"/>
+          <input type="submit" onClick="return validateStudent();" value="Continue"/>
         </div>
       </form>
     </div>

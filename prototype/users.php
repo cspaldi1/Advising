@@ -23,19 +23,18 @@
   <script src="./JS/jquery-3.1.1.min.js"></script>
 
   <script>
-    function validateEmail()  {
-      var email = document.getElementById('emich').value;
-
-      if (/\w{1,8}@emich\.edu/.test(email)) {
-        email = /\w{1,8}/.exec(email);
-      }
-
-      if (/\w{1,8}.test(email)) {
-        return true;
-      }
-      alert("Please enter a valid netID/Email.");
-      return false;
+  function validateEmail()  {
+    var email = document.getElementsByName('emich')[0].value;
+    if (/^\w{1,8}@emich\.edu$/.test(email)) {
+      email = /^\w{1,8}/.exec(email);
     }
+
+    if (/^\w{1,8}$/.test(email))  {
+      return true;
+    }
+    alert("Please enter a valid netID or emich email.");
+    return false;
+  }
 
   </script>
 
