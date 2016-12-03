@@ -6,6 +6,34 @@
       border: none;
     }
   </style>
+  <script>
+  function validateEID()  {
+    var eid = /(E|e)\d{8}/.test(document.getElementsByName('eid')[0].value);
+    if (eid)  {
+      return true;
+    }
+    alert("Please enter a valid EID.");
+    return false;
+  }
+
+  function validateEmail()  {
+    var email = document.getElementsByName('emich')[0].value;
+    if (/\w{1,8}@emich\.edu/.test(email)) {
+      email = /\w{1,8}/.exec(email);
+    }
+
+
+    if (email)  {
+      return true;
+    }
+    alert("Please enter a valid emich email.");
+    return false;
+  }
+
+  function validateStudent() {
+    return (validateEmail() && validateEID());
+  }
+  </script>
 </head>
   <body>
     <div id="container">
@@ -35,7 +63,7 @@
           </tr>
         </table>
         <div style="text-align: center; padding-top: 5px;">
-          <input type="submit" value="Continue"/>
+          <input type="submit" onClick="validateStudent();" value="Continue"/>
         </div>
       </form>
     </div>
