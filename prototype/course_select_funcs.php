@@ -23,11 +23,11 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         $result = mysqli_query($conn, $query);
         while($row=mysqli_fetch_assoc($result))
         {
-          $courseNo[] = $row['courseNo'];
+          $courseNo[] = $row['courseNO'];
         }
         sort($courseNo, SORT_STRING);
 
-        print_r($courseNo);
+        echo json_encode($courseNo);
         break;
       } else {
         echo "Prefix string not set.";
