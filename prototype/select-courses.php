@@ -269,7 +269,8 @@ ksort($classArr);*/
 			var valSelected = $("#days"+number).val();
 			var courseSelected = $("#prefix"+number).val();
 			var noSelected = $("#courseNo"+number).val();
-			if(valSelected != "")
+			var crnSelected = $("#crn"+number).val();
+			if(crnSelected == "")
 			{
 				$.ajax({
 	        method: "POST",
@@ -304,9 +305,6 @@ ksort($classArr);*/
 	          }
 	        }
 				});
-			} else {
-				$("#crn"+number).prop('disabled', "disabled");
-				$("#time"+number).prop('disabled', "disabled");
 			}
 		}
 

@@ -126,7 +126,7 @@ if(isset($_POST['action']) && $_POST['action'] != "")
       break;
 
     case "days":
-      if(isset($_POST['days']) && $_POST['days'] != "")
+      if(isset($_POST['days']))
       {
         // Check connection
         if (mysqli_connect_errno()) {
@@ -137,9 +137,12 @@ if(isset($_POST['action']) && $_POST['action'] != "")
 
         $query = "SELECT DISTINCT CRN
                   FROM COURSE
-                  WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'
-                  AND days='".$_POST['days']."'";
+                  WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'";
 
+        if($_POST['days'] != "")
+        {
+          $query = $query."AND days='".$_POST['days']."'";
+        }
         $result = mysqli_query($conn, $query);
         while($row=mysqli_fetch_assoc($result))
         {
@@ -148,9 +151,11 @@ if(isset($_POST['action']) && $_POST['action'] != "")
 
         $query = "SELECT DISTINCT timeStart, timeEnd
                   FROM COURSE
-                  WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'
-                  AND days='".$_POST['days']."'";
-
+                  WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'";
+        if($_POST['days'] != "")
+        {
+          $query = $query."AND days='".$_POST['days']."'";
+        }
         $result = mysqli_query($conn, $query);
         while($row=mysqli_fetch_assoc($result))
         {
@@ -161,7 +166,7 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         echo json_encode($result_arr);
         break;
       } else {
-        echo "CRN string not set.";
+        echo "Days string not set.";
         break;
       }
       break;
