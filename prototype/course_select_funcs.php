@@ -176,7 +176,7 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         break;
       }
       break;
-    case "days":
+    case "time":
       if(isset($_POST['time']))
       {
         // Check connection
