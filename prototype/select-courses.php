@@ -101,7 +101,7 @@ ksort($classArr);*/
 	            </select>
 	          </td>
 	          <td>
-	            <select id="days1" name="days[]" disabled>
+	            <select id="days1" onchange="changeOnDays(1)" name="days[]" disabled>
 	              <option>Day</option>
 	            </select>
 	          </td>
@@ -265,6 +265,51 @@ ksort($classArr);*/
 			}
 		}
 
+		function changeOnDays(number) {
+			var valSelected = $("#days"+number).val();
+			var courseSelected = $("#prefix"+number).val();
+			var noSelected = $("#courseNo"+number).val();
+			if(valSelected != "")
+			{
+				$.ajax({
+	        method: "POST",
+	        url: "course_select_funcs.php",
+	        data: {action: "days", prefix: courseSelected, courseNO: noSelected, days: valSelected},
+	        success: function(output) {
+	          if(output != 0)
+	          {
+							var courseInfoArr = JSON.parse(output);
+
+							//replace times
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['times'].length; i++)
+							{
+								if(courseInfoArr['times'][i] != "12:00 am - 12:00 am")
+									replaceStr += " <option value='"+courseInfoArr['times'][i]+"'>"+courseInfoArr['times'][i]+"</option> ";
+							}
+							$("#time"+number).prop('disabled', false);
+							$("#time"+number).html(replaceStr);
+
+							//replace CRNs
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['crns'].length; i++)
+							{
+								replaceStr += " <option value='"+courseInfoArr['crns'][i]+"'>"+courseInfoArr['crns'][i]+"</option> ";
+							}
+							$("#crn"+number).prop('disabled', false);
+							$("#crn"+number).html(replaceStr);
+
+	          } else {
+	            alert("Error in recieving data");
+	          }
+	        }
+				});
+			} else {
+				$("#crn"+number).prop('disabled', "disabled");
+				$("#time"+number).prop('disabled', "disabled");
+			}
+		}
+
 		function addCourseLine()
 		{
 			courses++;
@@ -295,7 +340,7 @@ ksort($classArr);*/
 					'</select>'+
 				'</td>'+
 				'<td>'+
-					'<select id="days'+courses+'" name="days[]" disabled>'+
+					'<select id="days'+courses+'" onchange="changeOnDays('+courses+')" name="days[]" disabled>'+
 						'<option>Day</option>'+
 					'</select>'+
 				'</td>'+
