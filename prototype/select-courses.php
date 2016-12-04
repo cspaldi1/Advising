@@ -264,26 +264,36 @@ ksort($classArr);*/
 			var courseSelected = $("#prefix"+number).val();
 			var noSelected = $("#courseNo"+number).val();
 			var crnSelected = $("#crn"+number).val();
+			var timeSelected = $("#time"+number).val();
+			if(timeSelected != "")
+			{
+				var ajax_data = {action: "days", prefix: courseSelected, courseNO: noSelected, days: valSelected, times: timeSelected};
+			} else {
+				var ajax_data = {action: "days", prefix: courseSelected, courseNO: noSelected, days: valSelected};
+			}
 			if(crnSelected == "")
 			{
 				$.ajax({
 	        method: "POST",
 	        url: "course_select_funcs.php",
-	        data: {action: "days", prefix: courseSelected, courseNO: noSelected, days: valSelected},
+	        data: ajax_data,
 	        success: function(output) {
 	          if(output != 0)
 	          {
 							var courseInfoArr = JSON.parse(output);
 
-							//replace times
-							replaceStr = "<option value=''> Select </option> ";
-							for(var i = 0; i < courseInfoArr['times'].length; i++)
+							if(timeSelected != "")
 							{
-								if(courseInfoArr['times'][i] != "12:00 am - 12:00 am")
-									replaceStr += " <option value='"+courseInfoArr['times'][i]+"'>"+courseInfoArr['times'][i]+"</option> ";
+								//replace times
+								replaceStr = "<option value=''> Select </option> ";
+								for(var i = 0; i < courseInfoArr['times'].length; i++)
+								{
+									if(courseInfoArr['times'][i] != "12:00 am - 12:00 am")
+										replaceStr += " <option value='"+courseInfoArr['times'][i]+"'>"+courseInfoArr['times'][i]+"</option> ";
+								}
+								$("#time"+number).prop('disabled', false);
+								$("#time"+number).html(replaceStr);
 							}
-							$("#time"+number).prop('disabled', false);
-							$("#time"+number).html(replaceStr);
 
 							//replace CRNs
 							replaceStr = "<option value=''> Select </option> ";
