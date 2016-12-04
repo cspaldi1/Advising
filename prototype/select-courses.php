@@ -163,6 +163,7 @@ ksort($classArr);*/
 	        }
 	      });
 			} else {
+				$("#courseNo"+number).val("");
 				$("#courseNo"+number).prop('disabled', "disabled");
 			}
 		}
