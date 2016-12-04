@@ -210,9 +210,9 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         $result = mysqli_query($conn, $query);
         while($row=mysqli_fetch_assoc($result))
         {
-          $times[] = $row['timeStart']." - ".$row['timeEnd'];
+          $days[] = $row['days'];
         }
-        $result_arr = array("days"=>$crns, "times"=>$times);
+        $result_arr = array("crns"=>$crns, "days"=>$days);
 
         echo json_encode($result_arr);
         break;
