@@ -282,7 +282,8 @@ ksort($classArr);*/
 	          {
 							var courseInfoArr = JSON.parse(output);
 
-							if(timeSelected != "")
+							//if a time hasn't been selected yet, change the dropdown
+							if(timeSelected == "")
 							{
 								//replace times
 								replaceStr = "<option value=''> Select </option> ";
