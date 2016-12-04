@@ -227,18 +227,38 @@ ksort($classArr);*/
 			var noSelected = $("#courseNo"+number).val();
 			if(valSelected != "")
 			{
-				var sections = classArray[courseSelected][noSelected][valSelected];
-				var sectionKeys = Object.keys(sections);
-				var dayStr = "<option value=''> Select </option> ";
-				dayStr += "<option value='"+sections["days"]+"'>"+sections["days"]+"</option>";
+				$.ajax({
+	        method: "POST",
+	        url: "course_select_funcs.php",
+	        data: {action: "courseNO", prefix: courseSelected, courseNO: valSelected},
+	        success: function(output) {
+	          if(output != 0)
+	          {
+							var courseInfoArr = JSON.parse(output);
+							//Replace days
+							var replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['days'].length; i++)
+							{
+								if(courseInfoArr['days'][i] != "")
+									replaceStr += " <option value='"+courseInfoArr['days'][i]+"'>"+courseInfoArr['days'][i]+"</option> ";
+							}
+							$("#days"+number).prop('disabled', false);
+							$("#days"+number).html(replaceStr);
 
-				var timeStr = "<option value=''> Select </option> ";
-				timeStr += "<option value='"+sections["start"]+"-"+sections['end']+"'>"+sections["start"]+"-"+sections['end']+"</option>";
-
-				$("#days"+number).prop('disabled', false);
-				$("#time"+number).prop('disabled', false);
-				$("#days"+number).html(dayStr);
-				$("#time"+number).html(timeStr);
+							//replace times
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['times'].length; i++)
+							{
+								if(courseInfoArr['times'][i] != "12:00 am - 12:00 am")
+									replaceStr += " <option value='"+courseInfoArr['times'][i]+"'>"+courseInfoArr['times'][i]+"</option> ";
+							}
+							$("#time"+number).prop('disabled', false);
+							$("#time"+number).html(replaceStr);
+	          } else {
+	            alert("Error in recieving data");
+	          }
+	        }
+				});
 			} else {
 				$("#days"+number).prop('disabled', "disabled");
 				$("#time"+number).prop('disabled', "disabled");
