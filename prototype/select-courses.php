@@ -225,44 +225,38 @@ ksort($classArr);*/
 			var valSelected = $("#crn"+number).val();
 			var courseSelected = $("#prefix"+number).val();
 			var noSelected = $("#courseNo"+number).val();
-			if(valSelected != "")
-			{
-				$.ajax({
-	        method: "POST",
-	        url: "course_select_funcs.php",
-	        data: {action: "CRN", prefix: courseSelected, courseNO: noSelected, CRN: valSelected},
-	        success: function(output) {
-	          if(output != 0)
-	          {
-							var courseInfoArr = JSON.parse(output);
-							//Replace days
-							var replaceStr = "<option value=''> Select </option> ";
-							for(var i = 0; i < courseInfoArr['days'].length; i++)
-							{
-								if(courseInfoArr['days'][i] != "")
-									replaceStr += " <option value='"+courseInfoArr['days'][i]+"'>"+courseInfoArr['days'][i]+"</option> ";
-							}
-							$("#days"+number).prop('disabled', false);
-							$("#days"+number).html(replaceStr);
+			$.ajax({
+        method: "POST",
+        url: "course_select_funcs.php",
+        data: {action: "CRN", prefix: courseSelected, courseNO: noSelected, CRN: valSelected},
+        success: function(output) {
+          if(output != 0)
+          {
+						var courseInfoArr = JSON.parse(output);
+						//Replace days
+						var replaceStr = "<option value=''> Select </option> ";
+						for(var i = 0; i < courseInfoArr['days'].length; i++)
+						{
+							if(courseInfoArr['days'][i] != "")
+								replaceStr += " <option value='"+courseInfoArr['days'][i]+"'>"+courseInfoArr['days'][i]+"</option> ";
+						}
+						$("#days"+number).prop('disabled', false);
+						$("#days"+number).html(replaceStr);
 
-							//replace times
-							replaceStr = "<option value=''> Select </option> ";
-							for(var i = 0; i < courseInfoArr['times'].length; i++)
-							{
-								if(courseInfoArr['times'][i] != "12:00 am - 12:00 am")
-									replaceStr += " <option value='"+courseInfoArr['times'][i]+"'>"+courseInfoArr['times'][i]+"</option> ";
-							}
-							$("#time"+number).prop('disabled', false);
-							$("#time"+number).html(replaceStr);
-	          } else {
-	            alert("Error in recieving data");
-	          }
-	        }
-				});
-			} else {
-				$("#days"+number).prop('disabled', "disabled");
-				$("#time"+number).prop('disabled', "disabled");
-			}
+						//replace times
+						replaceStr = "<option value=''> Select </option> ";
+						for(var i = 0; i < courseInfoArr['times'].length; i++)
+						{
+							if(courseInfoArr['times'][i] != "12:00 am - 12:00 am")
+								replaceStr += " <option value='"+courseInfoArr['times'][i]+"'>"+courseInfoArr['times'][i]+"</option> ";
+						}
+						$("#time"+number).prop('disabled', false);
+						$("#time"+number).html(replaceStr);
+          } else {
+            alert("Error in recieving data");
+          }
+        }
+			});
 		}
 
 		function changeOnDays(number) {

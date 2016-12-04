@@ -85,7 +85,7 @@ if(isset($_POST['action']) && $_POST['action'] != "")
     break;
 
     case "CRN":
-      if(isset($_POST['CRN']) && $_POST['CRN'] != "")
+      if(isset($_POST['CRN']))
       {
         // Check connection
         if (mysqli_connect_errno()) {
@@ -96,9 +96,12 @@ if(isset($_POST['action']) && $_POST['action'] != "")
 
         $query = "SELECT DISTINCT days
                   FROM COURSE
-                  WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'
-                  AND CRN='".$_POST['CRN']."'";
+                  WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'";
 
+        if($_POST['CRN'] != "")
+        {
+          $query = $query." AND CRN='".$_POST['CRN']."'";
+        }
         $result = mysqli_query($conn, $query);
         while($row=mysqli_fetch_assoc($result))
         {
@@ -107,9 +110,12 @@ if(isset($_POST['action']) && $_POST['action'] != "")
 
         $query = "SELECT DISTINCT timeStart, timeEnd
                   FROM COURSE
-                  WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'
-                  AND CRN='".$_POST['CRN']."'";
+                  WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'";
 
+        if($_POST['CRN'] != "")
+        {
+          $query = $query." AND CRN='".$_POST['CRN']."'";
+        }
         $result = mysqli_query($conn, $query);
         while($row=mysqli_fetch_assoc($result))
         {
@@ -141,7 +147,7 @@ if(isset($_POST['action']) && $_POST['action'] != "")
 
         if($_POST['days'] != "")
         {
-          $query = $query."AND days='".$_POST['days']."'";
+          $query = $query." AND days='".$_POST['days']."'";
         }
         $result = mysqli_query($conn, $query);
         while($row=mysqli_fetch_assoc($result))
@@ -154,7 +160,7 @@ if(isset($_POST['action']) && $_POST['action'] != "")
                   WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'";
         if($_POST['days'] != "")
         {
-          $query = $query."AND days='".$_POST['days']."'";
+          $query = $query." AND days='".$_POST['days']."'";
         }
         $result = mysqli_query($conn, $query);
         while($row=mysqli_fetch_assoc($result))
