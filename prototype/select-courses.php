@@ -336,7 +336,7 @@ ksort($classArr);*/
 	          {
 							var courseInfoArr = JSON.parse(output);
 
-							if(daySelected != "")
+							if(daySelected == "")
 							{
 								//replace days
 								replaceStr = "<option value=''> Select </option> ";
