@@ -147,7 +147,6 @@ ksort($classArr);*/
 	        url: "course_select_funcs.php",
 	        data: {action: "prefix", prefix: valSelected},
 	        success: function(output) {
-	          console.log(output);
 	          if(output != 0)
 	          {
 							var courseNoArr = JSON.parse(output);
@@ -163,15 +162,6 @@ ksort($classArr);*/
 	          }
 	        }
 	      });
-				/*var sections = classArray[valSelected];
-				var sectionKeys = Object.keys(sections);
-				var replaceStr = "<option value=''> Select </option> ";
-				for(var i = 0; i < sectionKeys.length; i++)
-				{
-					replaceStr += " <option value='"+sectionKeys[i]+"'>"+sectionKeys[i]+"</option> ";
-				}
-				$("#courseNo"+number).prop('disabled', false);
-				$("#courseNo"+number).html(replaceStr);*/
 			} else {
 				$("#courseNo"+number).prop('disabled', "disabled");
 			}
@@ -223,15 +213,6 @@ ksort($classArr);*/
 	          }
 	        }
 				});
-				/*var sections = classArray[courseSelected][valSelected];
-				var sectionKeys = Object.keys(sections);
-				var replaceStr = "<option value=''> Select </option> ";
-				for(var i = 0; i < sectionKeys.length; i++)
-				{
-					replaceStr += " <option value='"+sectionKeys[i]+"'>"+sectionKeys[i]+"</option> ";
-				}
-				$("#crn"+number).prop('disabled', false);
-				$("#crn"+number).html(replaceStr);*/
 			} else {
 				$("#crn"+number).prop('disabled', "disabled");
 				$("#days"+number).prop('disabled', "disabled");
@@ -270,7 +251,7 @@ ksort($classArr);*/
 				'<td>'+
 					'<select id="prefix'+courses+'" onchange="changeCourseNo('+courses+');" name="prefix[]" >'+
 						'<option value="">Select</option>'+
-						'<?php foreach($classArr as $prefix=>$course_info) { ?>'+
+						'<?php foreach($coursePrefixes as $key=>$prefix) {?>'+
 							'<option value="<?=$prefix?>"><?=$prefix?></option>'+
 						'<?php } ?>'+
 					'</select>'+
