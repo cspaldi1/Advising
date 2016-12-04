@@ -230,7 +230,7 @@ ksort($classArr);*/
 				$.ajax({
 	        method: "POST",
 	        url: "course_select_funcs.php",
-	        data: {action: "courseNO", prefix: courseSelected, courseNO: valSelected},
+	        data: {action: "CRN", prefix: courseSelected, courseNO: noSelected, CRN: valSelected},
 	        success: function(output) {
 	          if(output != 0)
 	          {
