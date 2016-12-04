@@ -176,6 +176,51 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         break;
       }
       break;
+    case "days":
+      if(isset($_POST['time']))
+      {
+        // Check connection
+        if (mysqli_connect_errno()) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+        $time_arr = explode(" - ", $_POST['time']);
+        $courseInfo = array();
+
+        $query = "SELECT DISTINCT CRN
+                  FROM COURSE
+                  WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'";
+
+        if($_POST['time'] != "")
+        {
+          $query = $query." AND timeStart='".$time_arr[0]."' AND timeEnd='".$time_arr[1]."'";
+        }
+        $result = mysqli_query($conn, $query);
+        while($row=mysqli_fetch_assoc($result))
+        {
+          $crns[] = $row['CRN'];
+        }
+
+        $query = "SELECT days
+                  FROM COURSE
+                  WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'";
+        if($_POST['time'] != "")
+        {
+          $query = $query." AND timeStart='".$time_arr[0]."' AND timeEnd='".$time_arr[1]."'";
+        }
+        $result = mysqli_query($conn, $query);
+        while($row=mysqli_fetch_assoc($result))
+        {
+          $times[] = $row['timeStart']." - ".$row['timeEnd'];
+        }
+        $result_arr = array("crns"=>$crns, "times"=>$times);
+
+        echo json_encode($result_arr);
+        break;
+      } else {
+        echo "Days string not set.";
+        break;
+      }
+      break;
   }
 
 }

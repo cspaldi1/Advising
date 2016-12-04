@@ -106,7 +106,7 @@ ksort($classArr);*/
 	            </select>
 	          </td>
 	          <td>
-	            <select id="time1" name="time[]" disabled>
+	            <select id="time1" onchange="changeOnTime(1)" name="time[]" disabled>
 	              <option>Time</option>
 	            </select>
 	          </td>
@@ -302,6 +302,49 @@ ksort($classArr);*/
 			}
 		}
 
+		function changeOnTime(number) {
+			var valSelected = $("#time"+number).val();
+			var courseSelected = $("#prefix"+number).val();
+			var noSelected = $("#courseNo"+number).val();
+			var crnSelected = $("#crn"+number).val();
+			if(crnSelected == "")
+			{
+				$.ajax({
+	        method: "POST",
+	        url: "course_select_funcs.php",
+	        data: {action: "time", prefix: courseSelected, courseNO: noSelected, time: valSelected},
+	        success: function(output) {
+	          if(output != 0)
+	          {
+							var courseInfoArr = JSON.parse(output);
+
+							//replace times
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['days'].length; i++)
+							{
+								if(courseInfoArr['days'][i] != "")
+									replaceStr += " <option value='"+courseInfoArr['days'][i]+"'>"+courseInfoArr['days'][i]+"</option> ";
+							}
+							$("#days"+number).prop('disabled', false);
+							$("#days"+number).html(replaceStr);
+
+							//replace CRNs
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['crns'].length; i++)
+							{
+								replaceStr += " <option value='"+courseInfoArr['crns'][i]+"'>"+courseInfoArr['crns'][i]+"</option> ";
+							}
+							$("#crn"+number).prop('disabled', false);
+							$("#crn"+number).html(replaceStr);
+
+	          } else {
+	            alert("Error in recieving data");
+	          }
+	        }
+				});
+			}
+		}
+
 		function addCourseLine()
 		{
 			courses++;
@@ -337,7 +380,7 @@ ksort($classArr);*/
 					'</select>'+
 				'</td>'+
 				'<td>'+
-					'<select id="time'+courses+'" name="time[]" disabled>'+
+					'<select id="time'+courses+'" onchange="changeOnTime('+courses+')" name="time[]" disabled>'+
 						'<option>Time</option>'+
 					'</select>'+
 				'</td>'+
