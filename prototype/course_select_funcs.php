@@ -62,7 +62,7 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         $result = mysqli_query($conn, $query);
         while($row=mysqli_fetch_assoc($result))
         {
-          $times[] = $row['timeStart']." ".$row['timeEnd'];
+          $times[] = $row['timeStart']." - ".$row['timeEnd'];
         }
         $result_arr = array("days"=>$days, "times"=>$times);
         //sort($courseNo, SORT_STRING);

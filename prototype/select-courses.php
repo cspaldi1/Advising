@@ -187,17 +187,26 @@ ksort($classArr);*/
 	        url: "course_select_funcs.php",
 	        data: {action: "courseNO", prefix: courseSelected, courseNO: valSelected},
 	        success: function(output) {
-	          console.log(output);
 	          if(output != 0)
 	          {
-							/*var courseNoArr = JSON.parse(output);
+							var courseInfoArr = JSON.parse(output);
 							var replaceStr = "<option value=''> Select </option> ";
-							for(var i = 0; i < courseNoArr.length; i++)
+							for(var i = 0; i < courseInfoArr['days'].length; i++)
 							{
-								replaceStr += " <option value='"+courseNoArr[i]+"'>"+courseNoArr[i]+"</option> ";
+								if(courseInfoArr['days'][i] != "")
+									replaceStr += " <option value='"+courseInfoArr['days'][i]+"'>"+courseInfoArr['days'][i]+"</option> ";
 							}
-							$("#courseNo"+number).prop('disabled', false);
-							$("#courseNo"+number).html(replaceStr);*/
+							$("#days"+number).prop('disabled', false);
+							$("#days"+number).html(replaceStr);
+
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['days'].length; i++)
+							{
+								if(courseInfoArr['days'][i] != "12:00 am - 12:00 am")
+									replaceStr += " <option value='"+courseInfoArr['days'][i]+"'>"+courseInfoArr['days'][i]+"</option> ";
+							}
+							$("#time"+number).prop('disabled', false);
+							$("#time"+number).html(replaceStr);
 	          } else {
 	            alert("Error in recieving data");
 	          }
