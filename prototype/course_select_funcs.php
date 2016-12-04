@@ -36,32 +36,43 @@ if(isset($_POST['action']) && $_POST['action'] != "")
       break;
 
     case "courseNO":
-    if(isset($_POST['courseNO']) && $_POST['courseNO'] != "")
-    {
-      // Check connection
-      if (mysqli_connect_errno()) {
-          die("Connection failed: " . mysqli_connect_error());
-      }
-
-      $courseInfo = array();
-
-      $query = "SELECT CRN, days, timeStart, timeEnd
-                FROM COURSE
-                WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'";
-
-      $result = mysqli_query($conn, $query);
-      while($row=mysqli_fetch_assoc($result))
+      if(isset($_POST['courseNO']) && $_POST['courseNO'] != "")
       {
-        $courseInfo[] = $row;
-      }
-      //sort($courseNo, SORT_STRING);
+        // Check connection
+        if (mysqli_connect_errno()) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
 
-      echo json_encode($courseInfo);
-      break;
-    } else {
-      echo "Prefix string not set.";
-      break;
-    }
+        $courseInfo = array();
+
+        $query = "SELECT DISTINCT days
+                  FROM COURSE
+                  WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'";
+
+        $result = mysqli_query($conn, $query);
+        while($row=mysqli_fetch_assoc($result))
+        {
+          $days[] = $row['days'];
+        }
+
+        $query = "SELECT DISTINCT timeStart, timeEnd
+                  FROM COURSE
+                  WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'";
+
+        $result = mysqli_query($conn, $query);
+        while($row=mysqli_fetch_assoc($result))
+        {
+          $times[] = $row['timeStart']." ".$row['timeEnd'];
+        }
+        $result_arr = array("days"=>$days, "times"=>$times);
+        //sort($courseNo, SORT_STRING);
+
+        echo json_encode($result_arr);
+        break;
+      } else {
+        echo "Prefix string not set.";
+        break;
+      }
     break;
   }
 
