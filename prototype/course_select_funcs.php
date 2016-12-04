@@ -206,25 +206,33 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         {
           $query = $query." AND timeStart='".$time_arr[0]."' AND timeEnd='".$time_arr[1]."'";
         }
+        if(isset($_POST['days']) && $_POST['days'] != "")
+        {
+          $query = $query." AND days='".$_POST['days']."'";
+        }
         $result = mysqli_query($conn, $query);
         while($row=mysqli_fetch_assoc($result))
         {
           $crns[] = $row['CRN'];
         }
-
-        $query = "SELECT days
-                  FROM COURSE
-                  WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'";
-        if($_POST['time'] != "")
+        if(!isset($_POST['days']) || $_POST['days'] == "")
         {
-          $query = $query." AND timeStart='".$time_arr[0]."' AND timeEnd='".$time_arr[1]."'";
+          $query = "SELECT DISTINCT days
+                    FROM COURSE
+                    WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'";
+          if($_POST['time'] != "")
+          {
+            $query = $query." AND timeStart='".$time_arr[0]."' AND timeEnd='".$time_arr[1]."'";
+          }
+          $result = mysqli_query($conn, $query);
+          while($row=mysqli_fetch_assoc($result))
+          {
+            $days[] = $row['days'];
+          }
+          $result_arr = array("crns"=>$crns, "days"=>$days);
+        } else {
+          $result_arr = array("crns"=>$crns);
         }
-        $result = mysqli_query($conn, $query);
-        while($row=mysqli_fetch_assoc($result))
-        {
-          $days[] = $row['days'];
-        }
-        $result_arr = array("crns"=>$crns, "days"=>$days);
 
         echo json_encode($result_arr);
         break;
