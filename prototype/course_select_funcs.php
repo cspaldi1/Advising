@@ -151,10 +151,11 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         }
         if(isset($_POST['times']) && $_POST['times'] != "")
         {
-          $time_arr = explode(" - ", $_POST['time']);
+          $time_arr = explode(" - ", $_POST['times']);
           $query = $query." AND timeStart='".$time_arr[0]."' AND timeEnd='".$time_arr[1]."'";
         }
         $result = mysqli_query($conn, $query);
+        $crns = array();
         while($row=mysqli_fetch_assoc($result))
         {
           $crns[] = $row['CRN'];
@@ -170,6 +171,7 @@ if(isset($_POST['action']) && $_POST['action'] != "")
             $query = $query." AND days='".$_POST['days']."'";
           }
           $result = mysqli_query($conn, $query);
+          $times = array();
           while($row=mysqli_fetch_assoc($result))
           {
             $times[] = $row['timeStart']." - ".$row['timeEnd'];
