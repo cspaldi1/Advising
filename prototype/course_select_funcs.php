@@ -212,7 +212,7 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         {
           $times[] = $row['timeStart']." - ".$row['timeEnd'];
         }
-        $result_arr = array("crns"=>$crns, "times"=>$times);
+        $result_arr = array("days"=>$crns, "times"=>$times);
 
         echo json_encode($result_arr);
         break;
