@@ -190,6 +190,7 @@ ksort($classArr);*/
 	          if(output != 0)
 	          {
 							var courseInfoArr = JSON.parse(output);
+							//Replace days
 							var replaceStr = "<option value=''> Select </option> ";
 							for(var i = 0; i < courseInfoArr['days'].length; i++)
 							{
@@ -199,14 +200,24 @@ ksort($classArr);*/
 							$("#days"+number).prop('disabled', false);
 							$("#days"+number).html(replaceStr);
 
+							//replace times
 							replaceStr = "<option value=''> Select </option> ";
-							for(var i = 0; i < courseInfoArr['days'].length; i++)
+							for(var i = 0; i < courseInfoArr['times'].length; i++)
 							{
-								if(courseInfoArr['days'][i] != "12:00 am - 12:00 am")
-									replaceStr += " <option value='"+courseInfoArr['days'][i]+"'>"+courseInfoArr['days'][i]+"</option> ";
+								if(courseInfoArr['times'][i] != "12:00 am - 12:00 am")
+									replaceStr += " <option value='"+courseInfoArr['times'][i]+"'>"+courseInfoArr['times'][i]+"</option> ";
 							}
 							$("#time"+number).prop('disabled', false);
 							$("#time"+number).html(replaceStr);
+
+							//replace CRNs
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['crns'].length; i++)
+							{
+								replaceStr += " <option value='"+courseInfoArr['crns'][i]+"'>"+courseInfoArr['crns'][i]+"</option> ";
+							}
+							$("#crn"+number).prop('disabled', false);
+							$("#crn"+number).html(replaceStr);
 	          } else {
 	            alert("Error in recieving data");
 	          }
@@ -223,6 +234,8 @@ ksort($classArr);*/
 				$("#crn"+number).html(replaceStr);*/
 			} else {
 				$("#crn"+number).prop('disabled', "disabled");
+				$("#days"+number).prop('disabled', "disabled");
+				$("#time"+number).prop('disabled', "disabled");
 			}
 		}
 

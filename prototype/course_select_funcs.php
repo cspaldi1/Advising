@@ -65,7 +65,17 @@ if(isset($_POST['action']) && $_POST['action'] != "")
           $times[] = $row['timeStart']." - ".$row['timeEnd'];
         }
         $result_arr = array("days"=>$days, "times"=>$times);
-        //sort($courseNo, SORT_STRING);
+
+        $query = "SELECT DISTINCT CRN
+                  FROM COURSE
+                  WHERE coursePrefix = '".$_POST['prefix']."' AND courseNO = '".$_POST['courseNO']."'";
+
+        $result = mysqli_query($conn, $query);
+        while($row=mysqli_fetch_assoc($result))
+        {
+          $crn[] = $row['CRN'];
+        }
+        $result_arr = array("days"=>$days, "times"=>$times, "crns"=>$crn);
 
         echo json_encode($result_arr);
         break;
