@@ -89,25 +89,25 @@ ksort($classArr);*/
 	            </select>
 	          </td>
 	          <td>
-	            <select name="honors[]">
+	            <select id="honors1" onchange="changeOnHonors(1);" name="honors[]" disabled>
 	              <option value = "">Both</option>
 								<option value= "1">Yes</option>
 								<option value= "0">No</option>
 	            </select>
 	          </td>
 	          <td>
-	            <select id="crn1" onchange="changeRest(1);" name="crn[]" disabled>
-	              <option>CRN</option>
+	            <select id="crn1" onchange="changeOnCRN(1);" name="crn[]" disabled>
+	              <option value="">CRN</option>
 	            </select>
 	          </td>
 	          <td>
 	            <select id="days1" onchange="changeOnDays(1)" name="days[]" disabled>
-	              <option>Day</option>
+	              <option value="">Day</option>
 	            </select>
 	          </td>
 	          <td>
 	            <select id="time1" onchange="changeOnTime(1)" name="time[]" disabled>
-	              <option>Time</option>
+	              <option value="">Time</option>
 	            </select>
 	          </td>
 	        </tr>
@@ -115,6 +115,7 @@ ksort($classArr);*/
 				</form>
 	      <div style="margin-top: 10px;">
 	        <button onclick="addCourseLine();">Add Another Course</button>
+					<button onclick="removeCourseLine();">Remove Last Course</button>
 	        <input type="button" onclick="validatePreSuf();" value="See Schedule(s)"/>
 	      </div>
 			</div>
@@ -122,6 +123,18 @@ ksort($classArr);*/
   </body>
 
 	<script>
+		$(document).ready(function() {
+			$("#courseNo1").val("");
+			$("#courseNo1").prop('disabled', "disabled");
+			$("#crn1").val("");
+			$("#crn1").prop('disabled', "disabled");
+			$("#days1").val("");
+			$("#days1").prop('disabled', "disabled");
+			$("#time1").val("");
+			$("#time1").prop('disabled', "disabled");
+			$("#honors1").val("");
+			$("#honors1").prop('disabled', "disabled");
+		});
 		var classArray = JSON.parse('<?=json_encode($classArr)?>');
 		var courses = 1;
 
@@ -165,6 +178,14 @@ ksort($classArr);*/
 			} else {
 				$("#courseNo"+number).val("");
 				$("#courseNo"+number).prop('disabled', "disabled");
+				$("#crn"+number).val("");
+				$("#crn"+number).prop('disabled', "disabled");
+				$("#days"+number).val("");
+				$("#days"+number).prop('disabled', "disabled");
+				$("#time"+number).val("");
+				$("#time"+number).prop('disabled', "disabled");
+				$("#honors"+number).val("");
+				$("#honors"+number).prop('disabled', "disabled");
 			}
 		}
 
@@ -209,26 +230,54 @@ ksort($classArr);*/
 							}
 							$("#crn"+number).prop('disabled', false);
 							$("#crn"+number).html(replaceStr);
+
+							//replace honors
+							replaceStr = "<option value=''> Both </option> ";
+							for(var i = 0; i < courseInfoArr['isHonors'].length; i++)
+							{
+								if(courseInfoArr['isHonors'][i] == 1)
+								{
+									var honors_str = "Yes";
+								} else {
+									var honors_str = "No";
+								}
+								replaceStr += " <option value='"+courseInfoArr['isHonors'][i]+"'>"+honors_str+"</option> ";
+							}
+							$("#honors"+number).prop('disabled', false);
+							$("#honors"+number).html(replaceStr);
 	          } else {
 	            alert("Error in recieving data");
 	          }
 	        }
 				});
 			} else {
+				$("#crn"+number).val("");
 				$("#crn"+number).prop('disabled', "disabled");
+				$("#days"+number).val("");
 				$("#days"+number).prop('disabled', "disabled");
+				$("#time"+number).val("");
 				$("#time"+number).prop('disabled', "disabled");
+				$("#honors"+number).val("");
+				$("#honors"+number).prop('disabled', "disabled");
 			}
 		}
 
-		function changeRest(number) {
+		function changeOnCRN(number) {
 			var valSelected = $("#crn"+number).val();
 			var courseSelected = $("#prefix"+number).val();
 			var noSelected = $("#courseNo"+number).val();
+			var daysSelected = $("#days"+number).val();
+			var timeSelected = $("#time"+number).val();
+			var honorsSelected = $("#honors"+number).val();
+			var ajax_data = {action: "CRN", prefix: courseSelected, courseNO: noSelected, CRN: valSelected};
+			if(timeSelected != "")
+				ajax_data.times = timeSelected;
+			if(daysSelected != "")
+				ajax_data.days = daysSelected;
 			$.ajax({
         method: "POST",
         url: "course_select_funcs.php",
-        data: {action: "CRN", prefix: courseSelected, courseNO: noSelected, CRN: valSelected},
+        data: ajax_data,
         success: function(output) {
           if(output != 0)
           {
@@ -242,7 +291,7 @@ ksort($classArr);*/
 						}
 						$("#days"+number).prop('disabled', false);
 						$("#days"+number).html(replaceStr);
-
+						$("#days"+number).val(daysSelected);
 						//replace times
 						replaceStr = "<option value=''> Select </option> ";
 						for(var i = 0; i < courseInfoArr['times'].length; i++)
@@ -252,6 +301,22 @@ ksort($classArr);*/
 						}
 						$("#time"+number).prop('disabled', false);
 						$("#time"+number).html(replaceStr);
+						$("#time"+number).val(timeSelected);
+
+						//replace honors
+						replaceStr = "<option value=''> Both </option> ";
+						for(var i = 0; i < courseInfoArr['isHonors'].length; i++)
+						{
+							if(courseInfoArr['isHonors'][i] == 1)
+							{
+								var honors_str = "Yes";
+							} else {
+								var honors_str = "No";
+							}
+							replaceStr += " <option value='"+courseInfoArr['isHonors'][i]+"'>"+honors_str+"</option> ";
+						}
+						$("#honors"+number).prop('disabled', false);
+						$("#honors"+number).html(replaceStr);
           } else {
             alert("Error in recieving data");
           }
@@ -283,18 +348,16 @@ ksort($classArr);*/
 							var courseInfoArr = JSON.parse(output);
 
 							//if a time hasn't been selected yet, change the dropdown
-							if(timeSelected == "")
+							//replace times
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['times'].length; i++)
 							{
-								//replace times
-								replaceStr = "<option value=''> Select </option> ";
-								for(var i = 0; i < courseInfoArr['times'].length; i++)
-								{
-									if(courseInfoArr['times'][i] != "12:00 am - 12:00 am")
-										replaceStr += " <option value='"+courseInfoArr['times'][i]+"'>"+courseInfoArr['times'][i]+"</option> ";
-								}
-								$("#time"+number).prop('disabled', false);
-								$("#time"+number).html(replaceStr);
+								if(courseInfoArr['times'][i] != "12:00 am - 12:00 am")
+									replaceStr += " <option value='"+courseInfoArr['times'][i]+"'>"+courseInfoArr['times'][i]+"</option> ";
 							}
+							$("#time"+number).prop('disabled', false);
+							$("#time"+number).html(replaceStr);
+							$("#time"+number).val(timeSelected);
 
 							//replace CRNs
 							replaceStr = "<option value=''> Select </option> ";
@@ -336,18 +399,75 @@ ksort($classArr);*/
 	          {
 							var courseInfoArr = JSON.parse(output);
 
-							if(daySelected == "")
+							//replace days
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['days'].length; i++)
 							{
-								//replace days
-								replaceStr = "<option value=''> Select </option> ";
-								for(var i = 0; i < courseInfoArr['days'].length; i++)
-								{
-									if(courseInfoArr['days'][i] != "")
-										replaceStr += " <option value='"+courseInfoArr['days'][i]+"'>"+courseInfoArr['days'][i]+"</option> ";
-								}
-								$("#days"+number).prop('disabled', false);
-								$("#days"+number).html(replaceStr);
+								if(courseInfoArr['days'][i] != "")
+									replaceStr += " <option value='"+courseInfoArr['days'][i]+"'>"+courseInfoArr['days'][i]+"</option> ";
 							}
+							$("#days"+number).prop('disabled', false);
+							$("#days"+number).html(replaceStr);
+							$("#days"+number).val(daySelected);
+
+
+							//replace CRNs
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['crns'].length; i++)
+							{
+								replaceStr += " <option value='"+courseInfoArr['crns'][i]+"'>"+courseInfoArr['crns'][i]+"</option> ";
+							}
+							$("#crn"+number).prop('disabled', false);
+							$("#crn"+number).html(replaceStr);
+
+	          } else {
+	            alert("Error in recieving data");
+	          }
+	        }
+				});
+			}
+		}
+
+		function changeOnHonors(number) {
+			var valSelected = $("#honors"+number).val();
+			var courseSelected = $("#prefix"+number).val();
+			var noSelected = $("#courseNo"+number).val();
+			var crnSelected = $("#crn"+number).val();
+			var daySelected = $("#days"+number).val();
+			var timeSelected = $("#time"+number).val();
+			var ajax_data = {action: "honors", prefix: courseSelected, courseNO: noSelected, isHonors: valSelected};
+			if(crnSelected == "")
+			{
+				$.ajax({
+	        method: "POST",
+	        url: "course_select_funcs.php",
+	        data: ajax_data,
+	        success: function(output) {
+	          if(output != 0)
+	          {
+							var courseInfoArr = JSON.parse(output);
+
+							//replace days
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['days'].length; i++)
+							{
+								if(courseInfoArr['days'][i] != "")
+									replaceStr += " <option value='"+courseInfoArr['days'][i]+"'>"+courseInfoArr['days'][i]+"</option> ";
+							}
+							$("#days"+number).prop('disabled', false);
+							$("#days"+number).html(replaceStr);
+							$("#days"+number).val(daySelected);
+
+							//replace times
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['times'].length; i++)
+							{
+								if(courseInfoArr['times'][i] != "12:00 am - 12:00 am")
+									replaceStr += " <option value='"+courseInfoArr['times'][i]+"'>"+courseInfoArr['times'][i]+"</option> ";
+							}
+							$("#time"+number).prop('disabled', false);
+							$("#time"+number).html(replaceStr);
+							$("#time"+number).val(timeSelected);
 
 							//replace CRNs
 							replaceStr = "<option value=''> Select </option> ";
@@ -384,14 +504,14 @@ ksort($classArr);*/
 					'</select>'+
 				'</td>'+
 				'<td>'+
-					'<select name="honors[]">'+
+					'<select id="honors'+courses+'" onchange="changeOnHonors('+courses+');" name="honors[]" disabled>'+
 						'<option value = "">Both</option>'+
 						'<option value= "1">Yes</option>'+
 						'<option value= "0">No</option>'+
 					'</select>'+
 				'</td>'+
 				'<td>'+
-					'<select id="crn'+courses+'" onchange="changeRest('+courses+');" name="crn[]" disabled>'+
+					'<select id="crn'+courses+'" onchange="changeOnCRN('+courses+');" name="crn[]" disabled>'+
 						'<option>CRN</option>'+
 					'</select>'+
 				'</td>'+
@@ -408,6 +528,15 @@ ksort($classArr);*/
 			'</tr>';
 
 			$(addStr).insertAfter($("#row"+(courses-1)));
+		}
+
+		function removeCourseLine()
+		{
+			if(courses > 1)
+			{
+				$("#row"+courses).remove();
+				courses--;
+			}
 		}
 	</script>
 </html>
