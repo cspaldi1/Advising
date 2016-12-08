@@ -124,6 +124,7 @@ ksort($classArr);*/
 
 	<script>
 		$(document).ready(function() {
+			$("#prefix1").val("");
 			$("#courseNo1").val("");
 			$("#courseNo1").prop('disabled', "disabled");
 			$("#crn1").val("");

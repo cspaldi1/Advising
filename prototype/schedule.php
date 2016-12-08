@@ -34,6 +34,11 @@ for($i=0; $i<count($_POST['prefix']); $i++)
   {
     $query_array[] = "days='".$_POST['days'][$i]."'";
   }
+  if($_POST['time'][$i] != "")
+  {
+    $time_arr = explode(" - ", $_POST['time']);
+    $query = $query." AND timeStart='".$time_arr[0]."' AND timeEnd='".$time_arr[1]."'";
+  }
 
   $conditions = implode(" AND ", $query_array);
   $q_temp = $q_temp.$conditions;
