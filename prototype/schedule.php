@@ -14,6 +14,7 @@ for($i=0; $i<count($_POST['prefix']); $i++)
           FROM COURSE
           WHERE ";
   $query_array = array();
+  
   if($_POST['prefix'][$i] != "")
   {
     $query_array[] = "coursePrefix='".$_POST['prefix'][$i]."'";
@@ -36,8 +37,9 @@ for($i=0; $i<count($_POST['prefix']); $i++)
   }
   if($_POST['time'][$i] != "")
   {
-    $time_arr = explode(" - ", $_POST['time']);
-    $query = $query." AND timeStart='".$time_arr[0]."' AND timeEnd='".$time_arr[1]."'";
+    $time_arr = explode(" - ", $_POST['time'][$i]);
+    $query_array[] = "timeStart='".$time_arr[0]."'";
+    $query_array[] = "timeEnd='".$time_arr[1]."'";
   }
 
   $conditions = implode(" AND ", $query_array);
