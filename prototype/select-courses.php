@@ -318,6 +318,8 @@ ksort($classArr);*/
 						}
 						$("#honors"+number).prop('disabled', false);
 						$("#honors"+number).html(replaceStr);
+						$("#honors"+number).val(honorsSelected);
+
           } else {
             alert("Error in recieving data");
           }
@@ -368,6 +370,21 @@ ksort($classArr);*/
 							}
 							$("#crn"+number).prop('disabled', false);
 							$("#crn"+number).html(replaceStr);
+
+							//replace honors
+							replaceStr = "<option value=''> Both </option> ";
+							for(var i = 0; i < courseInfoArr['isHonors'].length; i++)
+							{
+								if(courseInfoArr['isHonors'][i] == 1)
+								{
+									var honors_str = "Yes";
+								} else {
+									var honors_str = "No";
+								}
+								replaceStr += " <option value='"+courseInfoArr['isHonors'][i]+"'>"+honors_str+"</option> ";
+							}
+							$("#honors"+number).prop('disabled', false);
+							$("#honors"+number).html(replaceStr);
 
 	          } else {
 	            alert("Error in recieving data");
@@ -421,6 +438,21 @@ ksort($classArr);*/
 							$("#crn"+number).prop('disabled', false);
 							$("#crn"+number).html(replaceStr);
 
+							//replace honors
+							replaceStr = "<option value=''> Both </option> ";
+							for(var i = 0; i < courseInfoArr['isHonors'].length; i++)
+							{
+								if(courseInfoArr['isHonors'][i] == 1)
+								{
+									var honors_str = "Yes";
+								} else {
+									var honors_str = "No";
+								}
+								replaceStr += " <option value='"+courseInfoArr['isHonors'][i]+"'>"+honors_str+"</option> ";
+							}
+							$("#honors"+number).prop('disabled', false);
+							$("#honors"+number).html(replaceStr);
+
 	          } else {
 	            alert("Error in recieving data");
 	          }
@@ -437,6 +469,10 @@ ksort($classArr);*/
 			var daySelected = $("#days"+number).val();
 			var timeSelected = $("#time"+number).val();
 			var ajax_data = {action: "honors", prefix: courseSelected, courseNO: noSelected, isHonors: valSelected};
+			if(timeSelected != "")
+				ajax_data.times = timeSelected;
+			if(daySelected != "")
+				ajax_data.days = daySelected;
 			if(crnSelected == "")
 			{
 				$.ajax({
