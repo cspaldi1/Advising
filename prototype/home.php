@@ -24,7 +24,7 @@
     <nav class="top-bar" data-topbar role="navigation">
       <ul class="title-area">
         <li class="name">
-          <h1><a href="#">Honors Advising Portal</a></h1>
+          <h1><a href="home.php">Honors Advising Portal</a></h1>
         </li>
          <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
         <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
@@ -82,4 +82,7 @@
 
 	 </div>
   </body>
+  <script>
+    $(document).foundation();
+  </script>
 </html>
