@@ -108,11 +108,11 @@ td, th {
   }
 
   .top-bar-section ul li {
-    background-color: #0b4d03;
-    border-left: 1px solid #073901;
-    border-right: 1px solid #073901;
-    border-collapse: collapse;
+    background-color: #0b4d03 !important;
+    border-left: 1px solid #073901 !important;
+    border-right: 1px solid #073901 !important;
+    border-collapse: collapse !important;
   }
   .top-bar-section ul li:hover {
-    background-color: #073901;
+    background-color: #073901 !important;
   }
