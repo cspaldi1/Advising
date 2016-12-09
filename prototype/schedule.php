@@ -1,11 +1,13 @@
-<?php session_start();
+<?php
+
+session_start();
 
 //check for logged in
-if(!isset($_SESSION['user']['netID']) || $_SESSION['user']['netID'] == "")
+/*if(!isset($_SESSION['user']['netID']) || $_SESSION['user']['netID'] == "")
 {
   header("Location: login.php");
   die();
-}
+}*/
 
 if(!isset($_SESSION['student']) || $_SESSION['student']['eid'] == "")
 {
