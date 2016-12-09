@@ -17,6 +17,7 @@
   <link rel="stylesheet" type="text/css" href="./CSS/foundation.css">
   <link rel="stylesheet" type="text/css" href="./CSS/foundation.min.css">
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
+  <script src="./JS/jquery-3.1.1.min.js"></script>
   <script src="../foundation-6/js/vendor/foundation.min.js"></script>
 </head>
   <body>
