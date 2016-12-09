@@ -19,15 +19,20 @@
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
   <script src="../foundation-6/js/vendor/jquery.js"></script>
   <script src="../foundation-6/js/vendor/foundation.min.js"></script>
+  <style>
+    .top-bar {
+      background-color: #0b4d03;
+    }
+  </style>
 </head>
   <body>
     <nav class="top-bar" data-topbar role="navigation">
       <ul class="title-area">
         <li class="name">
-          <h1><a href="#">My Site</a></h1>
+          <h1><a href="#">Honors Advising Portal</a></h1>
         </li>
          <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
       </ul>
 
       <section class="top-bar-section">
@@ -50,8 +55,7 @@
       </section>
     </nav>
     <div id="container" class="row">
-      <div id="header" class="large-4 columns"><span id="title">Honors Advising Portal</span></div>
-	  <div class="large-4 right columns"><h4>Hello, <?=$_SESSION['user']['fname']?></h4></div>
+	     <div class="large-4 columns"><h4>Hello, <?=$_SESSION['user']['fname']?></h4></div>
     </div>
 	<div id="container" class="row">
 		<div id="login">
