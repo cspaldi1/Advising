@@ -22,6 +22,7 @@ if($_POST['netID'] && $_POST['password'])
     $_SESSION['user']['netID'] = $row['advisorNetID'];
     $_SESSION['user']['fname'] = $row['firstName'];
     $_SESSION['user']['lname'] = $row['lastName'];
+    $_SESSION['user']['isAdmin'] = $row['isAdmin'];
 
     header("Location: home.php");
     die();

@@ -21,7 +21,10 @@
         <ul class="left">
           <li class="header-menu-item"><a href="student-info.php">Advising</a></li>
           <li class="header-menu-item"><a href="course-overview.php">Course Info</a></li>
+          <?php if($_SESSION['user']['isAdmin'] == 1)
+          { ?>
           <li class="header-menu-item"><a href="users.php">Users</a></li>
+          <?php } ?>
           <!--<li class="has-dropdown">
             <a href="#">Right Button Dropdown</a>
             <ul class="dropdown">
