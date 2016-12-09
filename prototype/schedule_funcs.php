@@ -20,6 +20,8 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         {
           echo $val['CRN'];
         }
+		
+		
         break;
       } else {
         echo "Array string not set.";

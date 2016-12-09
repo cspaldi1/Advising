@@ -197,12 +197,12 @@ makeSchedule(0);
       $.ajax({
         method: "POST",
         url: "schedule_funcs.php",
-        data: {action: "schedule", array_str: jsonString},
+        data: {action: "schedule", array_str: jsonString, class_arr: scheduleChosen},
         success: function(output) {
           console.log(output);
         }
       });
-      //window.location.href='complete.php'
+      window.location.href='complete.php'
     }
 
     function byOne(sign)
