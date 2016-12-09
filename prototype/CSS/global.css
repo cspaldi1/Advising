@@ -107,12 +107,12 @@ td, th {
     background-color: #073901;
   }
 
-  .header-menu-item {
+  .top-bar-section ul li {
     background-color: #0b4d03;
     border-left: 1px solid #073901;
     border-right: 1px solid #073901;
     border-collapse: collapse;
   }
-  .header-menu-item:hover {
+  .top-bar-section ul li:hover {
     background-color: #073901;
   }
