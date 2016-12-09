@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+session_unset();
 if($_POST['netID'] && $_POST['password'])
 {
   include("sensitive.php");
@@ -47,7 +48,7 @@ include("header.php");
 			<p>Password</p>
 			<input type="password" name="password"/><br/>
 			<div style="text-align: center; padding-top: 5px;">
-			  <input type="Submit" value="Submit"/>
+			  <button type="submit" value="Submit">Submit</button>
 			</div>
 		  </div>
 		</form>

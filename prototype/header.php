@@ -18,6 +18,7 @@
 
       <section class="top-bar-section">
         <!-- Left Nav Section -->
+        <?php if(isset($_SESSION['user']['netID']) && $_SESSION['user']['netID'] != "") { ?>
         <ul class="left">
           <li class="header-menu-item"><a href="student-info.php">Advising</a></li>
           <li class="header-menu-item"><a href="course-overview.php">Course Info</a></li>
@@ -33,6 +34,7 @@
             </ul>
           </li> -->
         </ul>
+        <?php } ?>
 
         <!-- Right Nav Section -->
         <!--<ul class="right">
