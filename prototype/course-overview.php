@@ -105,5 +105,20 @@
         <button onclick="window.location.href='home.php'">Home</button>
       </div>
     </div>
+
+    <script>
+    function fetch_courses() {
+      $.ajax({
+        method: "POST",
+        url: "course-overview-funcs.php",
+        data: {action: "get_course_prefixes"},
+        success: function(output) {
+          alert("alert")
+          //console.log(output);
+        }
+      });
+    }
+    </script>
+
   </body>
 </html>
