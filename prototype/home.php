@@ -33,9 +33,9 @@
       <section class="top-bar-section">
         <!-- Left Nav Section -->
         <ul class="left">
-          <li class="header-menu-item"><a href="#">Advising</a></li>
-          <li class="header-menu-item"><a href="#">Course Info</a></li>
-          <li class="header-menu-item"><a href="#">Users</a></li>
+          <li class="header-menu-item"><a href="student-info.php">Advising</a></li>
+          <li class="header-menu-item"><a href="course-overview.php">Course Info</a></li>
+          <li class="header-menu-item"><a href="users.php">Users</a></li>
           <!--<li class="has-dropdown">
             <a href="#">Right Button Dropdown</a>
             <ul class="dropdown">
@@ -46,16 +46,16 @@
         </ul>
 
         <!-- Right Nav Section -->
-        <ul class="right">
+        <!--<ul class="right">
           <li><a href="#">User Info</a></li>
-        </ul>
+        </ul>-->
       </section>
     </nav>
     <div id="container" class="row">
 	     <div class="large-4 columns"><h4>Hello, <?=$_SESSION['user']['fname']?></h4></div>
     </div>
 	<div id="container" class="row">
-		<div id="login">
+		<div class="large-3 columns">
 		  <div style="text-align: center;">
 			<span><b>Advising Session</b></span>
 		  </div>
@@ -63,7 +63,7 @@
 			<button onclick="window.location.href='student-info.php'">Start</button>
 		  </div>
 		</div>
-		<div id="login">
+		<div class="large-6 columns">
 		  <div style="text-align: center;">
 			<span><b>Detailed Course Enrollment Information</b></span>
 		  </div>
@@ -71,7 +71,7 @@
 			<button onclick="window.location.href='course-overview.php'">Continue</button>
 		  </div>
 		</div>
-		<div id="login">
+		<div class="large-3 columns">
 		  <div style="text-align: center;">
 			<span><b>Manage Users</b></span>
 		  </div>
