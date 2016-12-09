@@ -107,19 +107,9 @@ td, th {
     background-color: #073901;
   }
 
-  .top-bar-section ul li {
-    background-color: #0b4d03 !important;
-    border-left: 1px solid #073901 !important;
-    border-right: 1px solid #073901 !important;
-    border-collapse: collapse !important;
-  }
-  .top-bar-section ul li:hover {
-    background-color: #073901 !important;
-  }
-
   .top-bar-section li:not(.has-form) a:not(.button) {
     background-color: #0b4d03 !important;
-    border-left: 1px solid #073901 !important;
-    border-right: 1px solid #073901 !important;
-    border-collapse: collapse !important;
+  }
+  .top-bar-section li:not(.has-form) a:not(.button):hover {
+    background-color: #073901 !important;
   }
