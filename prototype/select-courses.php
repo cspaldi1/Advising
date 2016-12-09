@@ -94,7 +94,7 @@ sort($coursePrefixes, SORT_STRING);
 	      <div style="margin-top: 10px;">
 	        <button onclick="addCourseLine();">Add Another Course</button>
 					<button onclick="removeCourseLine();">Remove Last Course</button>
-	        <input type="button" onclick="validatePreSuf();" value="See Schedule(s)"/>
+	        <button onclick="validatePreSuf();">See Schedules</button>
 	      </div>
 			</div>
     </div>

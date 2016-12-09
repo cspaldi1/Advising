@@ -50,7 +50,7 @@ td, th {
     text-align: left;
 	  background-color: inherit;
   }
-  
+
   #main-menu {
     border-color: #0b4d03;
     border-width: 2px;
@@ -114,6 +114,7 @@ td, th {
 
   button {
     background-color: #0b4d03;
+    color: #fff;
   }
   button:hover {
     background-color: #073901;
