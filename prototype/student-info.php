@@ -1,43 +1,50 @@
 <html>
+<?php
+	include("sensitive.php");
+?>
 <head>
+  <link rel="stylesheet" type="text/css" href="./CSS/foundation.css">
+  <link rel="stylesheet" type="text/css" href="./CSS/foundation.min.css">
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
-  <style>
-    td {
-      border: none;
-    }
-  </style>
 </head>
   <body>
-    <div id="container">
-      <div id="header"><span id="title">Honors Advising Portal</span></div>
+    <div id="container" class="row">
+      <div id="header" class="large-12 columns"><span id="title">Honors Advising Portal</span></div>
     </div>
-    <div id="login">
-      <div style="text-align: center; padding-bottom: 10px;">
+    <div id="login" class="row" style="border:none;">
+      <div style="text-align: center; padding-bottom: 10px;" class="large-12 columns">
         <span><b>Student Advising Information</b></span>
       </div>
-      <form action="select-courses.php" method="post">
-        <table>
-          <tr>
-            <td><span>EID:</span></td>
-            <td><input type="text" name="eid"/></td>
-          </tr>
-          <tr>
-            <td><span>First Name:</span></td>
-            <td><input type="text" name="fname"/></td>
-          </tr>
-          <tr>
-            <td><span>Last Name:</span></td>
-            <td><input type="text" name="lname"/></td>
-          </tr>
-          <tr>
-            <td><span>Emich Email:</span></td>
-            <td><input type="text" name="emich"/></td>
-          </tr>
-        </table>
-        <div style="text-align: center; padding-top: 5px;">
+	</div>
+	<form action="select-courses.php" method="post" id="student-info" style="text-align:left;">
+      <div class="row"> 
+	    <div class="large-offset-4 large-4 columns">
+            <label> <b>EID:</b> </label>
+            <input type="text" name="eid"/>
+		</div>
+      </div>
+      <div class="row"> 
+	    <div class="large-offset-4 large-4 columns">
+			<label> <b>First Name:</b> </label>
+            <input type="text" name="fname"/>
+        </div>
+      </div>
+      <div class="row"> 
+	    <div class="large-offset-4 large-4 columns">
+	      <label> <b>Last Name:</b> </label>
+          <input type="text" name="lname"/>
+        </div>
+      </div>
+      <div class="row"> 
+	    <div class="large-offset-4 large-4 columns">
+          <label> <b>Emich Email:</b> </label>
+          <input type="text" name="emich"/>
+        </div>
+      </div>
+      <div style="text-align: center; padding-top: 5px;" >
           <input type="submit" value="Continue"/>
         </div>
       </form>
-    </div>
+	</div>
   </body>
 </html>

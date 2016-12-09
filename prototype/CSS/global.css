@@ -65,6 +65,12 @@ td, th {
   #course-overview td {
 	text-align: center;
   }
+  
+/*student-info CSS*/
+  #student-info td {
+	  border: none;
+  }
+  
 
   .container {
     border-color: #0b4d03;
