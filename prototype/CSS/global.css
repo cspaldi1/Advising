@@ -39,6 +39,18 @@ td, th {
     text-align: left;
 	  background-color: inherit;
   }
+
+  #login {
+    border-color: #0b4d03;
+    border-width: 2px;
+    border-style: solid;
+    display: inline-block;
+    padding: 20px;
+    margin-top: 40px;
+    text-align: left;
+	  background-color: inherit;
+  }
+  
   #main-menu {
     border-color: #0b4d03;
     border-width: 2px;
