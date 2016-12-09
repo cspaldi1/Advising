@@ -32,7 +32,7 @@
 
       <section class="top-bar-section">
         <!-- Right Nav Section -->
-        <!--<ul class="right">
+        <ul class="right">
           <li class="active"><a href="#">Right Button Active</a></li>
           <li class="has-dropdown">
             <a href="#">Right Button Dropdown</a>
@@ -41,12 +41,12 @@
               <li class="active"><a href="#">Active link in dropdown</a></li>
             </ul>
           </li>
-        </ul> -->
+        </ul>
 
         <!-- Left Nav Section -->
-        <ul class="left">
+        <!--<ul class="left">
           <li><a href="#">Left Nav Button</a></li>
-        </ul>
+        </ul>-->
       </section>
     </nav>
     <div id="container" class="row">
