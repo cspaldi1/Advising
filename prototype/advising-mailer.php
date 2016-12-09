@@ -11,21 +11,21 @@
 					<br/>".
 					for($i=0; $i<count($studentCRNS); $i++) {
 						"<tr>
-						  <td><?=$schedules2[0][$i]['coursePrefix']?></td>
-						  <td><?=$schedules2[0][$i]['courseNO']?></td>
-						  <td><?=$schedules2[0][$i]['isHonors']?></td>
-						  <td><?=$schedules2[0][$i]['CRN']?></td>
-						  <td><?=$schedules2[0][$i]['days']?></td>
-						  <td><?=$schedules2[0][$i]['timeStart']?></td>
-						  <td><?=$schedules2[0][$i]['timeEnd']?></td>
-						  <td><?=$schedules2[0][$i]['credits']?></td>
-						</tr>"
-						.
+						  <td>".$schedules2[0][$i]['coursePrefix']."</td>
+						  <td>".$schedules2[0][$i]['courseNO']."</td>
+						  <td>".$schedules2[0][$i]['isHonors']."</td>
+						  <td>".$schedules2[0][$i]['CRN']."</td>
+						  <td>".$schedules2[0][$i]['days']."</td>
+						  <td>".$schedules2[0][$i]['timeStart']."</td>
+						  <td>".$schedules2[0][$i]['timeEnd']."</td>
+						  <td>".$schedules2[0][$i]['credits']."</td>
+						</tr>".
+						
 					}
 					."</p>";
 		$target_email = "cspaldi1@emich.edu";
-		$from_email = "honors_exit_interview@emich.edu";
-		$subject = "Capacity Notice - ".$interview_name;
+		$from_email = "honors-advising-app-DEV@emich.edu";
+		$subject = "Advised Schedule Details";
 		mail_any($target_email,$message,$from_email,$subject);
 	}
   
