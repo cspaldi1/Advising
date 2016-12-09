@@ -29,7 +29,7 @@ td, th {
       background-color: #0b4d03;
       text-align: left;
   }
-  #login {
+  .home-page-items {
     border-color: #0b4d03;
     border-width: 2px;
     border-style: solid;
@@ -37,7 +37,7 @@ td, th {
     padding: 20px;
     margin-top: 40px;
     text-align: left;
-	background-color: rgb(201, 201, 201);
+	  background-color: inherit;
   }
   #main-menu {
     border-color: #0b4d03;

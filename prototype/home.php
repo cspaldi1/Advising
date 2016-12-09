@@ -55,7 +55,7 @@
 	     <div class="large-4 columns"><h4>Hello, <?=$_SESSION['user']['fname']?></h4></div>
     </div>
 	<div id="container" class="row">
-		<div class="large-3 columns">
+		<div class="large-3 columns home-page-items">
 		  <div style="text-align: center;">
 			<span><b>Advising Session</b></span>
 		  </div>
@@ -63,7 +63,7 @@
 			<button onclick="window.location.href='student-info.php'">Start</button>
 		  </div>
 		</div>
-		<div class="large-6 columns">
+		<div class="large-6 columns home-page-items">
 		  <div style="text-align: center;">
 			<span><b>Detailed Course Enrollment Information</b></span>
 		  </div>
@@ -71,7 +71,7 @@
 			<button onclick="window.location.href='course-overview.php'">Continue</button>
 		  </div>
 		</div>
-		<div class="large-3 columns">
+		<div class="large-3 columns home-page-items">
 		  <div style="text-align: center;">
 			<span><b>Manage Users</b></span>
 		  </div>
