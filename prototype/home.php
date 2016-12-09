@@ -31,22 +31,24 @@
       </ul>
 
       <section class="top-bar-section">
-        <!-- Right Nav Section -->
-        <ul class="right">
-          <li class="active"><a href="#">Right Button Active</a></li>
-          <li class="has-dropdown">
+        <!-- Left Nav Section -->
+        <ul class="left">
+          <li class="header-menu-item"><a href="#">Advising</a></li>
+          <li class="header-menu-item"><a href="#">Course Info</a></li>
+          <li class="header-menu-item"><a href="#">Users</a></li>
+          <!--<li class="has-dropdown">
             <a href="#">Right Button Dropdown</a>
             <ul class="dropdown">
               <li><a href="#">First link in dropdown</a></li>
               <li class="active"><a href="#">Active link in dropdown</a></li>
             </ul>
-          </li>
+          </li> -->
         </ul>
 
-        <!-- Left Nav Section -->
-        <!--<ul class="left">
-          <li><a href="#">Left Nav Button</a></li>
-        </ul>-->
+        <!-- Right Nav Section -->
+        <ul class="right">
+          <li><a href="#">User Info</a></li>
+        </ul>
       </section>
     </nav>
     <div id="container" class="row">
