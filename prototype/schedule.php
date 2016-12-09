@@ -143,14 +143,16 @@ function makeSchedule($length, $tempArray = array())
 
 //call the recursive function to schedule
 makeSchedule(0);
+
+include("header.php");
 ?>
 
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="./CSS/global.css">
-  <script src="./JS/jquery-3.1.1.min.js"></script>
+  <!--<link rel="stylesheet" type="text/css" href="./CSS/global.css">
+  <script src="./JS/jquery-3.1.1.min.js"></script>-->
   <link rel='stylesheet' href='./JS/fullcalendar/fullcalendar.css' />
-  <script src='./JS/fullcalendar/lib/jquery.min.js'></script>
+  <!--<script src='./JS/fullcalendar/lib/jquery.min.js'></script>-->
   <script src='./JS/fullcalendar/lib/moment.min.js'></script>
   <script src='./JS/fullcalendar/fullcalendar.js'></script>
   <style>
@@ -163,17 +165,15 @@ makeSchedule(0);
       background-color: none !important;
     }
 
+    .fc-event {
+      background-color: #0b4d03;
+      border: 1px solid #073901;
+    }
     .page {
       background-color: #fff;
       width: 60%;
     }
   </style>
-</head>
-  <body>
-    <div id="container">
-      <div id="header"><span id="title">Honors Advising Portal</span>
-      </div>
-    </div>
     <div class="page">
       <span><b>Student Schedule for <?=$_SESSION['student']['fname']?></b></span>
       <div id='calendar'></div>
@@ -208,12 +208,22 @@ makeSchedule(0);
           <td style="text-align: left; border: none;"></td>
         </tr>
       </table> -->
-      <div style="width: 100%; margin: auto; padding-top: 20px;">
-        <button style="float: left;" onclick="byFive(-1);">Backward Five</button>
-        <button style="float: left;" onclick="byOne(-1)">Previous</button>
-        <span style="float: center;" id="total">Showing Schedule 1 of <?=count($schedules2)?></span>
-        <button style="float: right;" onclick="byFive(1);">Forward Five</button>
-        <button style="float: right;" onclick="byOne(1)">Next</button>
+      <div style="width: 100%; margin: auto; padding-top: 20px;" class="row">
+        <div class="large-2 columns">
+          <button style="float: left;" onclick="byFive(-1);"><<</button>
+        </div>
+        <div class="large-2 columns">
+          <button style="float: left;" onclick="byOne(-1)"><</button>
+        </div>
+        <div class="large-4 columns">
+          <span style="float: center;" id="total">Schedule 1 of <?=count($schedules2)?></span>
+        </div>
+        <div class="large-2 columns">
+          <button style="float: right;" onclick="byOne(1);">></button>
+        </div>
+        <div class="large-2 columns">
+          <button style="float: right;" onclick="byFive(1)">>></button>
+        </div>
       </div>
     </div>
     <div>
@@ -380,7 +390,7 @@ makeSchedule(0);
         "</tr>";
 
         $("#classList").html(replaceStr);*/
-        $("#total").html("Showing Schedule "+(course+1)+" of <?=count($schedules2)?>")
+        $("#total").html("Schedule "+(course+1)+" of <?=count($schedules2)?>")
       }
     }
   </script>

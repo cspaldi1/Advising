@@ -22,21 +22,15 @@ while ($row=mysqli_fetch_assoc($result))
 	$coursePrefixes[] = $row['coursePrefix'];
 }
 sort($coursePrefixes, SORT_STRING);
+
+include("header.php");
 ?>
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="./CSS/global.css">
-	<script src="../foundation-6/js/vendor/jquery.js"></script>
-	<script>
-		var prefixArr = JSON.parse("<?=addslashes(json_encode($coursePrefixes))?>");
-	</script>
-</head>
-  <body>
-    <div id="container">
-      <div id="header"><span id="title">Honors Advising Portal</span>
-      </div>
-    </div>
-    <h1>Select Student Courses</h1>
+	<style>
+		select {
+			margin-right: 20px;
+		}
+	</style>
+    <h3>Select Student Courses</h3>
     <div>
 			<form action="schedule.php" method="post" id="schedule">
 	      <table>
@@ -101,7 +95,9 @@ sort($coursePrefixes, SORT_STRING);
   </body>
 
 	<script>
+		var prefixArr = JSON.parse("<?=addslashes(json_encode($coursePrefixes))?>");
 		$(document).ready(function() {
+			$(document).foundation();
 			$("#prefix1").val("");
 			$("#courseNo1").val("");
 			$("#courseNo1").prop('disabled', "disabled");
@@ -253,6 +249,8 @@ sort($coursePrefixes, SORT_STRING);
 				ajax_data.times = timeSelected;
 			if(daysSelected != "")
 				ajax_data.days = daysSelected;
+			if(honorsSelected != "")
+				ajax_data.isHonors = honorsSelected;
 			$.ajax({
         method: "POST",
         url: "course_select_funcs.php",
@@ -311,12 +309,15 @@ sort($coursePrefixes, SORT_STRING);
 			var noSelected = $("#courseNo"+number).val();
 			var crnSelected = $("#crn"+number).val();
 			var timeSelected = $("#time"+number).val();
+			var honorsSelected = $("#honors"+number).val();
 			if(timeSelected != "")
 			{
 				var ajax_data = {action: "days", prefix: courseSelected, courseNO: noSelected, days: valSelected, times: timeSelected};
 			} else {
 				var ajax_data = {action: "days", prefix: courseSelected, courseNO: noSelected, days: valSelected};
 			}
+			if(honorsSelected != "")
+				ajax_data.isHonors = honorsSelected;
 			if(crnSelected == "")
 			{
 				$.ajax({
@@ -363,6 +364,7 @@ sort($coursePrefixes, SORT_STRING);
 							}
 							$("#honors"+number).prop('disabled', false);
 							$("#honors"+number).html(replaceStr);
+							$("#honors"+number).val(honorsSelected);
 
 	          } else {
 	            alert("Error in recieving data");
@@ -378,12 +380,15 @@ sort($coursePrefixes, SORT_STRING);
 			var noSelected = $("#courseNo"+number).val();
 			var crnSelected = $("#crn"+number).val();
 			var daySelected = $("#days"+number).val();
+			var honorsSelected = $("#honors"+number).val();
 			if(daySelected != "")
 			{
 				var ajax_data = {action: "time", prefix: courseSelected, courseNO: noSelected, days: daySelected, time: valSelected};
 			} else {
 				var ajax_data = {action: "time", prefix: courseSelected, courseNO: noSelected, time: valSelected};
 			}
+			if(honorsSelected != "")
+				ajax_data.isHonors = honorsSelected;
 			if(crnSelected == "")
 			{
 				$.ajax({
@@ -430,6 +435,7 @@ sort($coursePrefixes, SORT_STRING);
 							}
 							$("#honors"+number).prop('disabled', false);
 							$("#honors"+number).html(replaceStr);
+							$("#honors"+number).val(honorsSelected);
 
 	          } else {
 	            alert("Error in recieving data");
@@ -492,6 +498,7 @@ sort($coursePrefixes, SORT_STRING);
 							}
 							$("#crn"+number).prop('disabled', false);
 							$("#crn"+number).html(replaceStr);
+							$("#crn"+number).val(crnSelected);
 
 	          } else {
 	            alert("Error in recieving data");

@@ -118,6 +118,10 @@ if(isset($_POST['action']) && $_POST['action'] != "")
           $time_arr = explode(" - ", $_POST['times']);
           $query = $query." AND timeStart='".$time_arr[0]."' AND timeEnd='".$time_arr[1]."'";
         }
+        if($_POST['isHonors'] != "")
+        {
+          $query = $query." AND isHonors=".$_POST['isHonors'];
+        }
         $result = mysqli_query($conn, $query);
         $days=array();
         while($row=mysqli_fetch_assoc($result))
@@ -137,6 +141,10 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         {
           $query = $query." AND days='".$_POST['days']."'";
         }
+        if($_POST['isHonors'] != "")
+        {
+          $query = $query." AND isHonors=".$_POST['isHonors'];
+        }
         $result = mysqli_query($conn, $query);
         $times = array();
         while($row=mysqli_fetch_assoc($result))
@@ -151,6 +159,15 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         if($_POST['CRN'] != "")
         {
           $query = $query." AND CRN='".$_POST['CRN']."'";
+        }
+        if(isset($_POST['days']) && $_POST['days'] != "")
+        {
+          $query = $query." AND days='".$_POST['days']."'";
+        }
+        if(isset($_POST['times']) && $_POST['times'] != "")
+        {
+          $time_arr = explode(" - ", $_POST['times']);
+          $query = $query." AND timeStart='".$time_arr[0]."' AND timeEnd='".$time_arr[1]."'";
         }
         $result = mysqli_query($conn, $query);
         $honors = array();
@@ -192,6 +209,10 @@ if(isset($_POST['action']) && $_POST['action'] != "")
           $time_arr = explode(" - ", $_POST['times']);
           $query = $query." AND timeStart='".$time_arr[0]."' AND timeEnd='".$time_arr[1]."'";
         }
+        if($_POST['isHonors'] != "")
+        {
+          $query = $query." AND isHonors=".$_POST['isHonors'];
+        }
         $result = mysqli_query($conn, $query);
         $crns = array();
         while($row=mysqli_fetch_assoc($result))
@@ -205,6 +226,10 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         if($_POST['days'] != "")
         {
           $query = $query." AND days='".$_POST['days']."'";
+        }
+        if($_POST['isHonors'] != "")
+        {
+          $query = $query." AND isHonors=".$_POST['isHonors'];
         }
         $result = mysqli_query($conn, $query);
         $times = array();
@@ -259,6 +284,10 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         {
           $query = $query." AND days='".$_POST['days']."'";
         }
+        if($_POST['isHonors'] != "")
+        {
+          $query = $query." AND isHonors=".$_POST['isHonors'];
+        }
         $result = mysqli_query($conn, $query);
         while($row=mysqli_fetch_assoc($result))
         {
@@ -271,6 +300,10 @@ if(isset($_POST['action']) && $_POST['action'] != "")
         if($_POST['time'] != "")
         {
           $query = $query." AND timeStart='".$time_arr[0]."' AND timeEnd='".$time_arr[1]."'";
+        }
+        if($_POST['isHonors'] != "")
+        {
+          $query = $query." AND isHonors=".$_POST['isHonors'];
         }
         $result = mysqli_query($conn, $query);
         while($row=mysqli_fetch_assoc($result))
