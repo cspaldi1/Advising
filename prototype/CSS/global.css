@@ -56,7 +56,7 @@ td, th {
 	
   }
   #dropdown-select select {
-	  margin: 0 0 .5rem 0.5rem;
+	margin: 0 0 .5rem 0.5rem;
   }
   #course-overview button {
 	padding: .75rem 1.5rem .75rem 1.5rem;
@@ -68,9 +68,14 @@ td, th {
   
 /*student-info CSS*/
   #student-info td {
-	  border: none;
+	border: none;
   }
-  
+ 
+/*schedule css*/
+  #nav-buttons button {
+	padding: .75rem 1.5rem .75rem 1.5rem;
+	margin: 0 0 .5rem;
+  }
 
   .container {
     border-color: #0b4d03;

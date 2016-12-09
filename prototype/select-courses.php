@@ -1,10 +1,10 @@
 <?php
 session_start();
-
 foreach($_POST as $key=>$val)
 {
 	$_SESSION['student'][$key] = $val;
 }
+include("sensitive.php");
 
 $myfile = fopen("./wi2016.txt", "r") or die("Unable to open file!");
 while (!feof ($myfile)) {
@@ -30,17 +30,21 @@ ksort($classArr);
 ?>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="./CSS/foundation.css">
+  <link rel="stylesheet" type="text/css" href="./CSS/foundation.min.css">
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
-	<script src="./JS/jquery-3.1.1.min.js"></script>
+  <script src="./JS/jquery-3.1.1.min.js"></script>
 </head>
   <body>
-    <div id="container">
+    <div id="container" class="row">
       <div id="header"><span id="title">Honors Advising Portal</span>
       </div>
     </div>
-    <h1>Select Student Courses</h1>
-    <div>
-			<form action="schedule.php" method="post" id="schedule">
+	<div class="row">
+      <h3>Select Student Courses</h3>
+	</div>
+    <div id="dropdown-select" class="row">
+		<form action="schedule.php" method="post" id="schedule">
 	      <table>
 	        <tr>
 	          <th>Prefix</th>
@@ -88,7 +92,8 @@ ksort($classArr);
 	          </td>
 	        </tr>
 	      </table>
-				</form>
+		</form>
+		</div>
 	      <div style="margin-top: 10px;">
 	        <button onclick="addCourseLine();">Add Another Course</button>
 	        <input type="button" onclick="validatePreSuf();" value="See Schedule(s)"/>
