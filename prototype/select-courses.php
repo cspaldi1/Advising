@@ -22,28 +22,6 @@ while ($row=mysqli_fetch_assoc($result))
 	$coursePrefixes[] = $row['coursePrefix'];
 }
 sort($coursePrefixes, SORT_STRING);
-
-/*$myfile = fopen("./wi2016.txt", "r") or die("Unable to open file!");
-while (!feof ($myfile)) {
-	$array = array();
-    $line = fgets($myfile);
-	$array = explode(";", $line);
-	if(count($array) == 31)
-	{
-		if(!$classArr[trim($array[4])])
-			$classArr[trim($array[4])] = array();
-		if(!$classArr[trim($array[4])][trim($array[5])])
-			$classArr[trim($array[4])][trim($array[5])] = array();
-
-		$days = trim($array[19]).trim($array[20]).trim($array[21]).trim($array[22]).trim($array[23]).trim($array[24]).trim($array[25]);
-		$classArr[trim($array[4])][trim($array[5])][trim($array[7])] = array("start"=>trim($array[17]),
-	 		"end"=>trim($array[18]),
-	  		"days"=>trim($days));
-	}
-}
-fclose($myfile);
-ksort($classArr);*/
-//var_dump($_SESSION['Student']);
 ?>
 <html>
 <head>
