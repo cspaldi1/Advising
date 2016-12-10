@@ -1,9 +1,15 @@
 <html>
+<?php 
+	include("sensitive.php");
+?>
 <head>
+  <link rel="stylesheet" type="text/css" href="./CSS/foundation.css">
+  <link rel="stylesheet" type="text/css" href="./CSS/foundation.min.css">
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
+	<script src="./JS/jquery-3.1.1.min.js"></script>
 </head>
   <body>
-    <div id="container">
+    <div id="container" class="row">
       <div id="header"><span id="title">Honors Advising Portal</span>
       </div>
     </div>
@@ -13,23 +19,29 @@
         <tr>
           <th>Prefix</th>
           <th>Course No.</th>
+					<th>Advisor</th>
           <th>Honors</th>
           <th>CRN</th>
         </tr>
         <tr>
           <td>
-            <select>
-              <option>COSC</option>
+            <select 	id="course_prefix_select" onchange="fetch_course_numbers()">
+              <option>ACC</option>
+            </select>
+          </td>
+          <td>
+            <select id="course_number_select">
+              <option>-Select-</option>
+            </select>
+          </td>
+					<td>
+            <select id="advisor_select">
+              <option>-Select-</option>
             </select>
           </td>
           <td>
             <select>
-              <option>111</option>
-            </select>
-          </td>
-          <td>
-            <select>
-              <option>Both</option>
+              <option>-Both-</option>
             </select>
           </td>
           <td>
@@ -100,17 +112,62 @@
     </div>
 
     <script>
-    function fetch_courses() {
+    function fetch_course_prefixes() {
       $.ajax({
         method: "POST",
         url: "course-overview-funcs.php",
-        data: {action: "get_course_prefixes"},
+        data: {action: "fetch_course_prefixes"},
         success: function(output) {
-          alert("alert")
-          //console.log(output);
+					try{
+						var prefixes = JSON.parse(output);
+						prefixes.sort();
+
+						var options_string = "<option>-Select-</option>";
+						for(let the_prefix of prefixes){
+							options_string += "<option>" + the_prefix + "</option>";
+						}
+
+						var prefix_select = document.getElementById("course_prefix_select");
+						prefix_select.innerHTML = options_string;
+					}catch(e){
+						alert("error:" . e);
+					}
         }
       });
     }
+
+	function fetch_course_numbers() {
+		var selected_course_prefix = document.getElementById("course_prefix_select").value;
+		if (selected_course_prefix == "-Select-") {
+			var course_select = document.getElementById("course_number_select");
+			course_select.innerHTML = "<option>-Select-</option>";
+			return;
+		}
+		$.ajax({
+			method: "POST",
+			url: "course-overview-funcs.php",
+			data: {action: "fetch_course_numbers", course_prefix: selected_course_prefix},
+			success: function(output) {
+
+				try {
+						var course_numbers = JSON.parse(output);
+						course_numbers.sort();
+						course_numbers_string = "<option>-Select-</option>";
+						for (let num of course_numbers) {
+							course_numbers_string += "<option>" + num + "</option>";
+						}
+
+						var course_select = document.getElementById("course_number_select");
+						course_select.innerHTML = course_numbers_string;
+				}catch(e){
+					alert("error: " . e)
+				}
+			}
+		});
+
+	}
+
+	fetch_course_prefixes();
     </script>
 
   </body>
