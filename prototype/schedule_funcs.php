@@ -1,5 +1,5 @@
 <?php session_start();
-
+include("advising-mailer.php");
 if(isset($_POST['action']) && $_POST['action'] != "")
 {
   include("sensitive.php");
@@ -52,19 +52,7 @@ if(isset($_POST['action']) && $_POST['action'] != "")
           }
           echo true;
 		  
-		  $sqlID = "SELECT scheduleID
-					FROM SCHEDULE
-					WHERE EID = '".$_SESSION['student']['eid']."'";
-		  $scheduleIdNum = mysqli_query($conn, $sqlID));
-		  
-		  $sqlSchedule = "SELECT *
-							FROM COURSE_ADVISED
-							WHERE scheduleID = '".$scheduleIdNum."'";
-		  if($result = mysqli_query($conn, $sqlSchedule)) {
-			  $courseInfo = mysqli_fetch_assoc($result);
-		  }
-		  
-		  email_schedule($_SESSION['student']['fname'], $_SESSION['student']['emich'], $courseInfo);
+		  //email_schedule($_SESSION['student']['fname'], $_SESSION['student']['emich'], $_SESSION['student']['eid']);
 		  
           break;
         }
