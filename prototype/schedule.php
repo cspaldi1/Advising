@@ -119,56 +119,62 @@ makeSchedule(0);
 
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="./CSS/foundation.css">
+  <link rel="stylesheet" type="text/css" href="./CSS/foundation.min.css">
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
   <script src="./JS/jquery-3.1.1.min.js"></script>
 </head>
   <body>
-    <div id="container">
-      <div id="header"><span id="title">Honors Advising Portal</span>
+    <div id="container" class="row">
+      <div id="header" class="large-12 columns"><span id="title">Honors Advising Portal</span>
       </div>
     </div>
     <div class="page">
-      <span><b>Student Schedule for <?=$_SESSION['student']['fname']?></b></span>
-      <table id="classList">
-        <tr>
-          <th>Prefix</th>
-          <th>Course No.</th>
-          <th>Honors</th>
-          <th>CRN</th>
-          <th>Days</th>
-          <th>Start</th>
-          <th>End</th>
-          <th>Credits</th>
-        </tr>
-        <?php
-          for($i=0; $i<count($schedules2[0]); $i++)
-          { ?>
-            <tr>
-              <td><?=$schedules2[0][$i]['coursePrefix']?></td>
-              <td><?=$schedules2[0][$i]['courseNO']?></td>
-              <td><?=$schedules2[0][$i]['isHonors']?></td>
-              <td><?=$schedules2[0][$i]['CRN']?></td>
-              <td><?=$schedules2[0][$i]['days']?></td>
-              <td><?=$schedules2[0][$i]['timeStart']?></td>
-              <td><?=$schedules2[0][$i]['timeEnd']?></td>
-              <td><?=$schedules2[0][$i]['credits']?></td>
-            </tr>
-          <?php
-            } ?>
-        <tr>
-          <td colspan="7" style="text-align: right; border: none;">Total Credits:</td>
-          <td style="text-align: left; border: none;"></td>
-        </tr>
-      </table>
-    </div>
+	  <div class="row">
+		<span><b>Student Schedule for <?=$_SESSION['student']['fname']?></b></span>
+	  </div>
+	  <div class="row">
+		  <table id="classList">
+			<tr>
+			  <th>Prefix</th>
+			  <th>Course No.</th>
+			  <th>Honors</th>
+			  <th>CRN</th>
+			  <th>Days</th>
+			  <th>Start</th>
+			  <th>End</th>
+			  <th>Credits</th>
+			</tr>
+			<?php
+			  for($i=0; $i<count($schedules2[0]); $i++)
+			  { ?>
+				<tr>
+				  <td><?=$schedules2[0][$i]['coursePrefix']?></td>
+				  <td><?=$schedules2[0][$i]['courseNO']?></td>
+				  <td><?=$schedules2[0][$i]['isHonors']?></td>
+				  <td><?=$schedules2[0][$i]['CRN']?></td>
+				  <td><?=$schedules2[0][$i]['days']?></td>
+				  <td><?=$schedules2[0][$i]['timeStart']?></td>
+				  <td><?=$schedules2[0][$i]['timeEnd']?></td>
+				  <td><?=$schedules2[0][$i]['credits']?></td>
+				</tr>
+			  <?php
+				} ?>
+			<tr>
+			  <td colspan="7" style="text-align: right; border: none;">Total Credits:</td>
+			  <td style="text-align: left; border: none;"></td>
+			</tr>
+		  </table>
+	  </div>
+	</div>
     <div>
-      <div style="margin-top: 10px;">
+      <div style="margin-top: 10px;" class="row">
         <button onclick="submit(course);">Choose Schedule and Submit</button>
       </div>
-      <div style="width: 50%; margin: auto; padding-top: 20px;">
+      <div style="width: 55%; margin: auto; padding-top: 20px;" id="nav-buttons" class="row">
         <button style="float: left;" onclick="byFive(-1);">Backward Five</button>
         <button style="float: left;" onclick="byOne(-1)">Previous</button>
-        <span style="float: center;" id="total">Showing Schedule 1 of <?=count($schedules2)?></span>
+        <b><span style="float: center;" id="total">Showing Schedule 1 of <?=count($schedules2)?></span></b>
         <button style="float: right;" onclick="byFive(1);">Forward Five</button>
         <button style="float: right;" onclick="byOne(1)">Next</button>
       </div>
@@ -191,12 +197,12 @@ makeSchedule(0);
       $.ajax({
         method: "POST",
         url: "schedule_funcs.php",
-        data: {action: "schedule", array_str: jsonString},
+        data: {action: "schedule", array_str: jsonString, class_arr: scheduleChosen},
         success: function(output) {
           console.log(output);
         }
       });
-      //window.location.href='complete.php'
+      window.location.href='complete.php'
     }
 
     function byOne(sign)

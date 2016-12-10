@@ -29,6 +29,8 @@
 
     mysqli_query($conn, $query);
 
+	
+	
     //unset the student session
     unset($_SESSION['student']);
   }
