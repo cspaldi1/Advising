@@ -29,74 +29,76 @@ include("header.php");
 		}
 	</style>
     <h3>Select Student Courses</h3>
-    <div class="large-8 columns">
-			<form action="schedule.php" method="post" id="schedule">
-	      <table>
-	        <tr>
-	          <th>Prefix</th>
-	          <th>Course No.</th>
-	          <th>Honors</th>
-	          <th>CRN</th>
-	          <th>Days</th>
-	          <th>Time</th>
-						<th>Credits</th>
-	        </tr>
-	        <tr id="row1">
-	          <td>
-	            <select id="prefix1" onchange="changeCourseNo(1);" name="prefix[]" >
-								<option value="">Select</option>
-								<!--<?php foreach($classArr as $prefix=>$course_info) { ?>
-									<option value="<?=$prefix?>"><?=$prefix?></option>
-								<?php } ?>-->
+		<div class="row">
+	    <div class="large-offset-2 large-8 columns">
+				<form action="schedule.php" method="post" id="schedule">
+		      <table>
+		        <tr>
+		          <th>Prefix</th>
+		          <th>Course No.</th>
+		          <th>Honors</th>
+		          <th>CRN</th>
+		          <th>Days</th>
+		          <th>Time</th>
+							<th>Credits</th>
+		        </tr>
+		        <tr id="row1">
+		          <td>
+		            <select id="prefix1" onchange="changeCourseNo(1);" name="prefix[]" >
+									<option value="">Select</option>
+									<!--<?php foreach($classArr as $prefix=>$course_info) { ?>
+										<option value="<?=$prefix?>"><?=$prefix?></option>
+									<?php } ?>-->
 
-								<?php foreach($coursePrefixes as $key=>$prefix) {?>
-									<option value="<?=$prefix?>"><?=$prefix?></option>
-								<?php } ?>
-	            </select>
-	          </td>
-	          <td>
-	            <select id="courseNo1" onchange="changeCRN(1);" name ="courseNo[]" disabled>
-	              <option value = "">Course No.</option>
-	            </select>
-	          </td>
-	          <td>
-	            <select id="honors1" onchange="changeOnHonors(1);" name="honors[]" disabled>
-	              <option value = "">Both</option>
-								<option value= "1">Yes</option>
-								<option value= "0">No</option>
-	            </select>
-	          </td>
-	          <td>
-	            <select id="crn1" onchange="changeOnCRN(1);" name="crn[]" disabled>
-	              <option value="">CRN</option>
-	            </select>
-	          </td>
-	          <td>
-	            <select id="days1" onchange="changeOnDays(1)" name="days[]" disabled>
-	              <option value="">Day</option>
-	            </select>
-	          </td>
-	          <td>
-	            <select id="time1" onchange="changeOnTime(1)" name="time[]" disabled>
-	              <option value="">Time</option>
-	            </select>
-	          </td>
-						<td>
-	            <select id="credits1" onchange="changeOnCredits(1)" name="credits[]" disabled>
-	              <option value="">Credits</option>
-	            </select>
-	          </td>
-	        </tr>
-	      </table>
-		</form>
+									<?php foreach($coursePrefixes as $key=>$prefix) {?>
+										<option value="<?=$prefix?>"><?=$prefix?></option>
+									<?php } ?>
+		            </select>
+		          </td>
+		          <td>
+		            <select id="courseNo1" onchange="changeCRN(1);" name ="courseNo[]" disabled>
+		              <option value = "">Course No.</option>
+		            </select>
+		          </td>
+		          <td>
+		            <select id="honors1" onchange="changeOnHonors(1);" name="honors[]" disabled>
+		              <option value = "">Both</option>
+									<option value= "1">Yes</option>
+									<option value= "0">No</option>
+		            </select>
+		          </td>
+		          <td>
+		            <select id="crn1" onchange="changeOnCRN(1);" name="crn[]" disabled>
+		              <option value="">CRN</option>
+		            </select>
+		          </td>
+		          <td>
+		            <select id="days1" onchange="changeOnDays(1)" name="days[]" disabled>
+		              <option value="">Day</option>
+		            </select>
+		          </td>
+		          <td>
+		            <select id="time1" onchange="changeOnTime(1)" name="time[]" disabled>
+		              <option value="">Time</option>
+		            </select>
+		          </td>
+							<td>
+		            <select id="credits1" onchange="changeOnCredits(1)" name="credits[]" disabled>
+		              <option value="">Credits</option>
+		            </select>
+		          </td>
+		        </tr>
+		      </table>
+				</form>
+			</div>
 		</div>
+		<div class="row">
 	      <div style="margin-top: 10px;">
 	        <button onclick="addCourseLine();">Add Another Course</button>
 					<button onclick="removeCourseLine();">Remove Last Course</button>
 	        <button onclick="validatePreSuf();">See Schedules</button>
 	      </div>
-			</div>
-    </div>
+		</div>
   </body>
 
 	<script>
