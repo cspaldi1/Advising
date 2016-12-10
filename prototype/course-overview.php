@@ -1,45 +1,52 @@
 <html>
+<?php 
+	include("sensitive.php");
+?>
 <head>
+  <link rel="stylesheet" type="text/css" href="./CSS/foundation.css">
+  <link rel="stylesheet" type="text/css" href="./CSS/foundation.min.css">
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
 </head>
   <body>
-    <div id="container">
+    <div id="container" class="row">
       <div id="header"><span id="title">Honors Advising Portal</span>
       </div>
     </div>
-    <h1>Course Overview</h1>
-    <div>
-      <table>
-        <tr>
-          <th>Prefix</th>
-          <th>Course No.</th>
-          <th>Honors</th>
-          <th>CRN</th>
-        </tr>
-        <tr>
-          <td>
-            <select>
-              <option>COSC</option>
-            </select>
-          </td>
-          <td>
-            <select>
-              <option>111</option>
-            </select>
-          </td>
-          <td>
-            <select>
-              <option>Both</option>
-            </select>
-          </td>
-          <td>
-            <select>
-              <option>-Select-</option>
-            </select>
-          </td>
-        </tr>
-      </table>
-      <div class="page">
+	<div class="row" id="dropdown-select">
+		<h3>Course Overview</h3>
+		<div>
+		  <table>
+			<tr>
+			  <th>Prefix</th>
+			  <th>Course No.</th>
+			  <th>Honors</th>
+			  <th>CRN</th>
+			</tr>
+			<tr>
+			  <td>
+				<select>
+				  <option>COSC</option>
+				</select>
+			  </td>
+			  <td>
+				<select>
+				  <option>111</option>
+				</select>
+			  </td>
+			  <td>
+				<select>
+				  <option>Both</option>
+				</select>
+			  </td>
+			  <td>
+				<select>
+				  <option>-Select-</option>
+				</select>
+			  </td>
+			</tr>
+		  </table>
+      </div>
+      <div class="page row" id="course-overview">
         <span><b>Selected Courses</b></span>
         <table style="margin-top: 20px;">
           <tr>
@@ -98,5 +105,18 @@
         <button onclick="window.location.href='home.php'">Home</button>
       </div>
     </div>
+
+    <script>
+    function fetch_courses() {
+      $.ajax({
+        method: "POST",
+        url: "course-overview-funcs.php",
+        data: {action: "get_course_prefixes"},
+        success: function(output) {
+        }
+      });
+    }
+    </script>
+
   </body>
 </html>

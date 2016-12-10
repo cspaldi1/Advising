@@ -1,35 +1,37 @@
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="./CSS/foundation.css">
+  <link rel="stylesheet" type="text/css" href="./CSS/foundation.min.css">
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
 </head>
   <body>
-    <div id="container">
+    <div id="container" class="row">
       <div id="header"><span id="title">Honors Advising Portal</span>
       </div>
     </div>
     <div>
       <div class="page">
-        <span><b>Section Details</b></span>
-        <table class="add" style="margin-top: 20px; margin-bottom: 40px;">
-          <tr>
-            <th>Prefix</th>
-            <th>Course No.</th>
-            <th>CRN</th>
-            <th>Honors</th>
-            <th>Advised</th>
-            <th>Registered</th>
-            <th>Capacity</th>
-          </tr>
-          <tr>
-            <td>COSC</td>
-            <td>111</td>
-            <td>18792</td>
-            <td>Yes</td>
-            <td>4</td>
-            <td>0</td>
-            <td>20</td>
-          </tr>
-        </table>
+			<span><b>Section Details</b></span>
+			<table class="add" style="margin-top: 20px; margin-bottom: 40px;">
+			  <tr>
+				<th>Prefix</th>
+				<th>Course No.</th>
+				<th>CRN</th>
+				<th>Honors</th>
+				<th>Advised</th>
+				<th>Registered</th>
+				<th>Capacity</th>
+			  </tr>
+			  <tr>
+				<td>COSC</td>
+				<td>111</td>
+				<td>18792</td>
+				<td>Yes</td>
+				<td>4</td>
+				<td>0</td>
+				<td>20</td>
+			  </tr>
+			</table>
         <span><b>Registered Students</b></span>
         <table class="add" style="margin-top: 20px;">
           <tr>
