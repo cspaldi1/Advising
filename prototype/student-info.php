@@ -45,26 +45,30 @@
 	<form action="select-courses.php" method="post" id="student-info" style="text-align:left;">
       <div class="row">
 	    <div class="large-offset-4 large-4 columns">
-            <label> <b>EID:</b> </label>
+            <label> <b>EID:</b>
             <input type="text" name="eid" placeholder="E00000000"/>
+            </label>
 		</div>
       </div>
       <div class="row">
 	    <div class="large-offset-4 large-4 columns">
-			<label> <b>First Name:</b> </label>
+			<label> <b>First Name:</b>
             <input type="text" name="fname" placeholder="Jane"/>
+            </label>
         </div>
       </div>
       <div class="row">
 	    <div class="large-offset-4 large-4 columns">
-	      <label> <b>Last Name:</b> </label>
+	      <label> <b>Last Name:</b>
           <input type="text" name="lname" placeholder="Doe"/>
+          </label>
         </div>
       </div>
       <div class="row">
 	    <div class="large-offset-4 large-4 columns">
-          <label> <b>Emich Email:</b> </label>
+          <label> <b>Emich Email:</b> 
           <input type="text" name="emich" placeholder="jdoe123"/>
+          </label>
         </div>
       </div>
       <div style="text-align: center; padding-top: 5px;" >
