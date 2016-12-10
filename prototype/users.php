@@ -95,7 +95,7 @@
           <td><?=$person['advisorNetID']?>@emich.edu</td>
           <td><?php if ($person['isAdmin'] == 1) echo "Yes"; else echo "No";?></td>
           <td class="tableButton"><button onclick="toggleAdmin(<?=$person['isAdmin']?>, '<?=$person['advisorNetID']?>');"><?php if ($person['isAdmin'] == 1) echo "Demote from Admin"; else echo "Promote to Admin";?></button></td>
-          <td class="tableButton"><button>Remove Access</button></td>
+          <td class="tableButton"><button onclick="removeAdvisor('<?=$person['advisorNetID']?>')">Remove Access</button></td>
         </tr>
         <?php } ?>
       </table>
@@ -143,5 +143,17 @@
         alert("The passwords did not match.");
       }
     }
+
+    function removeAdvisor(netID)
+    {
+      $.ajax({ url: 'admin_functions.php',
+        data: {action: 'removeAdvisor', netID: netID},
+        type: 'post',
+        success: function(output) {
+            window.location.reload();
+        }
+      });
+    }
+
   </script>
 </html>
