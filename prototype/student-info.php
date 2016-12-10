@@ -2,7 +2,7 @@
   session_start();
 
 	include("sensitive.php");
-  include("sensitive.php");
+  include("header.php");
 
 ?>
   <style>
