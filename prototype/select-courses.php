@@ -29,7 +29,7 @@ include("header.php");
 		}
 	</style>
     <h3>Select Student Courses</h3>
-    <div>
+    <div class="large-8 columns">
 			<form action="schedule.php" method="post" id="schedule">
 	      <table>
 	        <tr>
