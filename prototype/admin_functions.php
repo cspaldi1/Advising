@@ -28,6 +28,16 @@ switch($action) {
     $query = "INSERT INTO ADVISOR
               VALUES ('".$netID."', '".$fname."',
               '".$lname."', 0,'".$password."')";
+    $query = mysqli_real_escape_string($conn, strip_tags($query));
+
+    mysqli_query($conn, $query);
+    echo true;
+    break;
+
+  case 'removeAdvisor':
+    $netID = $_POST['netID'];
+    $query = "DELETE FROM ADVISOR
+              WHERE advisorNetID='".$netID."'";
 
     mysqli_query($conn, $query);
     echo true;

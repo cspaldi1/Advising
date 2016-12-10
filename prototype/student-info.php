@@ -46,25 +46,25 @@
       <div class="row">
 	    <div class="large-offset-4 large-4 columns">
             <label> <b>EID:</b> </label>
-            <input type="text" name="eid"/>
+            <input type="text" name="eid" placeholder="E00000000"/>
 		</div>
       </div>
       <div class="row">
 	    <div class="large-offset-4 large-4 columns">
 			<label> <b>First Name:</b> </label>
-            <input type="text" name="fname"/>
+            <input type="text" name="fname" placeholder="Jane"/>
         </div>
       </div>
       <div class="row">
 	    <div class="large-offset-4 large-4 columns">
 	      <label> <b>Last Name:</b> </label>
-          <input type="text" name="lname"/>
+          <input type="text" name="lname" placeholder="Doe"/>
         </div>
       </div>
       <div class="row">
 	    <div class="large-offset-4 large-4 columns">
           <label> <b>Emich Email:</b> </label>
-          <input type="text" name="emich"/>
+          <input type="text" name="emich" placeholder="jdoe123"/>
         </div>
       </div>
       <div style="text-align: center; padding-top: 5px;" >
