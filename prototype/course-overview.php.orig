@@ -13,6 +13,7 @@
       <div id="header"><span id="title">Honors Advising Portal</span>
       </div>
     </div>
+<<<<<<< HEAD
     <h1>Course Overview</h1>
     <div>
       <table>
@@ -52,6 +53,43 @@
         </tr>
       </table>
       <div class="page">
+=======
+	<div class="row" id="dropdown-select">
+		<h3>Course Overview</h3>
+		<div>
+		  <table>
+			<tr>
+			  <th>Prefix</th>
+			  <th>Course No.</th>
+			  <th>Honors</th>
+			  <th>CRN</th>
+			</tr>
+			<tr>
+			  <td>
+				<select>
+				  <option>COSC</option>
+				</select>
+			  </td>
+			  <td>
+				<select>
+				  <option>111</option>
+				</select>
+			  </td>
+			  <td>
+				<select>
+				  <option>Both</option>
+				</select>
+			  </td>
+			  <td>
+				<select>
+				  <option>-Select-</option>
+				</select>
+			  </td>
+			</tr>
+		  </table>
+      </div>
+      <div class="page row" id="course-overview">
+>>>>>>> master
         <span><b>Selected Courses</b></span>
         <table style="margin-top: 20px;">
           <tr>
@@ -118,6 +156,7 @@
         url: "course-overview-funcs.php",
         data: {action: "fetch_course_prefixes"},
         success: function(output) {
+<<<<<<< HEAD
 					try{
 						var prefixes = JSON.parse(output);
 						prefixes.sort();
@@ -132,6 +171,8 @@
 					}catch(e){
 						alert("error:" . e);
 					}
+=======
+>>>>>>> master
         }
       });
     }
