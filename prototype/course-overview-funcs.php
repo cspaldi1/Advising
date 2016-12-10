@@ -41,23 +41,6 @@ if(isset($_POST['action']) && $_POST['action'] != "")
 			}
 
 			break;
-
-	/*
-	case "fetch_course_numbers":
-		echo 'enter';
-		$course_prefix = $_POST['course_prefix'];
-		$course_numbers_sql = "SELECT DISTINCT courseNO FROM COURSE WHERE coursePrefix='" . $course_prefix . "'";
-		$result = msqli_query($conn, $course_numbers_sql);
-		$rows_arr = array();
-		if($result->num_rows > 0){
-			while($row = result->fetch_assoc()){
-				$rows_arr[] = $row["courseNO"];
-			}
-			$results_json = json_encode($rows_arr);
-			echo $results_json;
-		}
-		break;
-	*/
   }
 
 }
