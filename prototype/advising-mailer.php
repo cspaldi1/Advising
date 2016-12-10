@@ -34,6 +34,7 @@
         $headers = array(
             'From' => $from_email,
             'To' => $target_email,
+			//changed to my email for testing purposes currently
             'Reply-To' => $from_email,
             // 'Bcc' => $GLOBALS['fromEmail'],
 			'Subject' => $subject

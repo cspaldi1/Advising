@@ -51,6 +51,21 @@ if(isset($_POST['action']) && $_POST['action'] != "")
             mysqli_query($conn, $query);
           }
           echo true;
+		  
+		  $sqlID = "SELECT scheduleID
+					FROM SCHEDULE
+					WHERE EID = '".$_SESSION['student']['eid']."'";
+		  $scheduleIdNum = mysqli_query($conn, $sqlID));
+		  
+		  $sqlSchedule = "SELECT *
+							FROM COURSE_ADVISED
+							WHERE scheduleID = '".$scheduleIdNum."'";
+		  if($result = mysqli_query($conn, $sqlSchedule)) {
+			  $courseInfo = mysqli_fetch_assoc($result);
+		  }
+		  
+		  email_schedule($_SESSION['student']['fname'], $_SESSION['student']['emich'], $courseInfo);
+		  
           break;
         }
       } else {
