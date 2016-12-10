@@ -1,10 +1,10 @@
 <?php
 session_start();
-
 foreach($_POST as $key=>$val)
 {
 	$_SESSION['student'][$key] = $val;
 }
+include("sensitive.php");
 
 include("sensitive.php");
 
@@ -84,7 +84,8 @@ include("header.php");
 	          </td>
 	        </tr>
 	      </table>
-				</form>
+		</form>
+		</div>
 	      <div style="margin-top: 10px;">
 	        <button onclick="addCourseLine();">Add Another Course</button>
 					<button onclick="removeCourseLine();">Remove Last Course</button>

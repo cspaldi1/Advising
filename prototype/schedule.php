@@ -278,7 +278,7 @@ include("header.php");
       $.ajax({
         method: "POST",
         url: "schedule_funcs.php",
-        data: {action: "schedule", array_str: jsonString},
+        data: {action: "schedule", array_str: jsonString, class_arr: scheduleChosen},
         success: function(output) {
           //console.log(output);
           if(output == 1)
@@ -289,7 +289,7 @@ include("header.php");
           }
         }
       });
-      //window.location.href='complete.php'
+      window.location.href='complete.php'
     }
 
     function byOne(sign)
