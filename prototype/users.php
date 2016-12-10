@@ -15,17 +15,35 @@
   {
     $advisors[] = $row;
   }
+  include("header.php");
  ?>
-
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
   <script src="./JS/jquery-3.1.1.min.js"></script>
+
+  <script>
+  function validateEmail()  {
+    var email = document.getElementsByName('emich')[0].value;
+    if (/^\w{1,8}@emich\.edu$/.test(email)) {
+      email = /^\w{1,8}/.exec(email);
+    }
+
+    if (/^\w{1,8}$/.test(email))  {
+      return true;
+    }
+    alert("Please enter a valid netID or emich email.");
+    return false;
+  }
+
+  </script>
+
 </head>
   <body>
     <div id="container">
       <div id="header"><span id="title">Honors Advising Portal</span></div>
     </div>
+
     <div class="container">
       <div style="text-align: center; padding-bottom: 10px;">
         <span><b>Add Advisor</b></span>

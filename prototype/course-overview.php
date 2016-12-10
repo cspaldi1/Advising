@@ -1,10 +1,15 @@
 <html>
+<?php 
+	include("sensitive.php");
+?>
 <head>
+  <link rel="stylesheet" type="text/css" href="./CSS/foundation.css">
+  <link rel="stylesheet" type="text/css" href="./CSS/foundation.min.css">
   <link rel="stylesheet" type="text/css" href="./CSS/global.css">
 	<script src="./JS/jquery-3.1.1.min.js"></script>
 </head>
   <body>
-    <div id="container">
+    <div id="container" class="row">
       <div id="header"><span id="title">Honors Advising Portal</span>
       </div>
     </div>
