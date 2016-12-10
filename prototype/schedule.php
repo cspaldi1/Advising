@@ -2,12 +2,12 @@
 
 session_start();
 
-//check for logged in
-/*if(!isset($_SESSION['user']['netID']) || $_SESSION['user']['netID'] == "")
+//check for login
+if(!isset($_SESSION['user']['netID']) || $_SESSION['user']['netID'] == "")
 {
-  header("Location: login.php");
-  die();
-}*/
+	header("Location: login.php");
+	die();
+}
 
 if(!isset($_SESSION['student']) || $_SESSION['student']['eid'] == "")
 {
@@ -148,15 +148,16 @@ function makeSchedule($length, $tempArray = array())
 //call the recursive function to schedule
 makeSchedule(0);
 
+if(count($schedules2) == 0)
+{ ?>
+<script>
+  alert("There were no schedules possible. Please revise your search terms.");
+  window.location="select-courses.php";
+</script>
+<?php }
 include("header.php");
 ?>
-
-<html>
-<head>
-  <!--<link rel="stylesheet" type="text/css" href="./CSS/global.css">
-  <script src="./JS/jquery-3.1.1.min.js"></script>-->
   <link rel='stylesheet' href='./JS/fullcalendar/fullcalendar.css' />
-  <!--<script src='./JS/fullcalendar/lib/jquery.min.js'></script>-->
   <script src='./JS/fullcalendar/lib/moment.min.js'></script>
   <script src='./JS/fullcalendar/fullcalendar.js'></script>
   <style>
@@ -181,37 +182,6 @@ include("header.php");
     <div class="page">
       <span><b>Student Schedule for <?=$_SESSION['student']['fname']?></b></span>
       <div id='calendar'></div>
-      <!--<table id="classList">
-        <tr>
-          <th>Prefix</th>
-          <th>Course No.</th>
-          <th>Honors</th>
-          <th>CRN</th>
-          <th>Days</th>
-          <th>Start</th>
-          <th>End</th>
-          <th>Credits</th>
-        </tr>
-        <?php
-          for($i=0; $i<count($schedules2[0]); $i++)
-          { ?>
-            <tr>
-              <td><?=$schedules2[0][$i]['coursePrefix']?></td>
-              <td><?=$schedules2[0][$i]['courseNO']?></td>
-              <td><?=$schedules2[0][$i]['isHonors']?></td>
-              <td><?=$schedules2[0][$i]['CRN']?></td>
-              <td><?=$schedules2[0][$i]['days']?></td>
-              <td><?=$schedules2[0][$i]['timeStart']?></td>
-              <td><?=$schedules2[0][$i]['timeEnd']?></td>
-              <td><?=$schedules2[0][$i]['credits']?></td>
-            </tr>
-          <?php
-            } ?>
-        <tr>
-          <td colspan="7" style="text-align: right; border: none;">Total Credits:</td>
-          <td style="text-align: left; border: none;"></td>
-        </tr>
-      </table> -->
       <div style="width: 100%; margin: auto; padding-top: 20px;" class="row">
         <div class="large-2 columns">
           <button style="float: left;" onclick="byFive(-1);"><<</button>

@@ -38,7 +38,7 @@
       <div style="text-align: center; padding-bottom: 10px;">
         <span><b>Add Advisor</b></span>
       </div>
-      <table class="add">
+<!--      <table class="add">
         <tr>
           <td><span>First Name:</span></td>
           <td><input id="fname" type="text"/></td>
@@ -60,6 +60,48 @@
           <td><input id="password2" type="password"/></td>
         </tr>
       </table>
+-->
+      <div class="row">
+        <div class="small-12 columns centered">
+          <label>
+            First Name:
+            <input id="fname" type="text"/>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns centered">
+          <label>
+            Last Name:
+            <input id="lname" type="text"/>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns centered">
+          <label>
+            NetID:
+            <input id="emich" type="text"/>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns centered">
+          <label>
+            Temporary Password:
+            <input id="password" type="text"/>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns centered">
+          <label>
+            Confirm Password:
+            <input id="password2" type="text"/>
+          </label>
+        </div>
+      </div>
+
       <div style="text-align: center; padding-top: 5px;">
         <button onclick="addAdvisor();">Add</button>
       </div>

@@ -1,5 +1,6 @@
 <html>
 <head>
+  <title>EMU Honors Advising</title>
   <script src="../foundation-6/js/vendor/jquery.js"></script>
   <script src="../foundation-6/js/vendor/foundation.min.js"></script>
   <link rel="stylesheet" type="text/css" href="./CSS/foundation.css">
