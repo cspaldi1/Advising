@@ -19,6 +19,7 @@
       $query = "INSERT INTO STUDENT
                 VALUES ('".$_SESSION['student']['eid']."','".$_SESSION['student']['fname']."',
                 '".$_SESSION['student']['lname']."', '".$_SESSION['student']['emich']."')";
+      $query = mysqli_real_escape_string($conn, strip_tags($query));
       mysqli_query($conn, $query);
     }
 
@@ -29,8 +30,8 @@
 
     mysqli_query($conn, $query);*/
 
-	
-	
+
+
     //unset the student session
     unset($_SESSION['student']);
   }

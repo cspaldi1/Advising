@@ -58,7 +58,7 @@
           <td><input id="lname" type="text"/></td>
         </tr>
         <tr>
-          <td><span>Emich Email:</span></td>
+          <td><span>NetID:</span></td>
           <td><input id="emich" type="text"/></td>
         </tr>
         <tr>
