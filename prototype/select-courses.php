@@ -1,8 +1,21 @@
 <?php
 session_start();
+
+//check for login
+if(!isset($_SESSION['user']['netID']) || $_SESSION['user']['netID'] == "")
+{
+	header("Location: login.php");
+	die();
+}
 foreach($_POST as $key=>$val)
 {
 	$_SESSION['student'][$key] = $val;
+}
+
+if(!isset($_SESSION['student']['eid']) || $_SESSION['student']['eid'] == "")
+{
+	header("Location: student-info.php");
+	die();
 }
 include("sensitive.php");
 
@@ -28,9 +41,13 @@ include("header.php");
 			margin-right: 20px;
 		}
 	</style>
-    <h3>Select Student Courses</h3>
 		<div class="row">
-	    <div class="large-offset-2 large-8 columns">
+			<div class="large-6 columns large-centered">
+    		<h3>Select Student Courses</h3>
+			</div>
+		</div>
+		<div class="row">
+	    <div class="large-12 columns">
 				<form action="schedule.php" method="post" id="schedule">
 		      <table>
 		        <tr>
@@ -154,6 +171,17 @@ include("header.php");
 							}
 							$("#courseNo"+number).prop('disabled', false);
 							$("#courseNo"+number).html(replaceStr);
+
+							$("#crn"+number).val("");
+							$("#crn"+number).prop('disabled', "disabled");
+							$("#days"+number).val("");
+							$("#days"+number).prop('disabled', "disabled");
+							$("#time"+number).val("");
+							$("#time"+number).prop('disabled', "disabled");
+							$("#honors"+number).val("");
+							$("#honors"+number).prop('disabled', "disabled");
+							$("#credits"+number).val("");
+							$("#credits"+number).prop('disabled', "disabled");
 	          } else {
 	            alert("Error in recieving data");
 	          }

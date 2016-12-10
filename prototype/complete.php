@@ -34,23 +34,26 @@
 
     //unset the student session
     unset($_SESSION['student']);
+  } else {
+    header("Location: home.php");
+    die();
   }
+  include("header.php");
 ?>
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="./CSS/global.css">
-</head>
-  <body>
-    <div id="container">
-      <div id="header"><span id="title">Honors Advising Portal</span>
-      </div>
+  <div class="row">
+    <div class="large-6 large-centered columns">
+      <h3>Advising Session Complete!</h3>
     </div>
-    <h1>Advising Session Complete!</h1>
-      <div style="width: 50%; margin: auto;">
+  </div>
+  <div class="row">
+      <div class="large-6 large-centered columns">
         <span>The student will receive an email shortly regarding the details of their advised schedule.</span>
       </div>
-    <div style="margin-top: 10px;">
+  </div>
+  <div class="row">
+    <div class="large-6 large-centered columns" style="margin-top: 10px;">
       <button onclick='window.location.href="home.php"'>Home</button>
     </div>
+  </div>
   </body>
 </html>
