@@ -15,17 +15,8 @@
   {
     $advisors[] = $row;
   }
+  include("header.php");
  ?>
-
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="./CSS/global.css">
-  <script src="./JS/jquery-3.1.1.min.js"></script>
-</head>
-  <body>
-    <div id="container">
-      <div id="header"><span id="title">Honors Advising Portal</span></div>
-    </div>
     <div class="container">
       <div style="text-align: center; padding-bottom: 10px;">
         <span><b>Add Advisor</b></span>

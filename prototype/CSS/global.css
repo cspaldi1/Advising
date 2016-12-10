@@ -29,6 +29,17 @@ td, th {
       background-color: #0b4d03;
       text-align: left;
   }
+  .home-page-items {
+    border-color: #0b4d03;
+    border-width: 2px;
+    border-style: solid;
+    display: inline-block;
+    padding: 20px;
+    margin-top: 40px;
+    text-align: left;
+	  background-color: inherit;
+  }
+
   #login {
     border-color: #0b4d03;
     border-width: 2px;
@@ -37,8 +48,9 @@ td, th {
     padding: 20px;
     margin-top: 40px;
     text-align: left;
-	background-color: rgb(201, 201, 201);
+	  background-color: inherit;
   }
+
   #main-menu {
     border-color: #0b4d03;
     border-width: 2px;
@@ -53,7 +65,7 @@ td, th {
 /*course-overview CSS*/
   #dropdown-select td {
 	padding: 0.3625rem 1.4rem;
-	
+
   }
   #dropdown-select select {
 	margin: 0 0 .5rem 0.5rem;
@@ -106,4 +118,22 @@ td, th {
   }
   .tableButton {
     border: none;
+  }
+  .top-bar {
+    background-color: #0b4d03;
+  }
+
+  button {
+    background-color: #0b4d03;
+    color: #fff;
+  }
+  button:hover {
+    background-color: #073901;
+  }
+
+  .top-bar-section li:not(.has-form) a:not(.button) {
+    background-color: #0b4d03 !important;
+  }
+  .top-bar-section li:not(.has-form) a:not(.button):hover {
+    background-color: #073901 !important;
   }

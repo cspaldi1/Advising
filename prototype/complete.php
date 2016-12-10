@@ -4,7 +4,7 @@
 
   if(isset($_SESSION['student']['eid']) && $_SESSION['student']['eid'] != "")
   {
-    // Check connection
+    /*// Check connection
     if (mysqli_connect_errno()) {
         die("Connection failed: " . mysqli_connect_error());
     }
@@ -27,7 +27,7 @@
               VALUES ('".date('Y-m-d')."','".$_SESSION['student']['eid']."',
               '".$_SESSION['user']['netID']."')";
 
-    mysqli_query($conn, $query);
+    mysqli_query($conn, $query);*/
 
 	
 	
