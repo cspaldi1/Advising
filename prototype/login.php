@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+session_unset();
 if($_POST['netID'] && $_POST['password'])
 {
   include("sensitive.php");
@@ -22,6 +23,7 @@ if($_POST['netID'] && $_POST['password'])
     $_SESSION['user']['netID'] = $row['advisorNetID'];
     $_SESSION['user']['fname'] = $row['firstName'];
     $_SESSION['user']['lname'] = $row['lastName'];
+    $_SESSION['user']['isAdmin'] = $row['isAdmin'];
 
     header("Location: home.php");
     die();
@@ -33,30 +35,23 @@ if($_POST['netID'] && $_POST['password'])
 } else {
   //clear pre-existing session variables here.
 }
+include("header.php");
 ?>
-
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="./CSS/global.css">
-</head>
-  <body>
-    <div id="container">
-      <div id="header"><span id="title">Honors Advising Portal</span>
-      </div>
-    </div>
-    <form action="login.php" method="post">
-      <div id="login">
-        <div style="text-align: center;">
-          <span><b>Login</b></span>
-        </div>
-        <p>NetID</p>
-        <input type="text" name="netID"/>
-        <p>Password</p>
-        <input type="password" name="password"/><br/>
-        <div style="text-align: center; padding-top: 5px;">
-          <input type="Submit" value="Submit"/>
-        </div>
-      </div>
-    </form>
+	<div id="pagebody" class="row">
+		<form action="login.php" method="post">
+		  <div id="login" class="large-offset-4 large-4 columns">
+			<div style="text-align: center;">
+			  <span><b>Login</b></span>
+			</div>
+			<p>NetID</p>
+			<input type="text" name="netID"/>
+			<p>Password</p>
+			<input type="password" name="password"/><br/>
+			<div style="text-align: center; padding-top: 5px;">
+			  <button type="submit" value="Submit">Submit</button>
+			</div>
+		  </div>
+		</form>
+	</div>
   </body>
 </html>
