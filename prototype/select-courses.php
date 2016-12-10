@@ -39,6 +39,7 @@ include("header.php");
 	          <th>CRN</th>
 	          <th>Days</th>
 	          <th>Time</th>
+						<th>Credits</th>
 	        </tr>
 	        <tr id="row1">
 	          <td>
@@ -80,6 +81,11 @@ include("header.php");
 	              <option value="">Time</option>
 	            </select>
 	          </td>
+						<td>
+	            <select id="credits1" onchange="changeOnCredits(1)" name="credits[]" disabled>
+	              <option value="">Credits</option>
+	            </select>
+	          </td>
 	        </tr>
 	      </table>
 		</form>
@@ -108,6 +114,8 @@ include("header.php");
 			$("#time1").prop('disabled', "disabled");
 			$("#honors1").val("");
 			$("#honors1").prop('disabled', "disabled");
+			$("#credits1").val("");
+			$("#credits1").prop('disabled', "disabled");
 		});
 		var classArray = JSON.parse('<?=json_encode($classArr)?>');
 		var courses = 1;
@@ -160,6 +168,8 @@ include("header.php");
 				$("#time"+number).prop('disabled', "disabled");
 				$("#honors"+number).val("");
 				$("#honors"+number).prop('disabled', "disabled");
+				$("#credits"+number).val("");
+				$("#credits"+number).prop('disabled', "disabled");
 			}
 		}
 
@@ -219,6 +229,15 @@ include("header.php");
 							}
 							$("#honors"+number).prop('disabled', false);
 							$("#honors"+number).html(replaceStr);
+
+							//replace credits
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['credits'].length; i++)
+							{
+								replaceStr += " <option value='"+courseInfoArr['credits'][i]+"'>"+courseInfoArr['credits'][i]+"</option> ";
+							}
+							$("#credits"+number).prop('disabled', false);
+							$("#credits"+number).html(replaceStr);
 	          } else {
 	            alert("Error in recieving data");
 	          }
@@ -233,6 +252,8 @@ include("header.php");
 				$("#time"+number).prop('disabled', "disabled");
 				$("#honors"+number).val("");
 				$("#honors"+number).prop('disabled', "disabled");
+				$("#credits"+number).val("");
+				$("#credits"+number).prop('disabled', "disabled");
 			}
 		}
 
@@ -243,6 +264,7 @@ include("header.php");
 			var daysSelected = $("#days"+number).val();
 			var timeSelected = $("#time"+number).val();
 			var honorsSelected = $("#honors"+number).val();
+			var creditsSelected = $("#credits"+number).val();
 			var ajax_data = {action: "CRN", prefix: courseSelected, courseNO: noSelected, CRN: valSelected};
 			if(timeSelected != "")
 				ajax_data.times = timeSelected;
@@ -250,6 +272,8 @@ include("header.php");
 				ajax_data.days = daysSelected;
 			if(honorsSelected != "")
 				ajax_data.isHonors = honorsSelected;
+			if(creditsSelected != "")
+				ajax_data.credits = creditsSelected;
 			$.ajax({
         method: "POST",
         url: "course_select_funcs.php",
@@ -295,6 +319,15 @@ include("header.php");
 						$("#honors"+number).html(replaceStr);
 						$("#honors"+number).val(honorsSelected);
 
+						//replace credits
+						replaceStr = "<option value=''> Select </option> ";
+						for(var i = 0; i < courseInfoArr['credits'].length; i++)
+						{
+							replaceStr += " <option value='"+courseInfoArr['credits'][i]+"'>"+courseInfoArr['credits'][i]+"</option> ";
+						}
+						$("#credits"+number).prop('disabled', false);
+						$("#credits"+number).html(replaceStr);
+						$("#credits"+number).val(creditsSelected);
           } else {
             alert("Error in recieving data");
           }
@@ -309,6 +342,7 @@ include("header.php");
 			var crnSelected = $("#crn"+number).val();
 			var timeSelected = $("#time"+number).val();
 			var honorsSelected = $("#honors"+number).val();
+			var creditsSelected = $("#credits"+number).val();
 			if(timeSelected != "")
 			{
 				var ajax_data = {action: "days", prefix: courseSelected, courseNO: noSelected, days: valSelected, times: timeSelected};
@@ -317,6 +351,8 @@ include("header.php");
 			}
 			if(honorsSelected != "")
 				ajax_data.isHonors = honorsSelected;
+			if(creditsSelected != "")
+				ajax_data.credits = creditsSelected;
 			if(crnSelected == "")
 			{
 				$.ajax({
@@ -365,6 +401,15 @@ include("header.php");
 							$("#honors"+number).html(replaceStr);
 							$("#honors"+number).val(honorsSelected);
 
+							//replace credits
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['credits'].length; i++)
+							{
+								replaceStr += " <option value='"+courseInfoArr['credits'][i]+"'>"+courseInfoArr['credits'][i]+"</option> ";
+							}
+							$("#credits"+number).prop('disabled', false);
+							$("#credits"+number).html(replaceStr);
+							$("#credits"+number).val(creditsSelected);
 	          } else {
 	            alert("Error in recieving data");
 	          }
@@ -380,6 +425,7 @@ include("header.php");
 			var crnSelected = $("#crn"+number).val();
 			var daySelected = $("#days"+number).val();
 			var honorsSelected = $("#honors"+number).val();
+			var creditsSelected = $("#credits"+number).val();
 			if(daySelected != "")
 			{
 				var ajax_data = {action: "time", prefix: courseSelected, courseNO: noSelected, days: daySelected, time: valSelected};
@@ -388,6 +434,8 @@ include("header.php");
 			}
 			if(honorsSelected != "")
 				ajax_data.isHonors = honorsSelected;
+			if(creditsSelected != "")
+				ajax_data.credits = creditsSelected;
 			if(crnSelected == "")
 			{
 				$.ajax({
@@ -436,6 +484,15 @@ include("header.php");
 							$("#honors"+number).html(replaceStr);
 							$("#honors"+number).val(honorsSelected);
 
+							//replace credits
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['credits'].length; i++)
+							{
+								replaceStr += " <option value='"+courseInfoArr['credits'][i]+"'>"+courseInfoArr['credits'][i]+"</option> ";
+							}
+							$("#credits"+number).prop('disabled', false);
+							$("#credits"+number).html(replaceStr);
+							$("#credits"+number).val(creditsSelected);
 	          } else {
 	            alert("Error in recieving data");
 	          }
@@ -451,11 +508,14 @@ include("header.php");
 			var crnSelected = $("#crn"+number).val();
 			var daySelected = $("#days"+number).val();
 			var timeSelected = $("#time"+number).val();
+			var creditsSelected = $("#credits"+number).val();
 			var ajax_data = {action: "honors", prefix: courseSelected, courseNO: noSelected, isHonors: valSelected};
 			if(timeSelected != "")
 				ajax_data.times = timeSelected;
 			if(daySelected != "")
 				ajax_data.days = daySelected;
+			if(creditsSelected != "")
+				ajax_data.credits = creditsSelected;
 			if(crnSelected == "")
 			{
 				$.ajax({
@@ -499,6 +559,96 @@ include("header.php");
 							$("#crn"+number).html(replaceStr);
 							$("#crn"+number).val(crnSelected);
 
+							//replace credits
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['credits'].length; i++)
+							{
+								replaceStr += " <option value='"+courseInfoArr['credits'][i]+"'>"+courseInfoArr['credits'][i]+"</option> ";
+							}
+							$("#credits"+number).prop('disabled', false);
+							$("#credits"+number).html(replaceStr);
+							$("#credits"+number).val(creditsSelected);
+	          } else {
+	            alert("Error in recieving data");
+	          }
+	        }
+				});
+			}
+		}
+
+		function changeOnCredits(number) {
+			var valSelected = $("#credits"+number).val();
+			var courseSelected = $("#prefix"+number).val();
+			var noSelected = $("#courseNo"+number).val();
+			var crnSelected = $("#crn"+number).val();
+			var daySelected = $("#days"+number).val();
+			var timeSelected = $("#time"+number).val();
+			var honorsSelected = $("#honors"+number).val();
+			var ajax_data = {action: "credits", prefix: courseSelected, courseNO: noSelected, credits: valSelected};
+			if(timeSelected != "")
+				ajax_data.times = timeSelected;
+			if(daySelected != "")
+				ajax_data.days = daySelected;
+			if(honorsSelected != "")
+				ajax_data.isHonors = honorsSelected;
+			if(crnSelected == "")
+			{
+				$.ajax({
+	        method: "POST",
+	        url: "course_select_funcs.php",
+	        data: ajax_data,
+	        success: function(output) {
+	          if(output != 0)
+	          {
+							var courseInfoArr = JSON.parse(output);
+
+							//replace days
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['days'].length; i++)
+							{
+								if(courseInfoArr['days'][i] != "")
+									replaceStr += " <option value='"+courseInfoArr['days'][i]+"'>"+courseInfoArr['days'][i]+"</option> ";
+							}
+							$("#days"+number).prop('disabled', false);
+							$("#days"+number).html(replaceStr);
+							$("#days"+number).val(daySelected);
+
+							//replace times
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['times'].length; i++)
+							{
+								if(courseInfoArr['times'][i] != "12:00 am - 12:00 am")
+									replaceStr += " <option value='"+courseInfoArr['times'][i]+"'>"+courseInfoArr['times'][i]+"</option> ";
+							}
+							$("#time"+number).prop('disabled', false);
+							$("#time"+number).html(replaceStr);
+							$("#time"+number).val(timeSelected);
+
+							//replace CRNs
+							replaceStr = "<option value=''> Select </option> ";
+							for(var i = 0; i < courseInfoArr['crns'].length; i++)
+							{
+								replaceStr += " <option value='"+courseInfoArr['crns'][i]+"'>"+courseInfoArr['crns'][i]+"</option> ";
+							}
+							$("#crn"+number).prop('disabled', false);
+							$("#crn"+number).html(replaceStr);
+							$("#crn"+number).val(crnSelected);
+
+							//replace honors
+							replaceStr = "<option value=''> Both </option> ";
+							for(var i = 0; i < courseInfoArr['isHonors'].length; i++)
+							{
+								if(courseInfoArr['isHonors'][i] == 1)
+								{
+									var honors_str = "Yes";
+								} else {
+									var honors_str = "No";
+								}
+								replaceStr += " <option value='"+courseInfoArr['isHonors'][i]+"'>"+honors_str+"</option> ";
+							}
+							$("#honors"+number).prop('disabled', false);
+							$("#honors"+number).html(replaceStr);
+							$("#honors"+number).val(honorsSelected);
 	          } else {
 	            alert("Error in recieving data");
 	          }
@@ -544,6 +694,11 @@ include("header.php");
 				'<td>'+
 					'<select id="time'+courses+'" onchange="changeOnTime('+courses+')" name="time[]" disabled>'+
 						'<option>Time</option>'+
+					'</select>'+
+				'</td>'+
+				'<td>'+
+					'<select id="credits'+courses+'" onchange="changeOnCredits('+courses+')" name="credits[]" disabled>'+
+						'<option value="">Credits</option>'+
 					'</select>'+
 				'</td>'+
 			'</tr>';

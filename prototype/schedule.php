@@ -56,6 +56,10 @@ for($i=0; $i<count($_POST['prefix']); $i++)
     $query_array[] = "timeStart='".$time_arr[0]."'";
     $query_array[] = "timeEnd='".$time_arr[1]."'";
   }
+  if($_POST['credits'][$i] != "")
+  {
+    $query_array[] = "credits=".$_POST['credits'][$i];
+  }
 
   $conditions = implode(" AND ", $query_array);
   $q_temp = $q_temp.$conditions;
@@ -253,7 +257,9 @@ include("header.php");
           year: 2016,
           month: 12,
           date: 6,
-          allDaySlot: false
+          allDaySlot: false,
+          minTime:"07:00:00",
+          maxTime:"22:00:00"
       });
 
       //Rename all headers to generic week.
